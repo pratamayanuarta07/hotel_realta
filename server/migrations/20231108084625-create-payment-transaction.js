@@ -3,13 +3,10 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("payment_transactions", {
-      id: {
+      patr_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      patr_id: {
         type: Sequelize.INTEGER,
       },
       patr_trx_number: {
@@ -44,6 +41,7 @@ module.exports = {
       },
       patr_user_id: {
         type: Sequelize.INTEGER,
+        foreignKey: true,
       },
       createdAt: {
         allowNull: false,

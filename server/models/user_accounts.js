@@ -8,16 +8,34 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      user_accounts.belongsToMany(models.bank, {
+        foreignKey: "usac_entity_id",
+      });
+
+      user_accounts.belongsToMany(models.payment_gateaway, {
+        foreignKey: "usac_entity_id",
+      });
     }
   }
   user_accounts.init(
     {
       usac_entity_id: {
-        type: DataTypes.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
+        type: DataTypes.INTEGER,
+        references: {
+          model: "bank",
+          key: "bank_entity_id",
+        },
+        references: {
+          model: "payment_gateaway",
+          key: "paga_entity_id",
+        },
       },
       usac_user_id: {
+        allowNull: false,
+        autoIncrement: true,
         type: DataTypes.INTEGER,
         primaryKey: true,
       },

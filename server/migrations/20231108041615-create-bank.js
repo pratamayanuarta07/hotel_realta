@@ -3,14 +3,18 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("banks", {
-      id: {
+      bank_entity_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-      },
-      bank_entity_id: {
-        type: Sequelize.INTEGER,
+        foreignKey: true,
+        references: {
+          model: {
+            tableName: "entities",
+          },
+          key: "entity_id",
+        },
       },
       bank_code: {
         type: Sequelize.STRING(10),

@@ -3,14 +3,23 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("user_accounts", {
-      id: {
+      usac_entity_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-      },
-      usac_entity_id: {
-        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "banks",
+          },
+          key: "bank_entity_id",
+        },
+        references: {
+          model: {
+            tableName: "payment_gateaways",
+          },
+          key: "paga_entity_id",
+        },
       },
       usac_user_id: {
         type: Sequelize.INTEGER,

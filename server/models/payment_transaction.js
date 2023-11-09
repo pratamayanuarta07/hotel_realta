@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       patr_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrementIdentity: true,
+        autoIncrement: true,
+        allowNull: false,
       },
       patr_trx_number: {
         type: DataTypes.STRING,

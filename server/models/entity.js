@@ -8,11 +8,23 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      entity.hasOne(models.bank, {
+        foreignKey: "bank_entity_id",
+      });
+
+      entity.hasOne(models.payment_gateway, {
+        foreignKey: "paga_entity_id",
+      });
     }
   }
   entity.init(
     {
+      entity_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+        autoIncrement: true,
+      },
       entity_modified_date: DataTypes.DATE,
     },
     {

@@ -8,7 +8,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      bank.hasOne(models.entity, {
+        foreignKey: "bank_entity_id",
+      });
+
+      bank.hasMany(models.user_accounts, {
+        foreignKey: "usac_entity_id",
+      });
     }
   }
   bank.init(
@@ -16,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       bank_entity_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        allowNull: false,
+        autoIncrement: true,
+        references: {
+          model: "entity",
+          key: "entity_id",
+        },
       },
       bank_code: {
         type: DataTypes.STRING,
