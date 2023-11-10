@@ -8,13 +8,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      user_accounts.belongsToMany(models.bank, {
-        foreignKey: "usac_entity_id",
-      });
-
-      user_accounts.belongsToMany(models.payment_gateaway, {
-        foreignKey: "usac_entity_id",
-      });
+      // user_accounts.belongsToMany(models.bank, {
+      //   foreignKey: "usac_entity_id",
+      // });
+      // user_accounts.belongsToMany(models.payment_gateaway, {
+      //   foreignKey: "usac_entity_id",
+      // });
     }
   }
   user_accounts.init(
@@ -35,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       usac_user_id: {
         allowNull: false,
-        autoIncrement: true,
         type: DataTypes.INTEGER,
         primaryKey: true,
       },

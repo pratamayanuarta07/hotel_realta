@@ -13,7 +13,7 @@ app.use(
   })
 );
 
-const routes = require("./routes/index");
+const routes = require("./route/index");
 app.use(routes);
 
 app.listen(PORT, () => {

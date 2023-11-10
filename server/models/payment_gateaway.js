@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      payment_gateaway.hasOne(models.entity, {
+      payment_gateaway.belongsTo(models.entity, {
         foreignKey: "paga_entity_id",
       });
 
@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
         references: {
           model: "entity",
           key: "entity_id",

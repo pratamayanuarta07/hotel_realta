@@ -1,4 +1,4 @@
-const { Bank } = require("../models");
+const { bank, entity } = require("../models");
 
 class BankController {
   static async getBank(req, res) {
@@ -15,22 +15,29 @@ class BankController {
   }
   static async create(req, res) {
     try {
-      const { title, content, author, category } = req.body;
-      let imageUrl = "https://via.placeholder.com/100";
-      let status = true;
+      const { bank_code, bank_name } = req.body;
+      let bank_modified_date = new Date();
+      let entity_modified_date = new Date();
 
-      let result = await Bank.create({
-        title,
-        content,
-        author,
-        category,
-        status,
-        imageUrl,
+      let resultId = await entity.create(
+        {
+          entity_modified_date,
+        },
+        {
+          returning: true,
+        }
+      );
+
+      let result = await bank.create({
+        bank_entity_id: resultId.entity_id,
+        bank_code,
+        bank_name,
+        bank_modified_date,
       });
 
       res.status(201).json(result);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async delete(req, res) {

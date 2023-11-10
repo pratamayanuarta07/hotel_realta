@@ -5,7 +5,6 @@ module.exports = {
     await queryInterface.createTable("payment_gateaways", {
       paga_entity_id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
         foreignKey: true,

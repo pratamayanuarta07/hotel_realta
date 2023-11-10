@@ -1,10 +1,10 @@
 const bankRoute = require("express").Router();
-const bankController = require("../controller/bankController");
+const BankController = require("../controller/bankController");
 
-bankRoute.get("/", bankController.getbank);
-bankRoute.post("/create", bankController.create);
-bankRoute.put("/update/:id", bankController.update);
-bankRoute.delete("/delete/:id", bankController.delete);
-bankRoute.get("/details/:id", bankController.getDetails);
+bankRoute.get("/", BankController.getBank);
+bankRoute.post("/create", BankController.create);
+bankRoute.put("/update/:id", BankController.update);
+bankRoute.delete("/delete/:id", BankController.delete);
+bankRoute.get("/details/:id", BankController.getDetails);
 
 module.exports = bankRoute;

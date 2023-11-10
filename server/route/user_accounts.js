@@ -1,10 +1,10 @@
 const usacRoute = require("express").Router();
-const usacController = require("../controllers/usacController");
+const UsacController = require("../controllers/usacController");
 
-usacRoute.get("/", usacController.getusac);
-usacRoute.post("/create", usacController.create);
-usacRoute.put("/update/:id", usacController.update);
-usacRoute.delete("/delete/:id", usacController.delete);
-usacRoute.get("/details/:id", usacController.getDetails);
+usacRoute.get("/", UsacController.getusac);
+usacRoute.post("/create", UsacController.create);
+usacRoute.put("/update/:id", UsacController.update);
+usacRoute.delete("/delete/:id", UsacController.delete);
+usacRoute.get("/details/:id", UsacController.getDetails);
 
 module.exports = usacRoute;

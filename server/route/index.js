@@ -6,8 +6,12 @@ const route = require("express").Router();
 //   });
 // });
 
-const paymentRoutes = require("./payment");
+const entityRoute = require("./entity");
+const bankRoute = require("./bank");
+const pagaRoute = require("./paga");
 
-route.use("/payments", paymentRoutes);
+route.use("/entitys", entityRoute);
+route.use("/banks", bankRoute);
+route.use("/pagas", pagaRoute);
 
 module.exports = route;

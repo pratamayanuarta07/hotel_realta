@@ -5,7 +5,6 @@ module.exports = {
     await queryInterface.createTable("banks", {
       bank_entity_id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
         foreignKey: true,
