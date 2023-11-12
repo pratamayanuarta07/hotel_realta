@@ -3,7 +3,7 @@ const { payment_gateaway, entity } = require("../models");
 class PagaController {
   static async getPaga(req, res) {
     try {
-      let Paga = await Paga.findAll({
+      let Paga = await payment_gateaway.findAll({
         order: [["id", "ASC"]],
         // include: [User],
       });
@@ -62,16 +62,13 @@ class PagaController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { title, content, author, category, status, imageUrl } = req.body;
+      const { paga_code, paga_name, paga_modified_date } = req.body;
 
-      let result = await Paga.update(
+      let result = await payment_gateaway.update(
         {
-          title,
-          content,
-          author,
-          category,
-          status,
-          imageUrl,
+          paga_code,
+          paga_name,
+          paga_modified_date,
         },
         {
           where: { id: id },
@@ -93,7 +90,7 @@ class PagaController {
     try {
       const id = +req.params.id;
 
-      let result = await Paga.findByPk(id);
+      let result = await payment_gateaway.findByPk(id);
 
       result
         ? res.status(200).json(result)

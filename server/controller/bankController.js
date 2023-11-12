@@ -3,7 +3,7 @@ const { bank, entity } = require("../models");
 class BankController {
   static async getBank(req, res) {
     try {
-      let Bank = await Bank.findAll({
+      let Bank = await bank.findAll({
         order: [["id", "ASC"]],
         // include: [User],
       });
@@ -44,7 +44,7 @@ class BankController {
     try {
       let id = +req.params.id;
 
-      let result = await Bank.destroy({
+      let result = await bank.destroy({
         where: { id: id },
       });
 
@@ -62,16 +62,13 @@ class BankController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { title, content, author, category, status, imageUrl } = req.body;
+      const { bank_code, bank_name, paga_modified_date } = req.body;
 
-      let result = await Bank.update(
+      let result = await bank.update(
         {
-          title,
-          content,
-          author,
-          category,
-          status,
-          imageUrl,
+          bank_code,
+          bank_name,
+          paga_modified_date,
         },
         {
           where: { id: id },
@@ -93,7 +90,7 @@ class BankController {
     try {
       const id = +req.params.id;
 
-      let result = await Bank.findByPk(id);
+      let result = await bank.findByPk(id);
 
       result
         ? res.status(200).json(result)

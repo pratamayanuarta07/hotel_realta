@@ -1,9 +1,9 @@
-const { Usac } = require("../models");
+const { user_accounts } = require("../models");
 
 class UsacController {
   static async getUsac(req, res) {
     try {
-      let Usac = await Usac.findAll({
+      let Usac = await user_accounts.findAll({
         order: [["id", "ASC"]],
         // include: [User],
       });
@@ -15,17 +15,16 @@ class UsacController {
   }
   static async create(req, res) {
     try {
-      const { title, content, author, category } = req.body;
-      let imageUrl = "https://via.placeholder.com/100";
-      let status = true;
+      const { usac_account_number, usac_saldo, usac_type, usac_expmonth, usac_expyear } = req.body;
+      let usac_modified_date = new Date();
 
-      let result = await Usac.create({
-        title,
-        content,
-        author,
-        category,
-        status,
-        imageUrl,
+      let result = await user_accounts.create({
+        usac_account_number,
+        usac_saldo,
+        usac_type,
+        usac_expmonth,
+        usac_expyear,
+        usac_modified_date,
       });
 
       res.status(201).json(result);
@@ -37,7 +36,7 @@ class UsacController {
     try {
       let id = +req.params.id;
 
-      let result = await Usac.destroy({
+      let result = await user_accounts.destroy({
         where: { id: id },
       });
 
@@ -55,16 +54,15 @@ class UsacController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { title, content, author, category, status, imageUrl } = req.body;
+      const { usac_account_number, usac_saldo, usac_type, usac_expmonth, usac_expyear } = req.body;
 
-      let result = await Usac.update(
+      let result = await user_accounts.update(
         {
-          title,
-          content,
-          author,
-          category,
-          status,
-          imageUrl,
+          usac_account_number,
+          usac_saldo,
+          usac_type,
+          usac_expmonth,
+          usac_expyear,
         },
         {
           where: { id: id },
@@ -86,7 +84,7 @@ class UsacController {
     try {
       const id = +req.params.id;
 
-      let result = await Usac.findByPk(id);
+      let result = await user_accounts.findByPk(id);
 
       result
         ? res.status(200).json(result)

@@ -26,7 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       patr_debit: DataTypes.INTEGER,
       patr_credit: DataTypes.INTEGER,
       patr_type: DataTypes.STRING,
-      patr_type: DataTypes.STRING,
       patr_note: DataTypes.STRING,
       patr_modified_date: DataTypes.DATE,
       patr_order_number: DataTypes.STRING,

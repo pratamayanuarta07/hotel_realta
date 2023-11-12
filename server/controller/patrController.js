@@ -1,9 +1,9 @@
-const { Patr } = require("../models");
+const { payment_transaction } = require("../models");
 
 class PatrController {
   static async getPatr(req, res) {
     try {
-      let Patr = await Patr.findAll({
+      let Patr = await payment_transaction.findAll({
         order: [["id", "ASC"]],
         // include: [User],
       });
@@ -15,17 +15,21 @@ class PatrController {
   }
   static async create(req, res) {
     try {
-      const { title, content, author, category } = req.body;
-      let imageUrl = "https://via.placeholder.com/100";
-      let status = true;
+      const { patr_trx_number, patr_debit, patr_credit, patr_type, patr_note, patr_order_number, patr_source_id, patr_target_id, patr_trx_number_ref, patr_user_id } = req.body;
+      let patr_modified_date = new Date();
 
-      let result = await Patr.create({
-        title,
-        content,
-        author,
-        category,
-        status,
-        imageUrl,
+      let result = await payment_transaction.create({
+        patr_trx_number,
+        patr_debit,
+        patr_credit,
+        patr_type,
+        patr_note,
+        patr_modified_date,
+        patr_order_number,
+        patr_source_id,
+        patr_target_id,
+        patr_trx_number_ref,
+        patr_user_id,
       });
 
       res.status(201).json(result);
@@ -37,7 +41,7 @@ class PatrController {
     try {
       let id = +req.params.id;
 
-      let result = await Patr.destroy({
+      let result = await payment_transaction.destroy({
         where: { id: id },
       });
 
@@ -55,16 +59,20 @@ class PatrController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { title, content, author, category, status, imageUrl } = req.body;
+      const { patr_trx_number, patr_debit, patr_credit, patr_type, patr_note, patr_order_number, patr_source_id, patr_target_id, patr_trx_number_ref, patr_user_id } = req.body;
 
-      let result = await Patr.update(
+      let result = await payment_transaction.update(
         {
-          title,
-          content,
-          author,
-          category,
-          status,
-          imageUrl,
+          patr_trx_number,
+          patr_debit,
+          patr_credit,
+          patr_type,
+          patr_note,
+          patr_order_number,
+          patr_source_id,
+          patr_target_id,
+          patr_trx_number_ref,
+          patr_user_id,
         },
         {
           where: { id: id },
@@ -86,7 +94,7 @@ class PatrController {
     try {
       const id = +req.params.id;
 
-      let result = await Patr.findByPk(id);
+      let result = await payment_transaction.findByPk(id);
 
       result
         ? res.status(200).json(result)
