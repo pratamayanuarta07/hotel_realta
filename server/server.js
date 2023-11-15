@@ -16,6 +16,8 @@ app.use(
 const routes = require("./route/index");
 app.use(routes);
 
+app.use(express.static("public"));
+
 app.listen(PORT, () => {
   console.log(`App is listening on ${PORT}`);
 });

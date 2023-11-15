@@ -62,7 +62,8 @@ class PagaController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { paga_code, paga_name, paga_modified_date } = req.body;
+      const { paga_code, paga_name } = req.body;
+      let paga_modified_date = new Date();
 
       let result = await payment_gateaway.update(
         {
@@ -71,7 +72,7 @@ class PagaController {
           paga_modified_date,
         },
         {
-          where: { id: id },
+          where: { paga_entity_id: id },
         }
       );
 

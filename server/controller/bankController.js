@@ -62,16 +62,17 @@ class BankController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { bank_code, bank_name, paga_modified_date } = req.body;
+      const { bank_code, bank_name } = req.body;
+      let bank_modified_date = new Date();
 
       let result = await bank.update(
         {
           bank_code,
           bank_name,
-          paga_modified_date,
+          bank_modified_date,
         },
         {
-          where: { id: id },
+          where: { bank_entity_id: id },
         }
       );
 
@@ -83,7 +84,7 @@ class BankController {
             message: `Id ${id} has not been updated.`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async getDetails(req, res) {
