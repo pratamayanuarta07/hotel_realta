@@ -10,7 +10,7 @@ class PagaController {
 
       res.status(200).json(Paga);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async create(req, res) {
@@ -45,7 +45,7 @@ class PagaController {
       let id = +req.params.id;
 
       let result = await Paga.destroy({
-        where: { id: id },
+        where: { paga_entity_id: id },
       });
 
       result === 1
@@ -56,7 +56,7 @@ class PagaController {
             message: `Id ${id} has not been deleted.`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async update(req, res) {
@@ -84,7 +84,7 @@ class PagaController {
             message: `Id ${id} has not been updated.`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async getDetails(req, res) {
@@ -99,7 +99,7 @@ class PagaController {
             message: `Paga id ${id} not found`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
 }

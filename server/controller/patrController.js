@@ -10,7 +10,7 @@ class PatrController {
 
       res.status(200).json(Patr);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async create(req, res) {
@@ -34,7 +34,7 @@ class PatrController {
 
       res.status(201).json(result);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async delete(req, res) {
@@ -53,7 +53,7 @@ class PatrController {
             message: `Id ${id} has not been deleted.`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async update(req, res) {
@@ -87,7 +87,7 @@ class PatrController {
             message: `Id ${id} has not been updated.`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async getDetails(req, res) {
@@ -102,7 +102,7 @@ class PatrController {
             message: `Patr id ${id} not found`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
 }

@@ -48,7 +48,7 @@ class EntityController {
             message: `Id ${id} has not been deleted.`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async update(req, res) {
@@ -78,7 +78,7 @@ class EntityController {
             message: `Id ${id} has not been updated.`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
   static async getDetails(req, res) {
@@ -93,7 +93,7 @@ class EntityController {
             message: `entity id ${id} not found`,
           });
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.message);
     }
   }
 }
