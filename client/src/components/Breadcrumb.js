@@ -10,7 +10,7 @@ const Breadcrumb = () => {
             <Link to={"/"}>Home</Link>
           </li>
           <li class="breadcrumb-item active" aria-current="page">
-            Master
+            Payment
           </li>
         </ol>
       </nav>

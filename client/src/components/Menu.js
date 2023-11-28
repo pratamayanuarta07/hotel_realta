@@ -5,21 +5,21 @@ const Menu = () => {
   return (
     <div>
       <ul>
-        {/* <li>
-          <Link to="locations">Locations</Link>
+        <li>
+          <Link to="locations">Bank</Link>
         </li>
         <li>
-          <Link to="policy">Policy</Link>
+          <Link to="policy">Fintech</Link>
         </li>
         <li>
-          <Link to="category">Category Group</Link>
+          <Link to="category">Accounts</Link>
         </li>
         <li>
-          <Link to="priceitems">Price Items</Link>
+          <Link to="priceitems">Topup</Link>
         </li>
         <li>
-          <Link to="servicetasks">Service Task</Link>
-        </li> */}
+          <Link to="servicetasks">Transaction</Link>
+        </li>
       </ul>
 
       <Outlet />

@@ -5,21 +5,21 @@ const Masters = () => {
   return (
     <div className="container">
       <ul>
-        {/* <li>
-            <Link to="locations">Locations</Link>
-          </li>
-          <li>
-            <Link to="policy">Policy</Link>
-          </li>
-          <li>
-            <Link to="category">Category Group</Link>
-          </li>
-          <li>
-            <Link to="priceitems">Price Items</Link>
-          </li>
-          <li>
-            <Link to="servicetasks">Service Task</Link>
-          </li> */}
+        <li>
+          <Link to="locations">Bank</Link>
+        </li>
+        <li>
+          <Link to="policy">Fintech</Link>
+        </li>
+        <li>
+          <Link to="category">Accounts</Link>
+        </li>
+        <li>
+          <Link to="priceitems">Topup</Link>
+        </li>
+        <li>
+          <Link to="servicetasks">Transaction</Link>
+        </li>
       </ul>
 
       <Outlet />
