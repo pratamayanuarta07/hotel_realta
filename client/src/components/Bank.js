@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Menu from "./Menu";
-import { getListBanks } from "../actions/bankAction";
+import { getListBank } from "../actions/bankAction";
 import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
@@ -9,7 +9,7 @@ const Bank = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getListBanks());
+    dispatch(getListBank());
   }, [dispatch]);
 
   const bank = [].concat(getListBanksResult);
@@ -25,9 +25,9 @@ const Bank = () => {
             <table class="table align-middle">
               <thead>
                 <tr>
-                  <th scope="col">Bank Id</th>
+                  {/* <th scope="col">Bank Id</th> */}
+                  <th scope="col">Bank Code</th>
                   <th scope="col">Bank Name</th>
-                  <th scope="col"></th>
                   <th scope="col">
                     <button className="btn btn-primary">Add</button>
                   </th>

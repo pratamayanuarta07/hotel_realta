@@ -6,6 +6,7 @@ import Masters from "./components/Masters";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
 import Modal from "./components/Modal";
+import Bank from "./components/Bank";
 import Main from "./components/Main";
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
         {/* <Route path="/" element={<Home />} /> */}
 
         <Route path="/master" element={<Masters />}>
-          <Route index path="locations/add" element={<Modal />} />
+          <Route path="bank" element={<Bank />} />
+          {/* <Route index path="banks/add" element={<Modal />} /> */}
         </Route>
       </Routes>
     </div>

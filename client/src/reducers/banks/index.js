@@ -1,4 +1,4 @@
-import { GET_LIST_BANK, ADD_BANK, DELETE_BANK, UPDATE_BANK, GET_DETAIL_BANK } from "../../actions/bankAction";
+import { GET_LIST_BANK, ADD_BANK, DELETE_BANK, UPDATE_BANK } from "../../actions/bankAction";
 
 const initialState = {
   getListBanksResult: false,
@@ -16,10 +16,6 @@ const initialState = {
   updateBanksResult: false,
   updateBanksLoading: false,
   updateBanksError: false,
-
-  getDetailBanksResult: false,
-  getDetailBanksLoading: false,
-  getDetailBanksError: false,
 };
 
 const banks = (state = initialState, action) => {
@@ -54,14 +50,6 @@ const banks = (state = initialState, action) => {
         updateBanksResult: action.payload.data,
         updateBanksLoading: action.payload.loading,
         updateBanksError: action.payload.errorMessage,
-      };
-
-    case GET_DETAIL_BANK:
-      return {
-        ...state,
-        getDetailBanksResult: action.payload.data,
-        getDetailBanksLoading: action.payload.loading,
-        getDetailBanksError: action.payload.errorMessage,
       };
 
     default:
