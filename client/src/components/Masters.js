@@ -6,19 +6,19 @@ const Masters = () => {
     <div className="container">
       <ul>
         <li>
-          <Link to="locations">Bank</Link>
+          <Link to="bank">Bank</Link>
         </li>
         <li>
-          <Link to="policy">Fintech</Link>
+          <Link to="fintech">Fintech</Link>
         </li>
         <li>
-          <Link to="category">Accounts</Link>
+          <Link to="account">Accounts</Link>
         </li>
         <li>
-          <Link to="priceitems">Topup</Link>
+          <Link to="topup">Topup</Link>
         </li>
         <li>
-          <Link to="servicetasks">Transaction</Link>
+          <Link to="transaction">Transaction</Link>
         </li>
       </ul>
 

@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import Menu from "./Menu";
-import { getListPolicies } from "../actions/policyAction";
+import { getListBanks } from "../actions/bankAction";
 import { useDispatch, useSelector } from "react-redux";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
-const Policy = () => {
-  const { getListPoliciesResult } = useSelector((state) => state.PoliciesReducer);
+const Bank = () => {
+  const { getListBanksResult } = useSelector((state) => state.BanksReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getListPolicies());
+    dispatch(getListBanks());
   }, [dispatch]);
 
-  const policy = [].concat(getListPoliciesResult);
-  console.log(policy);
+  const bank = [].concat(getListBanksResult);
+  console.log(bank);
 
   return (
     <div>
@@ -21,24 +21,24 @@ const Policy = () => {
         <div class="row justify-content-start">
           <div class="col-2 text-start"></div>
           <div class="col-9 text-start">
-            <h4>Table Policy</h4>
+            <h4>Table Bank</h4>
             <table class="table align-middle">
               <thead>
                 <tr>
-                  <th scope="col">Policy Id</th>
-                  <th scope="col">Policy Name</th>
+                  <th scope="col">Bank Id</th>
+                  <th scope="col">Bank Name</th>
                   <th scope="col"></th>
                   <th scope="col">
                     <button className="btn btn-primary">Add</button>
                   </th>
                 </tr>
               </thead>
-              {policy.map((region, i) => {
+              {bank.map((entity, i) => {
                 return (
                   <tbody className="text-start">
                     <tr>
                       <td>{i + 1}</td>
-                      <td>{region.poli_name}</td>
+                      <td>{entity.bank_code}</td>
                       <td>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                           <MdOutlineKeyboardDoubleArrowRight />
@@ -47,7 +47,7 @@ const Policy = () => {
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
-                              <div class="modal-body">{region.poli_description}</div>
+                              <div class="modal-body">{entity.bank_name}</div>
                             </div>
                           </div>
                         </div>
@@ -68,4 +68,4 @@ const Policy = () => {
   );
 };
 
-export default Policy;
+export default Bank;
