@@ -6,7 +6,7 @@ import Masters from "./components/Masters";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
 import Modal from "./components/Modal";
-import Bank from "./components/Bank";
+import BankPage from "./components/BankPage";
 import Main from "./components/Main";
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
         <Route index path="/" element={<Main />} />
         {/* <Route path="/" element={<Home />} /> */}
 
-        <Route path="/master" element={<Masters />}>
-          <Route path="bank" element={<Bank />} />
+        <Route path="/payment">
+          <Route path="bank" element={<BankPage />} />
           {/* <Route index path="banks/add" element={<Modal />} /> */}
         </Route>
       </Routes>

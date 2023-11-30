@@ -72,7 +72,7 @@ export const addBank = (data) => {
     //get api
     axios({
       method: "POST",
-      url: `http://localhost:4500/banks`,
+      url: `http://localhost:4500/banks/create`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -95,7 +95,7 @@ export const addBank = (data) => {
       })
       .catch((error) => {
         //gagal get api
-        console.log("3. gagal menambah data: ", error);
+        console.log("3. gagal menambah data: ", error.response);
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -129,7 +129,7 @@ export const deleteBank = (id) => {
     //get api
     axios({
       method: "DELETE",
-      url: `http://localhost:4500/banks/${id}`,
+      url: `http://localhost:4500/banks/delete/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },

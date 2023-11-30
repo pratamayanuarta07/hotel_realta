@@ -4,7 +4,7 @@ class BankController {
   static async getBank(req, res) {
     try {
       let Bank = await bank.findAll({
-        order: [["id", "ASC"]],
+        order: [["bank_entity_id", "ASC"]],
         // include: [User],
       });
 

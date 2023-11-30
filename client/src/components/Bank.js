@@ -1,19 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
-import { getListBank } from "../actions/bankAction";
+import { getListBank, addBank, deleteBank } from "../actions/bankAction";
 import { useDispatch, useSelector } from "react-redux";
-import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import Loading from "./Loading";
 
 const Bank = () => {
-  const { getListBanksResult } = useSelector((state) => state.BanksReducer);
+  const { getListBanksResult, addBanksResult, deleteBanksResult } = useSelector((state) => state.BanksReducer);
   const dispatch = useDispatch();
+  const [bank, setBank] = useState({
+    bank_code: "",
+    bank_name: "",
+  });
+
+  const handleaddbank = (e) => {
+    e.preventDefault();
+    dispatch(addBank(bank));
+    dispatch(getListBank());
+  };
 
   useEffect(() => {
     dispatch(getListBank());
   }, [dispatch]);
 
-  const bank = [].concat(getListBanksResult);
-  console.log(bank);
+  useEffect(() => {
+    if (addBanksResult) {
+      dispatch(getListBank());
+      setBank({
+        bank_code: "",
+        bank_name: "",
+      });
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (deleteBanksResult) {
+      dispatch(getListBank());
+      setBank({
+        bank_code: "",
+        bank_name: "",
+      });
+    }
+  }, [dispatch]);
+
+  const banks = [].concat(getListBanksResult);
 
   return (
     <div>
@@ -26,40 +55,97 @@ const Bank = () => {
               <thead>
                 <tr>
                   {/* <th scope="col">Bank Id</th> */}
+                  <th scope="col">No</th>
                   <th scope="col">Bank Code</th>
                   <th scope="col">Bank Name</th>
-                  <th scope="col">
-                    <button className="btn btn-primary">Add</button>
+                  <th scope="col" colSpan={2} className="col-1">
+                    <div class="d-grid">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        {/* <IoMdAdd /> */}
+                        Add
+                      </button>
+                    </div>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Add Bank
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-auto">
+                              <label>Bank Code</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="BCA"
+                                onChange={(e) =>
+                                  setBank({
+                                    ...bank,
+                                    bank_code: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-auto">
+                              <label>Bank Name</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="BCA"
+                                onChange={(e) =>
+                                  setBank({
+                                    ...bank,
+                                    bank_name: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Cancel
+                            </button>
+                            <button onClick={(e) => handleaddbank(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                              Add
+                            </button>
+                          </div>
+                          {/* </form> */}
+                        </div>
+                      </div>
+                    </div>
                   </th>
                 </tr>
               </thead>
-              {bank.map((entity, i) => {
-                return (
-                  <tbody className="text-start">
-                    <tr>
-                      <td>{i + 1}</td>
-                      <td>{entity.bank_code}</td>
-                      <td>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          <MdOutlineKeyboardDoubleArrowRight />
-                        </button>
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                            <div class="modal-content">
-                              <div class="modal-body">{entity.bank_name}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <button className="btn btn-warning mx-1">Edit</button>
-                        <button className="btn btn-danger">Delete</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                );
-              })}
+              {banks.length > 0 ? (
+                banks.map((entity, i) => {
+                  return (
+                    <tbody className="text-start">
+                      <tr>
+                        <td>{i + 1}</td>
+                        <td>{entity.bank_code}</td>
+                        <td>{entity.bank_name}</td>
+                        <td>
+                          <button className="btn btn-warning mx-1">Edit</button>
+                          <button className="btn btn-danger" onClick={() => dispatch(deleteBank(entity.bank_entity_id))}>
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  );
+                })
+              ) : (
+                <Loading />
+              )}
             </table>
           </div>
         </div>
