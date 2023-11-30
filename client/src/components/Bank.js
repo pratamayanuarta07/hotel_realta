@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
-import { getListBank, addBank, deleteBank } from "../actions/bankAction";
+import { getListBank, addBank, deleteBank, updateBank } from "../actions/bankAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 
 const Bank = () => {
-  const { getListBanksResult, addBanksResult, deleteBanksResult } = useSelector((state) => state.BanksReducer);
+  const { getListBanksResult, addBanksResult, deleteBanksResult, updateBanksResult } = useSelector((state) => state.BanksReducer);
   const dispatch = useDispatch();
   const [bank, setBank] = useState({
     bank_code: "",
     bank_name: "",
   });
 
+  const [id, setId] = useState({
+    bank_entity_id: "",
+  });
+
   const handleaddbank = (e) => {
     e.preventDefault();
     dispatch(addBank(bank));
+    dispatch(getListBank());
+  };
+
+  const handleupdatebank = (e) => {
+    e.preventDefault();
+    dispatch(updateBank(+id, bank));
     dispatch(getListBank());
   };
 
@@ -28,6 +38,19 @@ const Bank = () => {
       setBank({
         bank_code: "",
         bank_name: "",
+      });
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (updateBanksResult) {
+      dispatch(getListBank());
+      setBank({
+        bank_code: "",
+        bank_name: "",
+      });
+      setId({
+        bank_entity_id: "",
       });
     }
   }, [dispatch]);
@@ -134,7 +157,9 @@ const Bank = () => {
                         <td>{entity.bank_code}</td>
                         <td>{entity.bank_name}</td>
                         <td>
-                          <button className="btn btn-warning mx-1">Edit</button>
+                          <button onClick={(e) => handleupdatebank(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                            Edit
+                          </button>
                           <button className="btn btn-danger" onClick={() => dispatch(deleteBank(entity.bank_entity_id))}>
                             Delete
                           </button>

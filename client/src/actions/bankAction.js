@@ -185,7 +185,7 @@ export const updateBank = (id, data) => {
     //get api
     axios({
       method: "PUT",
-      url: `http://localhost:4500/banks/${id}`,
+      url: `http://localhost:4500/banks/update/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
