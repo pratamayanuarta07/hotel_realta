@@ -5,6 +5,7 @@ export const GET_LIST_BANK = "GET-LIST-BANK";
 export const ADD_BANK = "ADD_BANK";
 export const DELETE_BANK = "DELETE_BANK";
 export const UPDATE_BANK = "UPDATE_BANK";
+export const GET_DETAIL_BANK = "GET_DETAIL_BANK";
 export const RESET_INITIAL_STATE_BANK = "RESET_INITIAL_STATE_BANK";
 
 export const resetInitialStateBank = () => {
@@ -217,6 +218,59 @@ export const updateBank = (id, data) => {
 
         dispatch({
           type: UPDATE_BANK,
+          payload: {
+            loading: false,
+            data: false,
+            errorMessage: error,
+          },
+        });
+      });
+  };
+};
+export const getDetailBank = (id) => {
+  console.log("2. masuk action");
+  return (dispatch) => {
+    // loading
+
+    dispatch({
+      type: GET_DETAIL_BANK,
+      payload: {
+        loading: true,
+        data: false,
+        errorMessage: false,
+      },
+    });
+
+    //get api
+    axios({
+      method: "GET",
+      url: `http://localhost:4500/banks/details/${id}`,
+      timeout: 120000,
+    })
+      .then((response) => {
+        //berhasil get
+
+        console.log("3. berhasil get data: ", response.data);
+        dispatch({
+          type: GET_DETAIL_BANK,
+          payload: {
+            loading: false,
+            data: response.data,
+            errorMessage: false,
+          },
+        });
+      })
+      .catch((error) => {
+        //gagal get api
+        console.log("3. gagal get data: ", error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+        });
+
+        dispatch({
+          type: GET_DETAIL_BANK,
           payload: {
             loading: false,
             data: false,
