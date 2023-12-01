@@ -30,7 +30,7 @@ export const getListFintech = () => {
     //get API
     axios({
       method: "GET",
-      url: "http://localhost:4500/paga",
+      url: "http://localhost:4500/pagas",
       timeout: 120000,
     })
       .then((response) => {
@@ -122,7 +122,7 @@ export const addFintech = (data) => {
     //get api
     axios({
       method: "POST",
-      url: `http://localhost:4500/paga`,
+      url: `http://localhost:4500/pagas/create`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -179,7 +179,7 @@ export const deleteFintech = (id) => {
     //get api
     axios({
       method: "DELETE",
-      url: `http://localhost:4500/paga/${id}`,
+      url: `http://localhost:4500/pagas/delete/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -235,7 +235,7 @@ export const updateFintech = (id, data) => {
     //get api
     axios({
       method: "PUT",
-      url: `http://localhost:4500/paga/${id}`,
+      url: `http://localhost:4500/pagas/update/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -293,7 +293,7 @@ export const getDetailFintech = (id) => {
     //get api
     axios({
       method: "GET",
-      url: `http://localhost:4500/paga/${id}`,
+      url: `http://localhost:4500/pagas/detail/${id}`,
       timeout: 120000,
     })
       .then((response) => {

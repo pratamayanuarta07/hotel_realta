@@ -80,7 +80,7 @@ const Bank = () => {
       <div class="content text-center container">
         <div class="row justify-content-start">
           <div class="col-2 text-start"></div>
-          <div class="col-9 text-start">
+          <div class="col-12 text-start">
             <h4>Table Bank</h4>
             <table class="table align-middle">
               <thead>

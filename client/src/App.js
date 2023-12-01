@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import Menu from "./components/Menu";
 import Modal from "./components/Modal";
 import BankPage from "./components/BankPage";
+import FintechPage from "./components/FintechPage";
 import Main from "./components/Main";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
         <Route path="/payment">
           <Route path="bank" element={<BankPage />} />
+          <Route path="fintech" element={<FintechPage />} />
           {/* <Route index path="banks/add" element={<Modal />} /> */}
         </Route>
       </Routes>

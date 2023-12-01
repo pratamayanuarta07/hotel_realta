@@ -4,7 +4,7 @@ class PagaController {
   static async getPaga(req, res) {
     try {
       let Paga = await payment_gateaway.findAll({
-        order: [["id", "ASC"]],
+        order: [["paga_entity_id", "ASC"]],
         // include: [User],
       });
 
