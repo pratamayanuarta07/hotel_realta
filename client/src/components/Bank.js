@@ -79,7 +79,6 @@ const Bank = () => {
     <div>
       <div class="content text-center container">
         <div class="row justify-content-start">
-          <div class="col-2 text-start"></div>
           <div class="col-12 text-start">
             <h4>Table Bank</h4>
             <table class="table align-middle">
@@ -168,7 +167,7 @@ const Bank = () => {
                           <div class="d-grid">
                             <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal" onClick={() => dispatch(getDetailBank(entity.bank_entity_id))}>
                               {/* <IoMdAdd /> */}
-                              Edit
+                              {/* Edit */}
                             </button>
                           </div>
                           <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -230,9 +229,13 @@ const Bank = () => {
                               </div>
                             </div>
                           </div>
-                          <button className="btn btn-danger" onClick={() => dispatch(deleteBank(entity.bank_entity_id))}>
-                            Delete
-                          </button>
+                        </td>
+                        <td>
+                          <div className="d-grid">
+                            <button className="btn btn-danger" onClick={() => dispatch(deleteBank(entity.bank_entity_id))}>
+                              {/* Delete */}
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     </tbody>

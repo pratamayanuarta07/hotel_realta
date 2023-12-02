@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
-import { getListBank, addBank, deleteBank, updateBank, getDetailBank } from "../actions/bankAction";
+import { getListAccount, addAccount, deleteAccount, updateAccount, getDetailAccount } from "../actions/accountAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 
 const Bank = () => {
-  const { getListBanksResult, addBanksResult, deleteBanksResult, updateBanksResult, getDetailBanksResult } = useSelector((state) => state.BanksReducer);
+  const { getListAccountsResult, addAccountsResult, deleteAccountsResult, updateAccountsResult, getDetailAccountsResult } = useSelector((state) => state.AccountsReducer);
 
   const dispatch = useDispatch();
 
-  const [bank, setBank] = useState({
+  const [account, setAccount] = useState({
     bank_code: "",
     bank_name: "",
   });
@@ -18,13 +18,13 @@ const Bank = () => {
 
   const handleaddbank = (e) => {
     e.preventDefault();
-    dispatch(addBank(bank));
+    dispatch(addBank(account));
     dispatch(getListBank());
   };
 
   const handleupdatebank = (e) => {
     e.preventDefault();
-    dispatch(updateBank(+id, bank));
+    dispatch(updateBank(+id, account));
     dispatch(getListBank());
   };
 
@@ -102,7 +102,7 @@ const Bank = () => {
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">
-                              Add Bank
+                              Add Account
                             </h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
@@ -223,9 +223,24 @@ const Bank = () => {
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                     Cancel
                                   </button>
-                                  <button onClick={(e) => handleupdatebank(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                                  <div class="dropdown ms-auto">
+                                    <i class="fas fa-ellipsis-vertical" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                    <ul class="dropdown-menu">
+                                      <li>
+                                        <span class="dropdown-item">
+                                          <i class="fas fa-pen mx-2"></i> Update
+                                        </span>
+                                      </li>
+                                      <li>
+                                        <span class="dropdown-item">
+                                          <i class="fas fa-trash mx-2"></i> Delete
+                                        </span>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  {/* <button onClick={(e) => handleupdatebank(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
                                     Edit
-                                  </button>
+                                  </button> */}
                                 </div>
                                 {/* </form> */}
                               </div>

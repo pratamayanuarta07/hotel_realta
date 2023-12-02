@@ -10829,6 +10829,7 @@ a:focus {
     font-weight: 900;
     content: "\f107";
     font-family: "Font Awesome 5 Free";
+    display: none;
   }
   .sidebar .nav-item .nav-link[data-bs-toggle="collapse"].collapsed::after {
     content: "\f105";

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -33,7 +34,6 @@ const Sidebar = () => {
         {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
-            <i className="fas fa-fw fa-cog" />
             <span>Users</span>
           </a>
           <div id="collapseUsers" className="collapse" aria-labelledby="headingUsers" data-bs-parent="#accordionSidebar">
@@ -54,7 +54,6 @@ const Sidebar = () => {
         {/* Nav Item - Utilities Collapse Menu */}
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMaster" aria-expanded="true" aria-controls="collapseMaster">
-            <i className="fas fa-fw fa-wrench" />
             <span>Master</span>
           </a>
           <div id="collapseMaster" className="collapse" aria-labelledby="headingMaster" data-bs-parent="#accordionSidebar">
@@ -100,45 +99,41 @@ const Sidebar = () => {
         </li>
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBooking" aria-expanded="true" aria-controls="collapseBooking">
-            <i className="fas fa-fw fa-cog" />
             <span>Booking</span>
           </a>
         </li>
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseResto" aria-expanded="true" aria-controls="collapseResto">
-            <i className="fas fa-fw fa-cog" />
             <span>Resto</span>
           </a>
         </li>
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePayment" aria-expanded="true" aria-controls="collapsePayment">
-            <i className="fas fa-fw fa-cog" />
             <span>Payment</span>
           </a>
           <div id="collapsePayment" className="collapse" aria-labelledby="headingPayment" data-bs-parent="#accordionSidebar">
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <a className="collapse-item" href="buttons.html">
+              <Link to={"payment/bank"} className="collapse-item">
                 Bank
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link to={"payment/fintech"} className="collapse-item">
                 Fintech
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link to={"payment/account"} className="collapse-item">
                 Accounts
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link to={"payment/topup"} className="collapse-item">
                 Topup
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link to={"payment/transaction"} className="collapse-item">
                 Transaction
-              </a>
+              </Link>
             </div>
           </div>
         </li>
         <li className="nav-item">
           <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHR" aria-expanded="true" aria-controls="collapseHR">
-            <i className="fas fa-fw fa-cog" />
             <span>HR</span>
           </a>
           <div id="collapseHR" className="collapse" aria-labelledby="headingHR" data-bs-parent="#accordionSidebar">
@@ -159,7 +154,6 @@ const Sidebar = () => {
 
         <li className="nav-item">
           <a className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePurchasing" aria-expanded="true" aria-controls="collapsePurchasing">
-            <i className="fas fa-fw fa-cog" />
             <span>Purchasing</span>
           </a>
           <div id="collapsePurchasing" className="collapse" aria-labelledby="headingPurchasing" data-bs-parent="#accordionSidebar">
