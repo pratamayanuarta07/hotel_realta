@@ -1,8 +1,8 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import Topup from "./Topup";
+import Transaction from "./Transaction";
 
-const TopupPage = () => {
+const TransactionPage = () => {
   return (
     <div>
       <div id="wrapper">
@@ -53,7 +53,7 @@ const TopupPage = () => {
               </ul>
             </nav>
             <div class="container-fluid">
-              <Topup />
+              <Transaction />
             </div>
           </div>
           <footer className="sticky-footer fixed-bootom" style={{ backgroundColor: "#363062" }}>
@@ -72,4 +72,4 @@ const TopupPage = () => {
   );
 };
 
-export default TopupPage;
+export default TransactionPage;
