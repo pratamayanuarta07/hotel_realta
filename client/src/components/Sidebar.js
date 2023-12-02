@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaSearch } from "react-icons/fa"
 
 const Sidebar = () => {
   return (
@@ -52,7 +53,6 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseUsers"
           >
-            <i className="fas fa-fw fa-cog" />
             <span>Users</span>
           </a>
           <div
@@ -85,7 +85,6 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseMaster"
           >
-            <i className="fas fa-fw fa-wrench" />
             <span>Master</span>
           </a>
           <div
@@ -123,7 +122,6 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseHotels"
           >
-            <i className="fas fa-fw fa-cog" />
             <span>Hotels</span>
           </a>
           <div
@@ -155,7 +153,6 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseBooking"
           >
-            <i className="fas fa-fw fa-cog" />
             <span>Booking</span>
           </a>
         </li>
@@ -168,7 +165,6 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseResto"
           >
-            <i className="fas fa-fw fa-cog" />
             <span>Resto</span>
           </a>
         </li>
@@ -181,7 +177,6 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapsePayment"
           >
-            <i className="fas fa-fw fa-cog" />
             <span>Payment</span>
           </a>
           <div
@@ -219,7 +214,6 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseHR"
           >
-            <i className="fas fa-fw fa-cog" />
             <span>HR</span>
           </a>
           <div
@@ -251,7 +245,6 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapsePurchasing"
           >
-            <i className="fas fa-fw fa-cog" />
             <span>Purchasing</span>
           </a>
           <div

@@ -89,10 +89,10 @@ const Policy = () => {
         <div class="row justify-content-start">
           <div class="col-12 text-start table-responsive">
             <h4>Table Policy</h4>
-            <table class="table align-middle">
+            <table class="table align-middle shadow rounded">
               <thead>
                 <tr>
-                  <th scope="col">Policy Id</th>
+                  <th scope="col" className="text- col-2">Policy Id</th>
                   <th scope="col">Policy Name</th>
                   <th scope="col"></th>
                   <th scope="col" colSpan={2} className="col-1">

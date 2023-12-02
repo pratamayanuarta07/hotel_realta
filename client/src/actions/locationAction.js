@@ -463,7 +463,7 @@ export const updateCountry = (id, data) => {
 };
 
 export const getDetailCountry = (id) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     dispatch({
       type: GET_DETAIL_COUNTRY,
       payload: {

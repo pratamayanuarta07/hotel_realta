@@ -107,7 +107,7 @@ const CategoryGroup = () => {
         <div class="row justify-content-start">
           <div class="col-12 text-start table-responsive">
             <h4>Table Category</h4>
-            <table class="table align-middle">
+            <table class="table align-middle shadow rounded">
               <thead>
                 <tr>
                   <th scope="col"></th>
