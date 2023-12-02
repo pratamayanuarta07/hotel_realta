@@ -95,7 +95,7 @@ const getDetailRegion = async (req, res) => {
 const getCountry = async (req, res) => {
   try {
     const result = await Country.findAll({
-      include: [Province],
+      include: [Region, Province],
       order: [["country_id", "ASC"]],
     });
     res.status(200).json(result);
@@ -178,7 +178,9 @@ const updateCountry = async (req, res) => {
 const getDetailCountry = async (req, res) => {
   try {
     const country_id = +req.params.country_id;
-    const result = await Country.findByPk(country_id);
+    const result = await Country.findByPk(country_id, {
+      include: [Region]
+    });
     result
       ? res.status(200).json(result)
       : res.status(404).json({
