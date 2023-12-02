@@ -58,13 +58,13 @@ module.exports = {
       wode_seta_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        // references:{
-        //   model:{
-        //     tableName:"service_tasks",
-        //     schema:'HR'
-        //   },
-        //   key:"seta_id"
-        // }
+        references:{
+          model:{
+            tableName:"Service_Tasks",
+            schema:'public'
+          },
+          key:"seta_id"
+        }
       },
       wode_faci_id: {
         type: Sequelize.INTEGER,
