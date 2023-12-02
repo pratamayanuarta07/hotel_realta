@@ -1,9 +1,9 @@
 const route = require('express').Router();
-const { users, department, work_orders,work_order_details, job_role, facilities, service_task, shift, employee, employee_pay_history, employee_department_history } = require("../models");
-const upload2 = require("../middleware/upload");
-const { get_dept, get_by_name, insert_dept, update_dept } = require('../controller/department');
-const { get_emp, get_emp_by_name, get_emp_by_status, insert_emp, update_emp, get_emp_pay_history, get_emp_dept_history, } = require('../controller/employee');
-const { get_work_order, get_work_by_status_order, get_work_by_date_order, insert_work_order, update_work_order, get_work_order_detail, insert_work_order_detail, update_work_order_detail, delete_work_order_detail } = require('../controller/work_orders');
+const { users, department, work_orders,work_order_details, job_role, facilities, service_task, shift, employee, employee_pay_history, employee_department_history } = require("../../models");
+const upload2 = require("../../middleware/upload");
+const { get_dept, get_by_name, insert_dept, update_dept } = require('../../controller/HR/department');
+const { get_emp, get_emp_by_name, get_emp_by_status, insert_emp, update_emp, get_emp_pay_history, get_emp_dept_history, } = require('../../controller/HR/employee');
+const { get_work_order, get_work_by_status_order, get_work_by_date_order, insert_work_order, update_work_order, get_work_order_detail, insert_work_order_detail, update_work_order_detail, delete_work_order_detail } = require('../../controller/HR/work_orders');
 
 
 

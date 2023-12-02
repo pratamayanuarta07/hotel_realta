@@ -1,5 +1,6 @@
 require("dotenv").config();
 const routes = require("./route/master/route.js");
+const routes_HR = require("./route/HR");
 const express = require("express");
 const cors = require("cors");
 
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 app.use(routes);
+app.use(routes_HR);
 app.use(express.static("public"))
 
 app.listen(port, () => {

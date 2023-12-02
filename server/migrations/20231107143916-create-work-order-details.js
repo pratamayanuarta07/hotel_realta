@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    // await queryInterface.createSchema("HR");
+    await queryInterface.createSchema("HR");
     await queryInterface.createTable('work_order_details', {
       id: {
         allowNull: false,
@@ -88,6 +88,9 @@ module.exports = {
           key:"woro_id"
         }
       }
+    },
+    {
+      schema : 'HR',
     });
   },
   async down(queryInterface, Sequelize) {

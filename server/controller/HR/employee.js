@@ -1,4 +1,4 @@
-const { employee, employee_pay_history, employee_department_history, department, shift } = require("../models");
+const { employee, employee_pay_history, employee_department_history, department, shift } = require("../../models");
 const { Op } = require("sequelize");
 const fs = require('fs');
 

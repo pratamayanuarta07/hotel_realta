@@ -1,4 +1,4 @@
-const { work_orders, work_order_details, employee } = require("../models");
+const { work_orders, work_order_details, employee } = require("../../models");
 const { Op } = require("sequelize");
 
 

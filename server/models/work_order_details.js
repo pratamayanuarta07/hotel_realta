@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // work_order_details.belongsTo(models.employee, { foreignKey: "wode_emp_id"});
-      // work_order_details.belongsTo(models.facilities, { foreignKey: "wode_faci_id"});
+      work_order_details.belongsTo(models.employee, { foreignKey: "wode_emp_id"});
+      work_order_details.belongsTo(models.facilities, { foreignKey: "wode_faci_id"});
       work_order_details.belongsTo(models.Service_Task, { foreignKey: "wode_seta_id"});
-      // work_order_details.belongsTo(models.work_orders, { foreignKey: "wode_woro_id"});
+      work_order_details.belongsTo(models.work_orders, { foreignKey: "wode_woro_id"});
     }
   }
   work_order_details.init({
@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     wode_woro_id: DataTypes.INTEGER,
   }, {
     sequelize,
-    // schema : 'HR',
-    // modelName: 'Work_Order_Details',
+    schema : 'HR',
+    modelName: 'work_order_details',
   });
   return work_order_details;
 };

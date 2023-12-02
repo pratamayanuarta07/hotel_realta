@@ -1,4 +1,4 @@
-const { users, department, job_role } = require("../models");
+const { users, department, job_role } = require("../../models");
 const { Op } = require("sequelize");
 const get_dept = async (req, res) =>{
     try {
