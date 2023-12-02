@@ -20,7 +20,8 @@
     "genModelMember": "npx sequelize-cli model:generate --name Member --attributes memb_description:string --force",
     "genAllModel": "concurrently \"npm run genModelRegions\"  \"npm run genModelCountry\" \"npm run genModelProvinces\" \"npm run genModelAddress\" \"npm run genModelCategory_Group\" \"npm run genModelPolicy\" \"npm run genModelPolicy_Category_Group\" \"npm run genModelPrice_Items\" \"npm run genModelService_Task\" \"npm run genModelMembers\"",
     "migrate": "npx sequelize-cli db:migrate",
-    "undo": "npx sequelize-cli db:migrate:undo"
+    "undo": "npx sequelize-cli db:migrate:undo",
+    "undoall": "npx sequelize-cli db:migrate:undo:all"
   },
   "keywords": [],
   "author": "",

@@ -5,7 +5,7 @@ const {
   deletePrice,
   updatePrice,
   getDetailPrice,
-} = require("../controller/priceItemController");
+} = require("../../controller/master/priceItemController");
 
 priceItemsRoute.get("/", getPrice);
 priceItemsRoute.post("/add", addPrice);

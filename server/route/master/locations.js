@@ -20,7 +20,7 @@ const {
   deleteCity,
   updateCity,
   getDetailCity,
-} = require("../controller/locationController");
+} = require("../../controller/master/locationController");
 
 // regions
 locationRoute.get("/regions/", getRegion);

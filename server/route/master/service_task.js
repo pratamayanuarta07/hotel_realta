@@ -5,7 +5,7 @@ const {
   deleteService,
   updateService,
   getDetailService,
-} = require("../controller/serviceTaskController");
+} = require("../../controller/master/serviceTaskController");
 
 serviceTaskRoute.get("/", getService);
 serviceTaskRoute.post("/add", addService);

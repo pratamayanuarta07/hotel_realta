@@ -4,7 +4,7 @@ const {
   addMember,
   deleteMember,
   getDetailMember,
-} = require("../controller/memberController");
+} = require("../../controller/master/memberController");
 
 memberRoute.get("/", getMember);
 memberRoute.post("/add", addMember);

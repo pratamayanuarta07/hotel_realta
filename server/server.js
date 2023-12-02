@@ -1,5 +1,5 @@
 require("dotenv").config();
-const routes = require("./route/route.js");
+const routes = require("./route/master/route.js");
 const express = require("express");
 const cors = require("cors");
 

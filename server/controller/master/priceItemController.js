@@ -1,4 +1,4 @@
-const { Price_Item } = require("../models");
+const { Price_Item } = require("../../models");
 
 const getPrice = async (req, res) => {
   try {

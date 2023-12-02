@@ -36,13 +36,13 @@ module.exports = {
       woro_user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references:{
-          model:{
-            tableName:"users",
-            schema:'HR'
-          },
-          key:"user_id"
-        }
+        // references:{
+        //   model:{
+        //     tableName:"users",
+        //     schema:'HR'
+        //   },
+        //   key:"user_id"
+        // }
       }
     },
     {

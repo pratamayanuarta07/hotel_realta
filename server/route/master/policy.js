@@ -5,7 +5,7 @@ const {
   deletePolicy,
   updatePolicy,
   getDetailPolicy,
-} = require("../controller/policyController");
+} = require("../../controller/master/policyController");
 
 policyRoute.get("/", getPolicy);
 policyRoute.post("/add", addPolicy);

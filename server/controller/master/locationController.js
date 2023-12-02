@@ -1,4 +1,4 @@
-const { Region, Country, Province, Address } = require("../models");
+const { Region, Country, Province, Address } = require("../../models");
 
 // regions
 const getRegion = async (req, res) => {

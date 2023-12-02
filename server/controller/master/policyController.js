@@ -1,4 +1,4 @@
-const { Policy } = require("../models");
+const { Policy } = require("../../models");
 
 const getPolicy = async (req, res) => {
   try {

@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createSchema("HR");
+    // await queryInterface.createSchema("HR");
     await queryInterface.createTable('work_order_details', {
       id: {
         allowNull: false,
@@ -58,24 +58,24 @@ module.exports = {
       wode_seta_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        references:{
-          model:{
-            tableName:"service_tasks",
-            schema:'HR'
-          },
-          key:"seta_id"
-        }
+        // references:{
+        //   model:{
+        //     tableName:"service_tasks",
+        //     schema:'HR'
+        //   },
+        //   key:"seta_id"
+        // }
       },
       wode_faci_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        references:{
-          model:{
-            tableName:"facilities",
-            schema:'HR'
-          },
-          key:"faci_id"
-        }
+        // references:{
+        //   model:{
+        //     tableName:"facilities",
+        //     schema:'HR'
+        //   },
+        //   key:"faci_id"
+        // }
       },
       wode_woro_id: {
         type: Sequelize.INTEGER,
@@ -88,9 +88,6 @@ module.exports = {
           key:"woro_id"
         }
       }
-    },
-    {
-      schema : 'HR',
     });
   },
   async down(queryInterface, Sequelize) {

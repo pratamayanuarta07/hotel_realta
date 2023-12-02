@@ -6,17 +6,11 @@ const {
   updateCategory,
   getDetailCategory,
   showImg,
-} = require("../controller/categoryController");
-const upload = require("../middleware/multer")
+} = require("../../controller/master/categoryController");
 
 categoryRoute.get("/", getCategory);
-categoryRoute.post("/add", upload.single("cagro_icon"), addCategory);
 categoryRoute.delete("/delete/:cagro_id", deleteCategory);
-categoryRoute.put(
-  "/update/:cagro_id",
-  upload.single("cagro_icon"),
-  updateCategory
-);
+categoryRoute.put("/update/:cagro_id", updateCategory);
 categoryRoute.get("/details/:cagro_id", getDetailCategory);
 categoryRoute.get("/details/:img", showImg);
 
