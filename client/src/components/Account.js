@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 
 const Account = () => {
   // State untuk menyimpan data akun
   const [accounts, setAccounts] = useState([
-    { id: 1, accountNumber: "123456", description: "Main Account", balance: 1000, type: "Savings" },
-    { id: 2, accountNumber: "789012", description: "Secondary Account", balance: 500, type: "Checking" },
+    { id: 1, accountNumber: "131-3456-22", description: "BCA", balance: "Rp.10.000.000", type: "Debit" },
+    { id: 2, accountNumber: "321-6543-00", description: "GoTo", balance: "Rp.90.000", type: "Fintech" },
   ]);
 
   // State untuk mengelola data formulir modal
-  const [formData, setFormData] = useState({
+  const [accountFormData, setAccountFormData] = useState({
     accountNumber: "",
     balance: "",
     type: "",
@@ -24,26 +24,35 @@ const Account = () => {
   // Fungsi untuk menangani perubahan pada formulir modal
   const handleFormChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setAccountFormData({ ...accountFormData, [name]: value });
   };
 
-  // Fungsi untuk menangani penambahan akun baru atau mengedit akun
+  // Fungsi untuk menangani penambahan atau pengeditan data akun
   const handleSaveAccount = () => {
     // Memastikan tidak ada kolom yang kosong
-    if (formData.accountNumber && formData.balance && formData.type) {
+    if (accountFormData.accountNumber && accountFormData.balance && accountFormData.type) {
+      // Validasi format account number
+      const accountNumberRegex = /^\d{3}-\d{4}-\d{2}$/;
+      if (!accountNumberRegex.test(accountFormData.accountNumber)) {
+        alert("Format account number tidak valid. Gunakan format xxx-xxxx-xx.");
+        return;
+      }
+
       // Mengecek apakah sedang dalam mode edit atau tambah baru
       if (selectedAccountId) {
         // Mode edit: mengupdate data akun yang ada dengan data baru
-        setAccounts((prevAccounts) => prevAccounts.map((account) => (account.id === selectedAccountId ? { ...account, accountNumber: formData.accountNumber, balance: parseFloat(formData.balance), type: formData.type } : account)));
+        setAccounts((prevAccounts) =>
+          prevAccounts.map((account) => (account.id === selectedAccountId ? { ...account, accountNumber: accountFormData.accountNumber, balance: parseFloat(accountFormData.balance), type: accountFormData.type } : account))
+        );
         setSelectedAccountId(null); // Mereset ID akun yang akan diubah
       } else {
         // Mode tambah baru: menambahkan akun baru ke dalam daftar akun
         const newAccount = {
           id: accounts.length + 1,
-          accountNumber: formData.accountNumber,
-          description: `Account ${accounts.length + 1}`,
-          balance: parseFloat(formData.balance),
-          type: formData.type,
+          accountNumber: accountFormData.accountNumber,
+          description: getDescription(accountFormData.accountNumber),
+          balance: parseFloat(accountFormData.balance),
+          type: accountFormData.type,
         };
         setAccounts([...accounts, newAccount]);
       }
@@ -52,16 +61,30 @@ const Account = () => {
       setIsModalOpen(false);
 
       // Mereset formulir modal
-      setFormData({ accountNumber: "", balance: "", type: "" });
+      setAccountFormData({ accountNumber: "", balance: "", type: "" });
     } else {
       alert("Silakan isi semua kolom formulir!");
+    }
+  };
+
+  // Fungsi untuk mendapatkan deskripsi berdasarkan account number
+  const getDescription = (accountNumber) => {
+    switch (accountNumber.substring(0, 3)) {
+      case "123":
+        return "BCA";
+      case "456":
+        return "Goto";
+      case "789":
+        return "Flip";
+      default:
+        return "Unknown";
     }
   };
 
   // Fungsi untuk menangani pengeditan data akun
   const handleEditAccount = (accountId) => {
     const selectedAccount = accounts.find((account) => account.id === accountId);
-    setFormData({
+    setAccountFormData({
       accountNumber: selectedAccount.accountNumber,
       balance: String(selectedAccount.balance),
       type: selectedAccount.type,
@@ -79,14 +102,98 @@ const Account = () => {
   return (
     <div className="container">
       <h1>Account Management</h1>
-      <table className="table table-bordered">
-        <thead>
+      <table className="table table-bordered align-middle">
+        <thead className="table-success fs-6">
           <tr>
             <th>Account Number</th>
             <th>Description</th>
             <th>Balance</th>
             <th>Type</th>
-            <th>Actions</th>
+            <th scope="col" colSpan={2} className="col-1">
+              <div class="d-grid">
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <FaPlus />
+                  Add
+                </button>
+              </div>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Add Account
+                      </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row align-items-center">
+                      <div className="col-auto">
+                        <label>Account Number</label>
+                      </div>
+                      <div className="col-auto">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="xxx-xxxx-xx"
+                          value={accountFormData.accountNumber}
+                          onChange={(e) =>
+                            setAccountFormData({
+                              ...accountFormData,
+                              accountNumber: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-body row align-items-center">
+                      <div className="col-auto">
+                        <label>Balance</label>
+                      </div>
+                      <div className="col-auto">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Rp.10.000.000"
+                          value={accountFormData.balance}
+                          onChange={(e) =>
+                            setAccountFormData({
+                              ...accountFormData,
+                              balance: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-body row align-items-center">
+                      <div className="col-auto">
+                        <label>Type</label>
+                      </div>
+                      <div className="col-auto">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Savings"
+                          value={accountFormData.type}
+                          onChange={(e) =>
+                            setAccountFormData({
+                              ...accountFormData,
+                              type: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                      </button>
+                      <button onClick={handleSaveAccount} type="submit" class="btn btn-dark" data-bs-dismiss="modal">
+                        <FaPlus /> Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -97,10 +204,89 @@ const Account = () => {
               <td>{account.balance}</td>
               <td>{account.type}</td>
               <td>
-                <button className="btn btn-warning" onClick={() => handleEditAccount(account.id)}>
-                  <FaEdit /> Edit
-                </button>
-                <button className="btn btn-danger" onClick={() => handleDeleteAccount(account.id)}>
+                <div class="d-grid">
+                  <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#editModal">
+                    <FaEdit /> Edit
+                  </button>
+                </div>
+                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModalLabel">
+                          Edit Account
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body row align-items-center">
+                        <div className="col-auto">
+                          <label>Account Number</label>
+                        </div>
+                        <div className="col-auto">
+                          <input
+                            className="form-control"
+                            type="text"
+                            placeholder="xxx-xxxx-xx"
+                            value={accountFormData.accountNumber}
+                            onChange={(e) =>
+                              setAccountFormData({
+                                ...accountFormData,
+                                accountNumber: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div class="modal-body row align-items-center">
+                        <div className="col-auto">
+                          <label>Balance</label>
+                        </div>
+                        <div className="col-auto">
+                          <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Rp.10.000.000"
+                            value={accountFormData.balance}
+                            onChange={(e) =>
+                              setAccountFormData({
+                                ...accountFormData,
+                                balance: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div class="modal-body row align-items-center">
+                        <div className="col-auto">
+                          <label>Type</label>
+                        </div>
+                        <div className="col-auto">
+                          <input
+                            className="form-control"
+                            type="text"
+                            placeholder="Savings"
+                            value={accountFormData.type}
+                            onChange={(e) =>
+                              setAccountFormData({
+                                ...accountFormData,
+                                type: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Cancel
+                        </button>
+                        <button className="btn btn-danger" onClick={() => handleEditAccount(account.id)}>
+                          <FaEdit /> Edit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button className="btn btn-transparent" onClick={() => handleDeleteAccount(account.id)}>
                   <FaTrash /> Delete
                 </button>
               </td>
@@ -110,45 +296,6 @@ const Account = () => {
       </table>
 
       {/* Tombol untuk membuka modal */}
-      <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>
-        Add Data
-      </button>
-
-      {/* Modal untuk menambahkan atau mengedit data */}
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Add/Edit Account</h5>
-                <button type="button" className="btn-close" onClick={() => setIsModalOpen(false)}></button>
-              </div>
-              <div className="modal-body">
-                <div className="mb-3">
-                  <label className="form-label">Account Number:</label>
-                  <input className="form-control" type="text" name="accountNumber" value={formData.accountNumber} onChange={handleFormChange} />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Balance:</label>
-                  <input className="form-control" type="text" name="balance" value={formData.balance} onChange={handleFormChange} />
-                </div>
-                <div className="mb-3">
-                  <label className="form-label">Type:</label>
-                  <input className="form-control" type="text" name="type" value={formData.type} onChange={handleFormChange} />
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button className="btn btn-secondary" onClick={() => setIsModalOpen(false)}>
-                  Close
-                </button>
-                <button className="btn btn-primary" onClick={handleSaveAccount}>
-                  {selectedAccountId ? "Edit Account" : "Add Account"}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

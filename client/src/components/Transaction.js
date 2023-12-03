@@ -38,21 +38,28 @@ const TransactionList = () => {
   return (
     <div>
       <h1>Transaction List</h1>
+      <div class="d-flex justify-content-center">
+        {/* Search Bar */}
+        <div class="me-md-3 mt-md-1">
+          <input class="rounded" type="text" placeholder="Transaction Number" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        </div>
+        <div class="me-md-3 mt-md-1">
+          <a href="#" class="btn btn-dark btn-sm" role="button" data-bs-toggle="button">
+            Search
+          </a>
+        </div>
 
-      {/* Search Bar */}
-      <input type="text" placeholder="Search by Transaction Number" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-
-      {/* Dropdown Type Payment */}
-      <select value={selectedPaymentType} onChange={(e) => setSelectedPaymentType(e.target.value)}>
-        <option value="All">All Types</option>
-        <option value="TP">Topup</option>
-        <option value="TRB">Booking</option>
-        <option value="ORM">Food Order</option>
-      </select>
+        <select class="rounded mt-md-1" value={selectedPaymentType} onChange={(e) => setSelectedPaymentType(e.target.value)}>
+          <option value="All">Payment Types</option>
+          <option value="TP">Topup</option>
+          <option value="TRB">Booking</option>
+          <option value="ORM">Food Order</option>
+        </select>
+      </div>
 
       {/* Transaction Table */}
-      <table>
-        <thead>
+      <table class="table align-middle mt-md-3">
+        <thead class="table-success fs-6">
           <tr>
             <th>Transaction Number</th>
             <th>Transaction Date</th>
@@ -66,7 +73,7 @@ const TransactionList = () => {
             <th>User</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="fs-6">
           {filteredTransactions.map((transaction) => (
             <tr key={transaction.transactionNumber}>
               <td>{transaction.transactionNumber}</td>

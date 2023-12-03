@@ -3,6 +3,7 @@ import Menu from "./Menu";
 import { getListFintech, addFintech, deleteFintech, updateFintech, getDetailFintech } from "../actions/fintechAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
+import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 
 const Fintech = () => {
   const { getListFintechsResult, addFintechsResult, deleteFintechsResult, updateFintechsResult, getDetailFintechsResult } = useSelector((state) => state.FintechsReducer);
@@ -83,7 +84,7 @@ const Fintech = () => {
           <div class="col-12 text-start">
             <h4>Table Fintech</h4>
             <table class="table align-middle">
-              <thead>
+              <thead class="table-success">
                 <tr>
                   {/* <th scope="col">Bank Id</th> */}
                   <th scope="col">No</th>
@@ -91,8 +92,8 @@ const Fintech = () => {
                   <th scope="col">Fintech Name</th>
                   <th scope="col" colSpan={2} className="col-1">
                     <div class="d-grid">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        {/* <IoMdAdd /> */}
+                      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <FaPlus />
                         Add
                       </button>
                     </div>
@@ -166,9 +167,8 @@ const Fintech = () => {
                         <td>{entity.paga_name}</td>
                         <td>
                           <div class="d-grid">
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal" onClick={() => dispatch(getDetailFintech(entity.paga_entity_id))}>
-                              {/* <IoMdAdd /> */}
-                              Edit
+                            <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#editModal" onClick={() => dispatch(getDetailFintech(entity.paga_entity_id))}>
+                              <FaEdit /> Edit
                             </button>
                           </div>
                           <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -230,8 +230,8 @@ const Fintech = () => {
                               </div>
                             </div>
                           </div>
-                          <button className="btn btn-danger" onClick={() => dispatch(deleteFintech(entity.paga_entity_id))}>
-                            Delete
+                          <button className="btn btn-transparent" onClick={() => dispatch(deleteFintech(entity.paga_entity_id))}>
+                            <FaTrash /> Delete
                           </button>
                         </td>
                       </tr>
