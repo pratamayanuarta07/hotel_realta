@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Address.belongsTo(models.Province, {
+        foreignKey: "addr_prov_id",
+      })
     }
   }
   Address.init(
