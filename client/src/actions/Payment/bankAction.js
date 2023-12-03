@@ -29,7 +29,7 @@ export const getListBank = () => {
     //get API
     axios({
       method: "GET",
-      url: "http://localhost:4500/banks",
+      url: "http://localhost:3000/banks",
       timeout: 120000,
     })
       .then((response) => {
@@ -73,7 +73,7 @@ export const addBank = (data) => {
     //get api
     axios({
       method: "POST",
-      url: `http://localhost:4500/banks/create`,
+      url: `http://localhost:3000/banks/create`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -130,7 +130,7 @@ export const deleteBank = (id) => {
     //get api
     axios({
       method: "DELETE",
-      url: `http://localhost:4500/banks/delete/${id}`,
+      url: `http://localhost:3000/banks/delete/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -186,7 +186,7 @@ export const updateBank = (id, data) => {
     //get api
     axios({
       method: "PUT",
-      url: `http://localhost:4500/banks/update/${id}`,
+      url: `http://localhost:3000/banks/update/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -244,7 +244,7 @@ export const getDetailBank = (id) => {
     //get api
     axios({
       method: "GET",
-      url: `http://localhost:4500/banks/details/${id}`,
+      url: `http://localhost:3000/banks/details/${id}`,
       timeout: 120000,
     })
       .then((response) => {

@@ -29,7 +29,7 @@ export const getListTransaction = () => {
     //get API
     axios({
       method: "GET",
-      url: "http://localhost:4500/patrs",
+      url: "http://localhost:3000/patrs",
       timeout: 120000,
     })
       .then((response) => {
@@ -73,7 +73,7 @@ export const addTransaction = (data) => {
     //get api
     axios({
       method: "POST",
-      url: `http://localhost:4500/pagas/create`,
+      url: `http://localhost:3000/pagas/create`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -130,7 +130,7 @@ export const deleteTransaction = (id) => {
     //get api
     axios({
       method: "DELETE",
-      url: `http://localhost:4500/pagas/delete/${id}`,
+      url: `http://localhost:3000/pagas/delete/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -186,7 +186,7 @@ export const updateTransaction = (id, data) => {
     //get api
     axios({
       method: "PUT",
-      url: `http://localhost:4500/pagas/update/${id}`,
+      url: `http://localhost:3000/pagas/update/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -244,7 +244,7 @@ export const getDetailTransaction = (id) => {
     //get api
     axios({
       method: "GET",
-      url: `http://localhost:4500/pagas/detail/${id}`,
+      url: `http://localhost:3000/pagas/detail/${id}`,
       timeout: 120000,
     })
       .then((response) => {

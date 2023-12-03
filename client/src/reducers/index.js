@@ -8,6 +8,12 @@ import CategoriesReducer from "./master/categories";
 import PriceItemsReducer from "./master/priceitems";
 import ServiceTasksReducer from "./master/servicetasks";
 import list from "./HR";
+import BanksReducer from "./Payment/banks";
+import FintechsReducer from "./Payment/fintechs";
+import AccountReducer from "./Payment/accounts";
+import TopupReducer from "./Payment/topups";
+import TransactionReducer from "./Payment/transactions";
+
 export default combineReducers({
   RegionsReducer,
   CountriesReducer,
@@ -17,5 +23,10 @@ export default combineReducers({
   CategoriesReducer,
   PriceItemsReducer,
   ServiceTasksReducer,
-  list
+  list,
+  BanksReducer,
+  FintechsReducer,
+  AccountReducer,
+  TopupReducer,
+  TransactionReducer,
 });

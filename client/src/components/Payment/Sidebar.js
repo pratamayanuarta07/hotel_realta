@@ -4,11 +4,22 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   return (
     <div>
-      <ul className="navbar-nav sidebar sidebar-dark accordion" style={{ backgroundColor: "#435585" }} id="accordionSidebar">
+      <ul
+        className="navbar-nav sidebar sidebar-dark accordion h-100"
+        style={{ backgroundColor: "#435585" }}
+        id="accordionSidebar"
+      >
         {/* Sidebar - Brand */}
-        <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a
+          className="sidebar-brand d-flex align-items-center justify-content-center"
+          href="index.html"
+        >
           <div className="sidebar-brand-icon">
-            <img src={require("../../photos/logo.png")} alt="" style={{ width: "50px", height: "50px" }} />
+            <img
+              src={require("../../photos/logo.png")}
+              alt=""
+              style={{ width: "50px", height: "50px" }}
+            />
           </div>
           <div className="sidebar-brand-text mx-2">
             <h5 className="m-0">
@@ -22,8 +33,7 @@ const Sidebar = () => {
         <hr className="sidebar-divider my-0" />
         {/* Nav Item - Dashboard */}
         <li className="nav-item active">
-          <a className="nav-link" href="index.html">
-            <i className="fas fa-fw fa-tachometer-alt" />
+          <a className="nav-link" href="/">
             <span>Dashboard</span>
           </a>
         </li>
@@ -33,141 +43,221 @@ const Sidebar = () => {
         <div className="sidebar-heading">Module</div>
         {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
+          <Link
+            className="nav-link collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseUsers"
+            aria-expanded="true"
+            aria-controls="collapseUsers"
+          >
             <span>Users</span>
-          </a>
-          <div id="collapseUsers" className="collapse" aria-labelledby="headingUsers" data-bs-parent="#accordionSidebar">
+          </Link>
+          <div
+            id="collapseUsers"
+            className="collapse"
+            aria-labelledby="headingUsers"
+            data-bs-parent="#accordionSidebar"
+          >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <a className="collapse-item" href="buttons.html">
+              <Link className="collapse-item" to={"/users/profile"}>
                 My Profile
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link className="collapse-item" to={"/users/booking"}>
                 My Bookings
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link className="collapse-item" to={"/users/account"}>
                 My Accounts
-              </a>
+              </Link>
             </div>
           </div>
         </li>
         {/* Nav Item - Utilities Collapse Menu */}
         <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMaster" aria-expanded="true" aria-controls="collapseMaster">
+          <Link
+            className="nav-link collapsed"
+            href="#"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseMaster"
+            aria-expanded="true"
+            aria-controls="collapseMaster"
+          >
             <span>Master</span>
-          </a>
-          <div id="collapseMaster" className="collapse" aria-labelledby="headingMaster" data-bs-parent="#accordionSidebar">
+          </Link>
+          <div
+            id="collapseMaster"
+            className="collapse"
+            aria-labelledby="headingMaster"
+            data-bs-parent="#accordionSidebar"
+          >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <a className="collapse-item" href="utilities-color.html">
+              <Link className="collapse-item" to={"/master/locations"}>
                 Locations
-              </a>
-              <a className="collapse-item" href="utilities-border.html">
+              </Link>
+              <Link className="collapse-item" to={"/master/policy"}>
                 Policy
-              </a>
-              <a className="collapse-item" href="utilities-animation.html">
+              </Link>
+              <Link className="collapse-item" to={"/master/category"}>
                 Category Group
-              </a>
-              <a className="collapse-item" href="utilities-other.html">
+              </Link>
+              <Link className="collapse-item" to={"/master/priceitems"}>
                 Price Items
-              </a>
-              <a className="collapse-item" href="utilities-other.html">
+              </Link>
+              <Link className="collapse-item" to={"/master/servicetasks"}>
                 Service Task
-              </a>
+              </Link>
             </div>
           </div>
         </li>
         <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHotels" aria-expanded="true" aria-controls="collapseHotels">
-            <i className="fas fa-fw fa-cog" />
+          <Link
+            className="nav-link collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseHotels"
+            aria-expanded="true"
+            aria-controls="collapseHotels"
+          >
             <span>Hotels</span>
-          </a>
-          <div id="collapseHotels" className="collapse" aria-labelledby="headingHotels" data-bs-parent="#accordionSidebar">
+          </Link>
+          <div
+            id="collapseHotels"
+            className="collapse"
+            aria-labelledby="headingHotels"
+            data-bs-parent="#accordionSidebar"
+          >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <a className="collapse-item" href="buttons.html">
+              <Link className="collapse-item" to={"/hotels/hotel"}>
                 Hotel
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link className="collapse-item" to={"/hotels/facilities"}>
                 Facilities
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link className="collapse-item" to={"/hotels/reviews"}>
                 Reviews
-              </a>
+              </Link>
             </div>
           </div>
         </li>
         <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBooking" aria-expanded="true" aria-controls="collapseBooking">
+          <Link
+            className="nav-link collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseBooking"
+            aria-expanded="true"
+            aria-controls="collapseBooking"
+            to={"/booking"}
+          >
             <span>Booking</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseResto" aria-expanded="true" aria-controls="collapseResto">
+          <Link
+            className="nav-link collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseResto"
+            aria-expanded="true"
+            aria-controls="collapseResto"
+            to={"/resto"}
+          >
             <span>Resto</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePayment" aria-expanded="true" aria-controls="collapsePayment">
+          <Link
+            className="nav-link collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsePayment"
+            aria-expanded="true"
+            aria-controls="collapsePayment"
+          >
             <span>Payment</span>
-          </a>
-          <div id="collapsePayment" className="collapse" aria-labelledby="headingPayment" data-bs-parent="#accordionSidebar">
+          </Link>
+          <div
+            id="collapsePayment"
+            className="collapse"
+            aria-labelledby="headingPayment"
+            data-bs-parent="#accordionSidebar"
+          >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link to={"payment/bank"} className="collapse-item">
+              <Link className="collapse-item" to={"/payment/bank"}>
                 Bank
               </Link>
-              <Link to={"payment/fintech"} className="collapse-item">
+              <Link className="collapse-item" to={"/payment/fintech"}>
                 Fintech
               </Link>
-              <Link to={"payment/account"} className="collapse-item">
+              <Link className="collapse-item" to={"/payment/account"}>
                 Accounts
               </Link>
-              <Link to={"payment/topup"} className="collapse-item">
+              <Link className="collapse-item" to={"/payment/topup"}>
                 Topup
               </Link>
-              <Link to={"payment/transaction"} className="collapse-item">
+              <Link className="collapse-item" to={"/payment/transaction"}>
                 Transaction
               </Link>
             </div>
           </div>
         </li>
         <li className="nav-item">
-          <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseHR" aria-expanded="true" aria-controls="collapseHR">
+          <Link
+            className="nav-link collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseHR"
+            aria-expanded="true"
+            aria-controls="collapseHR"
+          >
             <span>HR</span>
-          </a>
-          <div id="collapseHR" className="collapse" aria-labelledby="headingHR" data-bs-parent="#accordionSidebar">
+          </Link>
+          <div
+            id="collapseHR"
+            className="collapse"
+            aria-labelledby="headingHR"
+            data-bs-parent="#accordionSidebar"
+          >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <a className="collapse-item" href="buttons.html">
-                Departement
-              </a>
-              <a className="collapse-item" href="cards.html">
+              <Link className="collapse-item" to={"/HR/dept"}>
+                Department
+              </Link>
+              <Link className="collapse-item" to={"/HR/employee"}>
                 Employee
-              </a>
-              <a className="collapse-item" href="cards.html">
+                </Link>
+              <Link className="collapse-item" to={"/HR/work_order"}>
                 WorkOrder
-              </a>
+              </Link>
             </div>
           </div>
         </li>
 
         <li className="nav-item">
-          <a className="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapsePurchasing" aria-expanded="true" aria-controls="collapsePurchasing">
+          <Link
+            className="nav-link collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsePurchasing"
+            aria-expanded="true"
+            aria-controls="collapsePurchasing"
+          >
             <span>Purchasing</span>
-          </a>
-          <div id="collapsePurchasing" className="collapse" aria-labelledby="headingPurchasing" data-bs-parent="#accordionSidebar">
+          </Link>
+          <div
+            id="collapsePurchasing"
+            className="collapse"
+            aria-labelledby="headingPurchasing"
+            data-bs-parent="#accordionSidebar"
+          >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <a className="collapse-item" href="buttons.html">
+              <Link className="collapse-item" to={"/purchasing/vendor"}>
                 Vendor
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link className="collapse-item" to={"/purchasing/stock"}>
                 Stock
-              </a>
-              <a className="collapse-item" href="cards.html">
+              </Link>
+              <Link className="collapse-item" to={"/purchasing/order"}>
                 Purchasing Order
-              </a>
+              </Link>
             </div>
           </div>
         </li>

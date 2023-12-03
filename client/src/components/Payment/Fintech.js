@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
-import { getListFintech, addFintech, deleteFintech, updateFintech, getDetailFintech } from "../../actions/Payment/fintechAction";
+import {
+  getListFintech,
+  addFintech,
+  deleteFintech,
+  updateFintech,
+  getDetailFintech,
+} from "../../actions/Payment/fintechAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 
 const Fintech = () => {
-  const { getListFintechsResult, addFintechsResult, deleteFintechsResult, updateFintechsResult, getDetailFintechsResult } = useSelector((state) => state.FintechsReducer);
+  const {
+    getListFintechsResult,
+    addFintechsResult,
+    deleteFintechsResult,
+    updateFintechsResult,
+    getDetailFintechsResult,
+  } = useSelector((state) => state.FintechsReducer);
 
   const dispatch = useDispatch();
 
@@ -41,7 +53,7 @@ const Fintech = () => {
         paga_name: "",
       });
     }
-  }, [dispatch]);
+  }, [addFintechsResult, dispatch]);
 
   useEffect(() => {
     if (updateFintechsResult) {
@@ -52,7 +64,7 @@ const Fintech = () => {
       });
       setId("");
     }
-  }, [dispatch]);
+  }, [updateFintechsResult, dispatch]);
 
   useEffect(() => {
     if (deleteFintechsResult) {
@@ -62,7 +74,7 @@ const Fintech = () => {
         paga_name: "",
       });
     }
-  }, [dispatch]);
+  }, [deleteFintechsResult, dispatch]);
 
   useEffect(() => {
     if (getDetailFintechsResult) {
@@ -72,7 +84,7 @@ const Fintech = () => {
       });
       setId(getDetailFintechsResult.paga_entity_id);
     }
-  }, [dispatch]);
+  }, [getDetailFintechsResult, dispatch]);
 
   const pagas = [].concat(getListFintechsResult);
 
@@ -92,19 +104,35 @@ const Fintech = () => {
                   <th scope="col">Fintech Name</th>
                   <th scope="col" colSpan={2} className="col-1">
                     <div class="d-grid">
-                      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <button
+                        type="button"
+                        class="btn btn-dark"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                      >
                         <FaPlus />
                         Add
                       </button>
                     </div>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div
+                      class="modal fade"
+                      id="exampleModal"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
                       <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">
                               Add Fintech
                             </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
                           </div>
                           <div class="modal-body row align-items-center">
                             <div className="col-auto">
@@ -143,10 +171,19 @@ const Fintech = () => {
                             </div>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
                               Cancel
                             </button>
-                            <button onClick={(e) => handleaddfintech(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                            <button
+                              onClick={(e) => handleaddfintech(e)}
+                              type="submit"
+                              class="btn btn-primary"
+                              data-bs-dismiss="modal"
+                            >
                               Add
                             </button>
                           </div>
@@ -167,18 +204,42 @@ const Fintech = () => {
                         <td>{entity.paga_name}</td>
                         <td>
                           <div class="d-grid">
-                            <button type="button" class="btn btn-transparent" data-bs-toggle="modal" data-bs-target="#editModal" onClick={() => dispatch(getDetailFintech(entity.paga_entity_id))}>
+                            <button
+                              type="button"
+                              class="btn btn-transparent"
+                              data-bs-toggle="modal"
+                              data-bs-target="#editModal"
+                              onClick={() =>
+                                dispatch(
+                                  getDetailFintech(entity.paga_entity_id)
+                                )
+                              }
+                            >
                               <FaEdit /> Edit
                             </button>
                           </div>
-                          <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                          <div
+                            class="modal fade"
+                            id="editModal"
+                            tabindex="-1"
+                            aria-labelledby="editModalLabel"
+                            aria-hidden="true"
+                          >
                             <div class="modal-dialog modal-dialog-centered">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="editModalLabel">
+                                  <h1
+                                    class="modal-title fs-5"
+                                    id="editModalLabel"
+                                  >
                                     Edit Fintech
                                   </h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
                                 </div>
                                 <div class="modal-body row align-items-center">
                                   <div className="col-auto">
@@ -219,10 +280,19 @@ const Fintech = () => {
                                   </div>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                  <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                  >
                                     Cancel
                                   </button>
-                                  <button onClick={(e) => handleupdatefintech(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                                  <button
+                                    onClick={(e) => handleupdatefintech(e)}
+                                    type="submit"
+                                    class="btn btn-primary"
+                                    data-bs-dismiss="modal"
+                                  >
                                     Edit
                                   </button>
                                 </div>
@@ -230,7 +300,12 @@ const Fintech = () => {
                               </div>
                             </div>
                           </div>
-                          <button className="btn btn-transparent" onClick={() => dispatch(deleteFintech(entity.paga_entity_id))}>
+                          <button
+                            className="btn btn-transparent"
+                            onClick={() =>
+                              dispatch(deleteFintech(entity.paga_entity_id))
+                            }
+                          >
                             <FaTrash /> Delete
                           </button>
                         </td>

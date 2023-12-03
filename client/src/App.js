@@ -25,7 +25,7 @@ import AddWodeNew from "./components/HR/add_wode_new";
 import EditWodeNew from "./components/HR/edit_wode_new";
 import Menu from "./components/Payment/Menu";
 import Modal from "./components/Payment/Modal";
-import BankPage from "./components/Payment/BankPage";
+import BankPage from "./components/Payment/BankPage"
 import FintechPage from "./components/Payment/FintechPage";
 import TopupPage from "./components/Payment/TopupPage";
 import AccountPage from "./components/Payment/AccountPage";

@@ -29,7 +29,7 @@ export const getListAccount = () => {
     //get API
     axios({
       method: "GET",
-      url: "http://localhost:4500/usacs",
+      url: "http://localhost:3000/usacs",
       timeout: 120000,
     })
       .then((response) => {
@@ -73,7 +73,7 @@ export const addAccount = (data) => {
     //get api
     axios({
       method: "POST",
-      url: `http://localhost:4500/usacs/create`,
+      url: `http://localhost:3000/usacs/create`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -130,7 +130,7 @@ export const deleteAccount = (id) => {
     //get api
     axios({
       method: "DELETE",
-      url: `http://localhost:4500/usacs/delete/${id}`,
+      url: `http://localhost:3000/usacs/delete/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -186,7 +186,7 @@ export const updateAccount = (id, data) => {
     //get api
     axios({
       method: "PUT",
-      url: `http://localhost:4500/usacs/update/${id}`,
+      url: `http://localhost:3000/usacs/update/${id}`,
       // headers: {
       //   Authorization: Cookies.get("accessToken"),
       // },
@@ -244,7 +244,7 @@ export const getDetailAccount = (id) => {
     //get api
     axios({
       method: "GET",
-      url: `http://localhost:4500/usacs/detail/${id}`,
+      url: `http://localhost:3000/usacs/detail/${id}`,
       timeout: 120000,
     })
       .then((response) => {
