@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Service_Task.hasMany(models.work_order_details, {
-        foreignKey: "wode_seta_id"
-      })
+        foreignKey: "wode_seta_id",
+      });
     }
   }
   Service_Task.init(
