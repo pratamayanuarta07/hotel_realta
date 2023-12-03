@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "postgres",
-    "password": "1234",
-    "database": "hotel_realta",
+    "password": "alvin",
+    "database": "db_hotel_realta",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
