@@ -56,8 +56,8 @@ route.get('/shift', async (req, res) => {
 
 route.get('/test', async (req, res) => {
     try {
-        //const result = await job_role.create({joro_name:'Junior Software Engineer'}, {schema:'HR', returning:true});
-        const result = await shift.create({shift_name:'Day', shift_start_time:'09:00:00', shift_end_time:'17:00:00'}, {schema:'HR', returning:true});
+        const result = await job_role.create({joro_name:'Senior Software Engineer'}, {schema:'HR', returning:true});
+        //const result = await shift.create({shift_name:'Night', shift_start_time:'19:00:00', shift_end_time:'04:00:00'}, {schema:'HR', returning:true});
         res.send(result);
     } catch (e) {
         res.send(e.message);
@@ -102,6 +102,15 @@ route.get('/a', async (req,res) => {
         let test = result;
         console.log(test);
         res.send({total:total, open:result, closed:result2, canceled:result1});
+    } catch (error) {
+        res.send({error:error.message});
+    }
+});
+
+route.post('/lalala', upload2.single('file'), async (req,res) => {
+    try {
+        console.log(req.file);
+        res.send("sukses");
     } catch (error) {
         res.send({error:error.message});
     }

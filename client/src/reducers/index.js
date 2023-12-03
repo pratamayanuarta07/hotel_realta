@@ -7,7 +7,7 @@ import PoliciesReducer from "./master/policies";
 import CategoriesReducer from "./master/categories";
 import PriceItemsReducer from "./master/priceitems";
 import ServiceTasksReducer from "./master/servicetasks";
-
+import list from "./HR";
 export default combineReducers({
   RegionsReducer,
   CountriesReducer,
@@ -17,4 +17,5 @@ export default combineReducers({
   CategoriesReducer,
   PriceItemsReducer,
   ServiceTasksReducer,
+  list
 });

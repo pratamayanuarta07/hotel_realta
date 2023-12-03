@@ -1,12 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaSearch } from "react-icons/fa"
+import React from 'react';
 
-const Sidebar = () => {
-  return (
-    <div>
+const SidebarTest = () => {
+    return (
+        <div>
       <ul
-        className="navbar-nav sidebar sidebar-dark accordion h-100"
+        className="navbar-nav sidebar sidebar-dark accordion"
         style={{ backgroundColor: "#435585" }}
         id="accordionSidebar"
       >
@@ -17,17 +15,17 @@ const Sidebar = () => {
         >
           <div className="sidebar-brand-icon">
             <img
-              src={require("../../photos/logo.png")}
+              src={require("./logo.png")}
               alt=""
               style={{ width: "50px", height: "50px" }}
             />
           </div>
           <div className="sidebar-brand-text mx-2">
-            <h5 className="m-0">
+            <h6 className="m-0">
               Hotel Realta
               <br />
               <p className="fs-6 fst-italic lead m-0">check in dong</p>
-            </h5>
+            </h6>
           </div>
         </a>
         {/* Divider */}
@@ -53,6 +51,7 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseUsers"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Users</span>
           </a>
           <div
@@ -85,6 +84,7 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseMaster"
           >
+            <i className="fas fa-fw fa-wrench" />
             <span>Master</span>
           </a>
           <div
@@ -95,21 +95,21 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/master/locations"}>
+              <a className="collapse-item" href="utilities-color.html">
                 Locations
-              </Link>
-              <Link className="collapse-item" to={"/master/policy"}>
+              </a>
+              <a className="collapse-item" href="utilities-border.html">
                 Policy
-              </Link>
-              <Link className="collapse-item" to={"/master/category"}>
+              </a>
+              <a className="collapse-item" href="utilities-animation.html">
                 Category Group
-              </Link>
-              <Link className="collapse-item" to={"/master/priceitems"}>
+              </a>
+              <a className="collapse-item" href="utilities-other.html">
                 Price Items
-              </Link>
-              <Link className="collapse-item" to={"/master/servicetasks"}>
+              </a>
+              <a className="collapse-item" href="utilities-other.html">
                 Service Task
-              </Link>
+              </a>
             </div>
           </div>
         </li>
@@ -122,6 +122,7 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseHotels"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Hotels</span>
           </a>
           <div
@@ -153,6 +154,7 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseBooking"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Booking</span>
           </a>
         </li>
@@ -165,6 +167,7 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseResto"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Resto</span>
           </a>
         </li>
@@ -177,6 +180,7 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapsePayment"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Payment</span>
           </a>
           <div
@@ -214,6 +218,7 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseHR"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>HR</span>
           </a>
           <div
@@ -224,15 +229,15 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/HR/dept"}>
+              <a className="collapse-item" href="buttons.html">
                 Departement
-              </Link>
-              <Link className="collapse-item" to={"/HR/employee"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Employee
-              </Link>
-              <Link className="collapse-item" to={"/HR/work_order"}>
-                Work Order
-              </Link>
+              </a>
+              <a className="collapse-item" href="cards.html">
+                WorkOrder
+              </a>
             </div>
           </div>
         </li>
@@ -245,6 +250,7 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapsePurchasing"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Purchasing</span>
           </a>
           <div
@@ -269,7 +275,7 @@ const Sidebar = () => {
         </li>
       </ul>
     </div>
-  );
-};
+    );
+}
 
-export default Sidebar;
+export default SidebarTest;
