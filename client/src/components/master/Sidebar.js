@@ -218,13 +218,13 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/hr/department"}>
+              <Link className="collapse-item" to={"/HR/dept"}>
                 Department
               </Link>
-              <Link className="collapse-item" to={"/hr/employee"}>
+              <Link className="collapse-item" to={"/HR/employee"}>
                 Employee
                 </Link>
-              <Link className="collapse-item" to={"/hr/workorder"}>
+              <Link className="collapse-item" to={"/HR/work_order"}>
                 WorkOrder
               </Link>
             </div>
