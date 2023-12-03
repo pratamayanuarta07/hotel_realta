@@ -25,7 +25,7 @@ function App() {
           <Route path="fintech" element={<FintechPage />} />
           <Route path="topup" element={<TopupPage />} />
           <Route path="account" element={<AccountPage />} />
-          {/* <Route path="transaction" element={<TransactionPage />} /> */}
+          <Route path="transaction" element={<TransactionPage />} />
           {/* <Route index path="banks/add" element={<Modal />} /> */}
         </Route>
       </Routes>
