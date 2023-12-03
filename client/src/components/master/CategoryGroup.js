@@ -110,7 +110,6 @@ const CategoryGroup = () => {
             <table class="table align-middle shadow rounded">
               <thead>
                 <tr>
-                  <th scope="col"></th>
                   <th scope="col">Category Id</th>
                   <th scope="col">Category Name</th>
                   <th scope="col"></th>
@@ -223,18 +222,6 @@ const CategoryGroup = () => {
                               />
                             </div>
                           </div>
-                          <div class="modal-body row align-items-center">
-                            <div class="mb-3">
-                              <label for="formFile" class="form-label">
-                                Upload Icon
-                              </label>
-                              <input
-                                class="form-control"
-                                type="file"
-                                id="formFile"
-                              />
-                            </div>
-                          </div>
                           <div class="modal-footer">
                             <button
                               type="button"
@@ -268,17 +255,6 @@ const CategoryGroup = () => {
                 return (
                   <tbody>
                     <tr>
-                      <td>
-                        <img
-                          src={cagro_icon}
-                          style={{
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "30px",
-                          }}
-                          alt=""
-                        />
-                      </td>
                       <td>{i + 1}</td>
                       <td>{cagro_name}</td>
                       <td>
@@ -307,7 +283,6 @@ const CategoryGroup = () => {
                           <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                               <div class="modal-body">
-                                {/* {poli_description} */}
                                 <p>
                                   {getDetailCategoryResult.cagro_description}
                                 </p>
@@ -427,18 +402,6 @@ const CategoryGroup = () => {
                                         cagro_description: e.target.value,
                                       })
                                     }
-                                  />
-                                </div>
-                              </div>
-                              <div class="modal-body row align-items-center">
-                                <div class="mb-3">
-                                  <label for="formFile" class="form-label">
-                                    Upload Icon
-                                  </label>
-                                  <input
-                                    class="form-control"
-                                    type="file"
-                                    id="formFile"
                                   />
                                 </div>
                               </div>

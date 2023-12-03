@@ -245,18 +245,6 @@ const PriceItems = () => {
                               />
                             </div>
                           </div>
-                          <div class="modal-body row align-items-center">
-                            <div class="mb-3">
-                              <label for="formFile" class="form-label">
-                                Upload Icon
-                              </label>
-                              <input
-                                class="form-control"
-                                type="file"
-                                id="formFile"
-                              />
-                            </div>
-                          </div>
                           <div class="modal-footer">
                             <button
                               type="button"
@@ -447,18 +435,6 @@ const PriceItems = () => {
                                           prit_description: e.target.value,
                                         })
                                       }
-                                    />
-                                  </div>
-                                </div>
-                                <div class="modal-body row align-items-center">
-                                  <div class="mb-3">
-                                    <label for="formFile" class="form-label">
-                                      Upload Icon
-                                    </label>
-                                    <input
-                                      class="form-control"
-                                      type="file"
-                                      id="formFile"
                                     />
                                   </div>
                                 </div>

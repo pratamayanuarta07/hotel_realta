@@ -10,13 +10,22 @@ import {
   deleteCountry,
   updateCountry,
   getDetailCountry,
+  getListProvinces,
+  addProvince,
+  deleteProvince,
+  updateProvince,
+  getDetailProvince,
+  getListCities,
+  addCity,
+  deleteCity,
+  updateCity,
+  getDetailCity,
 } from "../../actions/master/locationAction";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "./Loading";
 import { IoMdAdd } from "react-icons/io";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const Locations = () => {
+const Content = () => {
   const {
     getListRegionsResult,
     addRegionResult,
@@ -33,11 +42,21 @@ const Locations = () => {
     getDetailCountryResult,
   } = useSelector((state) => state.CountriesReducer);
 
-  // const { getListProvincesResult } = useSelector(
-  //   (state) => state.ProvincesReducer
-  // );
+  const {
+    getListProvincesResult,
+    addProvinceResult,
+    deleteProvinceResult,
+    updateProvinceResult,
+    getDetailProvinceResult,
+  } = useSelector((state) => state.ProvincesReducer);
 
-  // const { getListCitiesResult } = useSelector((state) => state.CitiesReducer);
+  const {
+    getListCitiesResult,
+    addCityResult,
+    deleteCityResult,
+    updateCityResult,
+    getDetailCityResult,
+  } = useSelector((state) => state.CitiesReducer);
 
   const dispatch = useDispatch();
 
@@ -51,12 +70,19 @@ const Locations = () => {
     country_region_id: "",
   });
 
-  // const [province, setProvince] = useState({
-  //   prov_name: "",
-  //   prov_country_id: "",
-  // });
+  const [province, setProvince] = useState({
+    prov_name: "",
+    prov_country_id: "",
+  });
 
-  // const [radioValue, setRadioValue] = useState("");
+  const [city, setCity] = useState({
+    addr_line1: "",
+    addr_line2: "",
+    addr_postal_code: "",
+    lat: "",
+    long: "",
+    addr_prov_id: "",
+  });
 
   const handleAddRegion = (e) => {
     e.preventDefault();
@@ -70,9 +96,47 @@ const Locations = () => {
     dispatch(getListRegions());
   };
 
+  const handleAddCountry = (e) => {
+    e.preventDefault();
+    dispatch(addCountry(country));
+    dispatch(getListCountries());
+  };
+
+  const handleEditCountry = (e) => {
+    e.preventDefault();
+    dispatch(updateCountry(+id, country));
+    dispatch(getListCountries());
+  };
+
+  const handleAddProvince = (e) => {
+    e.preventDefault();
+    dispatch(addProvince(province));
+    dispatch(getListProvinces());
+  };
+
+  const handleEditProvince = (e) => {
+    e.preventDefault();
+    dispatch(updateProvince(+id, province));
+    dispatch(getListProvinces());
+  };
+
+  const handleAddCity = (e) => {
+    e.preventDefault();
+    dispatch(addCity(city));
+    dispatch(getListCities());
+  };
+
+  const handleEditCity = (e) => {
+    e.preventDefault();
+    dispatch(updateCity(+id, city));
+    dispatch(getListCities());
+  };
+
   useEffect(() => {
     dispatch(getListRegions());
     dispatch(getListCountries());
+    dispatch(getListProvinces());
+    dispatch(getListCities());
   }, [dispatch]);
 
   useEffect(() => {
@@ -109,24 +173,133 @@ const Locations = () => {
     }
   }, [updateRegionResult, dispatch]);
 
-  const handleAddCountry = (e) => {
-    e.preventDefault();
-    dispatch(addCountry(country));
-    dispatch(getListCountries());
-  };
+  useEffect(() => {
+    if (addCountryResult) {
+      dispatch(getListCountries());
+      setCountry({
+        country_name: "",
+        country_region_id: "",
+      });
+    }
+  }, [addCountryResult, dispatch]);
 
-  // useEffect(()=>{
-  //   if (getDetailCountryResult) {
-  //     setCountry({
-  //       country_name: getDetailCountryResult.country_name,
-  //       country_region_id: getDetailCountryResult.country_region_id,
-  //     });
-  //     setId(getDetailCountryResult.country_id);
-  //   }
-  // },[getDetailCountryResult, dispatch])
+  useEffect(() => {
+    if (deleteCountryResult) {
+      dispatch(getListCountries());
+    }
+  }, [deleteCountryResult, dispatch]);
+
+  useEffect(() => {
+    if (getDetailCountryResult) {
+      setCountry({
+        country_name: getDetailCountryResult.country_name,
+        country_region_id: getDetailCountryResult.country_region_id,
+      });
+      setId(getDetailCountryResult.country_id);
+    }
+  }, [getDetailCountryResult, dispatch]);
+
+  useEffect(() => {
+    if (updateCountryResult) {
+      dispatch(getListCountries());
+      setCountry({
+        country_name: "",
+        country_region_id: "",
+      });
+      setId("");
+    }
+  }, [updateCountryResult, dispatch]);
+
+  useEffect(() => {
+    if (addProvinceResult) {
+      dispatch(getListProvinces());
+      setProvince({
+        prov_name: "",
+        prov_country_id: "",
+      });
+    }
+  }, [addProvinceResult, dispatch]);
+
+  useEffect(() => {
+    if (deleteProvinceResult) {
+      dispatch(getListProvinces());
+    }
+  }, [deleteProvinceResult, dispatch]);
+
+  useEffect(() => {
+    if (getDetailProvinceResult) {
+      setProvince({
+        prov_name: getDetailProvinceResult.prov_name,
+        prov_country_id: getDetailProvinceResult.country_country_id,
+      });
+      setId(getDetailProvinceResult.prov_id);
+    }
+  }, [getDetailProvinceResult, dispatch]);
+
+  useEffect(() => {
+    if (updateProvinceResult) {
+      dispatch(getListProvinces());
+      setProvince({
+        prov_name: "",
+        prov_country_id: "",
+      });
+      setId("");
+    }
+  }, [updateProvinceResult, dispatch]);
+
+  useEffect(() => {
+    if (addCityResult) {
+      dispatch(getListCities());
+      setCity({
+        addr_line1: "",
+        addr_line2: "",
+        addr_postal_code: "",
+        lat: "",
+        long: "",
+        addr_prov_id: "",
+      });
+    }
+  }, [addCityResult, dispatch]);
+
+  useEffect(() => {
+    if (deleteCityResult) {
+      dispatch(getListCities());
+    }
+  }, [deleteCityResult, dispatch]);
+
+  useEffect(() => {
+    if (getDetailCityResult) {
+      setCity({
+        addr_line1: getDetailCityResult.addr_line1,
+        addr_line2: "",
+        addr_postal_code: getDetailCityResult.addr_postal_code,
+        lat: getDetailCityResult.lat,
+        long: getDetailCityResult.long,
+        addr_prov_id: getDetailCityResult.addr_prov_id,
+      });
+      setId(getDetailCityResult.addr_id);
+    }
+  }, [getDetailCityResult, dispatch]);
+
+  useEffect(() => {
+    if (updateCityResult) {
+      dispatch(getListCities());
+      setCity({
+        addr_line1: "",
+        addr_line2: "",
+        addr_postal_code: "",
+        lat: "",
+        long: "",
+        addr_prov_id: "",
+      });
+      setId("");
+    }
+  }, [updateCityResult, dispatch]);
 
   const regions = [].concat(getListRegionsResult);
   const countries = [].concat(getListCountriesResult);
+  const provinces = [].concat(getListProvincesResult);
+  const cities = [].concat(getListCitiesResult);
 
   return (
     <div>
@@ -137,8 +310,9 @@ const Locations = () => {
             <table class="table align-middle shadow rounded">
               <thead>
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Region Id</th>
+                  <th scope="col" className="col-3">
+                    Region Id
+                  </th>
                   <th scope="col">Region Name</th>
                   <th scope="col" colSpan={2} className="col-1">
                     <div class="d-grid">
@@ -214,139 +388,117 @@ const Locations = () => {
                   </th>
                 </tr>
               </thead>
-              {regions.length > 0 ? (
-                regions.map((regions, i) => {
-                  const { region_code, region_name } = regions;
-                  return (
-                    <tbody className="text-start">
-                      <tr key={region_code}>
-                        <td>
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault2"
-                              // onChange={(e)=>setProvince({...})}
-                            />
-                          </div>
-                        </td>
-                        <td>{i + 1}</td>
-                        <td>{region_name}</td>
-                        <td>
-                          <div class="d-grid">
-                            <button
-                              onClick={() =>
-                                dispatch(getDetailRegion(region_code))
-                              }
-                              type="button"
-                              data-bs-toggle="modal"
-                              data-bs-target="#modalEditRegion"
-                              className="btn btn-warning"
-                            >
-                              <FaPencilAlt />
-                            </button>
-                          </div>
-                          <div
-                            class="modal fade"
-                            id="modalEditRegion"
-                            tabindex="-1"
-                            aria-labelledby="exampleModalLabel"
-                            aria-hidden="true"
+              {regions.map((regions, i) => {
+                const { region_code, region_name } = regions;
+                return (
+                  <tbody className="text-start">
+                    <tr key={region_code}>
+                      <td>{i + 1}</td>
+                      <td>{region_name}</td>
+                      <td>
+                        <div class="d-grid">
+                          <button
+                            onClick={() =>
+                              dispatch(getDetailRegion(region_code))
+                            }
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalEditRegion"
+                            className="btn btn-warning"
                           >
-                            <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1
-                                    class="modal-title fs-5"
-                                    id="exampleModalLabel"
-                                  >
-                                    Edit Region
-                                  </h1>
-                                  <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                  ></button>
+                            <FaPencilAlt />
+                          </button>
+                        </div>
+                        <div
+                          class="modal fade"
+                          id="modalEditRegion"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalLabel"
+                                >
+                                  Edit Region
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body row align-items-center">
+                                <div className="col-auto">
+                                  <label>Region Name</label>
                                 </div>
-                                <div class="modal-body row align-items-center">
-                                  <div className="col-auto">
-                                    <label>Region Name</label>
-                                  </div>
-                                  <div className="col-auto">
-                                    <input
-                                      className="form-control"
-                                      type="text"
-                                      placeholder="South East"
-                                      value={region.region_name}
-                                      onChange={(e) =>
-                                        setRegion({
-                                          ...region,
-                                          region_name: e.target.value,
-                                        })
-                                      }
-                                    />
-                                  </div>
+                                <div className="col-auto">
+                                  <input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="South East"
+                                    value={region.region_name}
+                                    onChange={(e) =>
+                                      setRegion({
+                                        ...region,
+                                        region_name: e.target.value,
+                                      })
+                                    }
+                                  />
                                 </div>
-                                <div class="modal-footer">
-                                  <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                                  >
-                                    Cancel
-                                  </button>
-                                  <button
-                                    onClick={(e) => handleEditRegion(e)}
-                                    type="submit"
-                                    class="btn btn-primary"
-                                    data-bs-dismiss="modal"
-                                  >
-                                    Edit
-                                  </button>
-                                </div>
-                                {/* </form> */}
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Cancel
+                                </button>
+                                <button
+                                  onClick={(e) => handleEditRegion(e)}
+                                  type="submit"
+                                  class="btn btn-primary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Edit
+                                </button>
                               </div>
                             </div>
                           </div>
-                        </td>
-                        <td>
-                          <div class="d-grid">
-                            <button
-                              onClick={() =>
-                                dispatch(deleteRegion(region_code))
-                              }
-                              className="btn btn-danger"
-                            >
-                              <FaTrash />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  );
-                })
-              ) : (
-                <Loading />
-              )}
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-grid">
+                          <button
+                            onClick={() => dispatch(deleteRegion(region_code))}
+                            className="btn btn-danger"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
             </table>
-
-            {}
 
             <h4>Table Country</h4>
             <table class="table align-middle shadow rounded">
               <thead>
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Country Id</th>
+                  <th scope="col" className="col-3">
+                    Country Id
+                  </th>
                   <th scope="col">Country Name</th>
                   <th scope="col" colSpan={2} className="col-1">
                     <div class="d-grid">
                       <button
-                        onClick={() => {
-                          console.log(getListCountriesResult);
-                        }}
                         type="button"
                         class="btn btn-primary"
                         data-bs-toggle="modal"
@@ -376,7 +528,7 @@ const Locations = () => {
                               aria-label="Close"
                             ></button>
                           </div>
-                          <div class="modal-body row align-items-center">
+                          {/* <div class="modal-body row align-items-center">
                             <div className="col-4">
                               <label>Region Name</label>
                             </div>
@@ -388,7 +540,7 @@ const Locations = () => {
                                 value={region.region_name}
                               />
                             </div>
-                          </div>
+                          </div> */}
                           <div class="modal-body row align-items-center">
                             <div className="col-4">
                               <label>Country Name</label>
@@ -407,6 +559,23 @@ const Locations = () => {
                               />
                             </div>
                           </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>Country Region Id</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                onChange={(e) =>
+                                  setCountry({
+                                    ...country,
+                                    country_region_id: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
                           <div class="modal-footer">
                             <button
                               type="button"
@@ -416,7 +585,7 @@ const Locations = () => {
                               Cancel
                             </button>
                             <button
-                              // onClick={(e) => handleAddRegion(e)}
+                            onClick={(e)=>handleAddCountry(e)}
                               type="submit"
                               class="btn btn-primary"
                               data-bs-dismiss="modal"
@@ -432,21 +601,12 @@ const Locations = () => {
               </thead>
 
               {countries.map((countries, i) => {
-                const { country_name, country_id } = countries;
+                const { country_id, country_name, country_region_id } =
+                  countries;
                 const region_name = countries?.Region?.region_name;
                 return (
                   <tbody>
                     <tr>
-                      <td>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault2"
-                          />
-                        </div>
-                      </td>
                       <td>{i + 1}</td>
                       <td>{country_name}</td>
                       <td>
@@ -477,7 +637,7 @@ const Locations = () => {
                                   class="modal-title fs-5"
                                   id="exampleModalLabel"
                                 >
-                                  Edit Region
+                                  Edit Country
                                 </h1>
                                 <button
                                   type="button"
@@ -526,7 +686,7 @@ const Locations = () => {
                                   Cancel
                                 </button>
                                 <button
-                                  // onClick={(e) => handleEditRegion(e)}
+                                onClick={(e)=>handleEditCountry(e)}
                                   type="submit"
                                   class="btn btn-primary"
                                   data-bs-dismiss="modal"
@@ -534,7 +694,6 @@ const Locations = () => {
                                   Edit
                                 </button>
                               </div>
-                              {/* </form> */}
                             </div>
                           </div>
                         </div>
@@ -542,9 +701,7 @@ const Locations = () => {
                       <td>
                         <div class="d-grid">
                           <button
-                            // onClick={() =>
-                            //   dispatch(deleteRegion(region_code))
-                            // }
+                            onClick={() => dispatch(deleteCountry(country_id))}
                             className="btn btn-danger"
                           >
                             <FaTrash />
@@ -557,26 +714,208 @@ const Locations = () => {
               })}
             </table>
 
-            {/* <h4>Table Province</h4>
-            <table class="table align middle">
+            <h4>Table Province</h4>
+            <table class="table align-middle shadow rounded">
               <thead>
                 <tr>
-                  <th scope="col">Province Id</th>
+                  <th scope="col" className="col-3">
+                    Province Id
+                  </th>
                   <th scope="col">Province Name</th>
-                  <th scope="col">
-                    <button className="btn btn-primary">Add</button>
+                  <th scope="col" colSpan={2} className="col-1">
+                    <div class="d-grid">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addProvinceModal"
+                      >
+                        <IoMdAdd />
+                        Add
+                      </button>
+                    </div>
+                    <div
+                      class="modal fade"
+                      id="addProvinceModal"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Add Province
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-auto">
+                              <label>Province Name</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Jawa Barat"
+                                onChange={(e) =>
+                                  setProvince({
+                                    ...province,
+                                    prov_name: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-auto">
+                              <label>Prov Country Id</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                onChange={(e) =>
+                                  setProvince({
+                                    ...province,
+                                    prov_country_id: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              onClick={(e) => handleAddProvince(e)}
+                              type="submit"
+                              class="btn btn-primary"
+                              data-bs-dismiss="modal"
+                            >
+                              Add
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </th>
                 </tr>
               </thead>
-              {province.map((region, i) => {
+              {provinces.map((provinces, i) => {
+                const { prov_id, prov_name, prov_country_id } = provinces;
+                const country_name = provinces?.Country?.country_name;
                 return (
-                  <tbody>
-                    <tr>
+                  <tbody className="text-start">
+                    <tr key={prov_id}>
                       <td>{i + 1}</td>
-                      <td>{region?.prov_name}</td>
+                      <td>{prov_name}</td>
                       <td>
-                        <button className="btn btn-warning mx-1">Edit</button>
-                        <button className="btn btn-danger">Delete</button>
+                        <div class="d-grid">
+                          <button
+                            onClick={() => dispatch(getDetailProvince(prov_id))}
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalEditProvince"
+                            className="btn btn-warning"
+                          >
+                            <FaPencilAlt />
+                          </button>
+                        </div>
+                        <div
+                          class="modal fade"
+                          id="modalEditProvince"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalLabel"
+                                >
+                                  Edit Province
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body row align-items-center">
+                                <div className="col-4">
+                                  <label>Country Name</label>
+                                </div>
+                                <div className="col-auto">
+                                  <input
+                                    className="form-control-plaintext"
+                                    readOnly
+                                    type="text"
+                                    value={country_name}
+                                  />
+                                </div>
+                              </div>
+                              <div class="modal-body row align-items-center">
+                                <div className="col-4">
+                                  <label>Province Name</label>
+                                </div>
+                                <div className="col-auto">
+                                  <input
+                                    className="form-control"
+                                    type="text"
+                                    value={province.prov_name}
+                                    onChange={(e) =>
+                                      setProvince({
+                                        ...province,
+                                        prov_name: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Cancel
+                                </button>
+                                <button
+                                  onClick={(e) => handleEditProvince(e)}
+                                  type="submit"
+                                  class="btn btn-primary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Edit
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-grid">
+                          <button
+                            onClick={() => dispatch(deleteProvince(prov_id))}
+                            className="btn btn-danger"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
@@ -585,31 +924,333 @@ const Locations = () => {
             </table>
 
             <h4>Table City</h4>
-            <table class="table align-middle">
+            <table class="table align-middle shadow rounded">
               <thead>
                 <tr>
-                  <th scope="col">City Id</th>
+                  <th scope="col" className="col-3">
+                    City Id
+                  </th>
                   <th scope="col">City Name</th>
-                  <th scope="col">
-                    <button className="btn btn-primary">Add</button>
+                  <th scope="col" colSpan={2} className="col-1">
+                    <div class="d-grid">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addCityModal"
+                      >
+                        <IoMdAdd />
+                        Add
+                      </button>
+                    </div>
+                    <div
+                      class="modal fade"
+                      id="addCityModal"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Add City
+                            </h1>
+                            <button
+                              type="button"
+                              class="btn-close"
+                              data-bs-dismiss="modal"
+                              aria-label="Close"
+                            ></button>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>City Name</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Cirebon"
+                                onChange={(e) =>
+                                  setCity({
+                                    ...city,
+                                    addr_line1: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>Postal Code</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="45111"
+                                onChange={(e) =>
+                                  setCity({
+                                    ...city,
+                                    addr_postal_code: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>Latitude</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="6.732023"
+                                onChange={(e) =>
+                                  setCity({
+                                    ...region,
+                                    lat: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>Longitude</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="108.552315"
+                                onChange={(e) =>
+                                  setCity({
+                                    ...city,
+                                    long: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>Address Prov Id</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                onChange={(e) =>
+                                  setCity({
+                                    ...city,
+                                    addr_prov_id: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-bs-dismiss="modal"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              onClick={(e) => handleAddCity(e)}
+                              type="submit"
+                              class="btn btn-primary"
+                              data-bs-dismiss="modal"
+                            >
+                              Add
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </th>
                 </tr>
               </thead>
-              {city.map((region, i) => {
+              {cities.map((cities, i) => {
+                const {
+                  addr_id,
+                  addr_line1,
+                  addr_postal_code,
+                  lat,
+                  long,
+                  addr_prov_id,
+                } = cities;
+                const province_name = cities?.Province?.prov_name
                 return (
-                  <tbody>
-                    <tr>
+                  <tbody className="text-start">
+                    <tr key={addr_id}>
                       <td>{i + 1}</td>
-                      <td>{region?.addr_line1}</td>
+                      <td>{addr_line1}</td>
                       <td>
-                        <button className="btn btn-warning mx-1">Edit</button>
-                        <button className="btn btn-danger">Delete</button>
+                        <div class="d-grid">
+                          <button
+                            onClick={() => dispatch(getDetailCity(addr_id))}
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalEditCity"
+                            className="btn btn-warning"
+                          >
+                            <FaPencilAlt />
+                          </button>
+                        </div>
+                        <div
+                          class="modal fade"
+                          id="modalEditCity"
+                          tabindex="-1"
+                          aria-labelledby="exampleModalLabel"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1
+                                  class="modal-title fs-5"
+                                  id="exampleModalLabel"
+                                >
+                                  Edit City
+                                </h1>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body row align-items-center">
+                                <div className="col-4">
+                                  <label>Province Name</label>
+                                </div>
+                                <div className="col-auto">
+                                  <input
+                                    className="form-control-plaintext"
+                                    readOnly
+                                    type="text"
+                                    value={province_name}
+                                  />
+                                </div>
+                              </div>
+                              <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>City Name</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="Cirebon"
+                                value={city.addr_line1}
+                                onChange={(e) =>
+                                  setCity({
+                                    ...city,
+                                    addr_line1: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>Postal Code</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="45111"
+                                value={city.addr_postal_code}
+                                onChange={(e) =>
+                                  setCity({
+                                    ...city,
+                                    addr_postal_code: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>Latitude</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="6.732023"
+                                value={city.lat}
+                                onChange={(e) =>
+                                  setCity({
+                                    ...region,
+                                    lat: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          <div class="modal-body row align-items-center">
+                            <div className="col-4">
+                              <label>Longitude</label>
+                            </div>
+                            <div className="col-auto">
+                              <input
+                                className="form-control"
+                                type="text"
+                                placeholder="108.552315"
+                                value={city.long}
+                                onChange={(e) =>
+                                  setCity({
+                                    ...city,
+                                    long: e.target.value,
+                                  })
+                                }
+                              />
+                            </div>
+                          </div>
+                          
+                              <div class="modal-footer">
+                                <button
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Cancel
+                                </button>
+                                <button
+                                  onClick={(e) => handleEditCity(e)}
+                                  type="submit"
+                                  class="btn btn-primary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  Edit
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-grid">
+                          <button
+                            onClick={() => dispatch(deleteCity(addr_id))}
+                            className="btn btn-danger"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
                 );
               })}
-            </table> */}
+            </table>
           </div>
         </div>
       </div>
@@ -618,4 +1259,4 @@ const Locations = () => {
   );
 };
 
-export default Locations;
+export default Content;
