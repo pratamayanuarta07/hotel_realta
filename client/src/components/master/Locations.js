@@ -16,7 +16,7 @@ import Loading from "./Loading";
 import { IoMdAdd } from "react-icons/io";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const Content = () => {
+const Locations = () => {
   const {
     getListRegionsResult,
     addRegionResult,
@@ -618,4 +618,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default Locations;

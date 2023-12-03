@@ -1,6 +1,5 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import Policy from "./Policy";
 import Welcome from "./Welcome";
 import { Link } from "react-router-dom";
 
