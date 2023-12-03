@@ -8,7 +8,7 @@ const Sidebar = () => {
         {/* Sidebar - Brand */}
         <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
           <div className="sidebar-brand-icon">
-            <img src={require("../photos/logo.png")} alt="" style={{ width: "50px", height: "50px" }} />
+            <img src={require("../../photos/logo.png")} alt="" style={{ width: "50px", height: "50px" }} />
           </div>
           <div className="sidebar-brand-text mx-2">
             <h5 className="m-0">

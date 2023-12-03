@@ -9,7 +9,7 @@ import "bootstrap/dist/js/bootstrap.js";
 import { legacy_createStore as createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import reducers from "./reducers";
+import reducers from "./reducers/Payment";
 import { BrowserRouter as Router } from "react-router-dom";
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));

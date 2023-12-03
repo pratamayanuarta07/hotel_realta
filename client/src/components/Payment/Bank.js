@@ -221,7 +221,7 @@ const Bank = () => {
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                     Cancel
                                   </button>
-                                  <button onClick={(e) => handleupdatebank(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                                  <button onClick={(e) => handleupdatebank(e)} type="submit" class="btn btn-danger" data-bs-dismiss="modal">
                                     Edit
                                   </button>
                                 </div>
