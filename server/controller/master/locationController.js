@@ -195,7 +195,7 @@ const getDetailCountry = async (req, res) => {
 const getProvince = async (req, res) => {
   try {
     const result = await Province.findAll({
-      include: [Address],
+      include: [Country, Address],
       order: [
         ["prov_id", "ASC"],
         [Address, "addr_id", "ASC"],
@@ -295,6 +295,7 @@ const getDetailProvince = async (req, res) => {
 const getCity = async (req, res) => {
   try {
     const result = await Address.findAll({
+      include: [Province],
       order: [["addr_id", "ASC"]]
     });
     res.status(200).json(result);
