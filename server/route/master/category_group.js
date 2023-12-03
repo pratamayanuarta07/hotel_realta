@@ -9,6 +9,7 @@ const {
 } = require("../../controller/master/categoryController");
 
 categoryRoute.get("/", getCategory);
+categoryRoute.post("/add", addCategory);
 categoryRoute.delete("/delete/:cagro_id", deleteCategory);
 categoryRoute.put("/update/:cagro_id", updateCategory);
 categoryRoute.get("/details/:cagro_id", getDetailCategory);
