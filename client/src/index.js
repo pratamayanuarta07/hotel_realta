@@ -6,11 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 
-import {
-  legacy_createStore as createStore,
-  compose,
-  applyMiddleware,
-} from "redux";
+import { legacy_createStore as createStore, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
@@ -19,7 +15,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 const store = createStore(
   reducers,
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk)
     // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
