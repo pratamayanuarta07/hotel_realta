@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 
   const storage2 = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './public/profile'); // Direktori tempat file akan disimpan
+      cb(null, './public/HR'); // Direktori tempat file akan disimpan
     },
     filename: (req, file, cb) => {
         const ext = file.originalname.split('.').pop();

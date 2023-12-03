@@ -1,11 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
 
-const Sidebar = () => {
-  return (
-    <div>
+const SidebarTest = () => {
+    return (
+        <div>
       <ul
-        className="navbar-nav sidebar sidebar-dark accordion h-100"
+        className="navbar-nav sidebar sidebar-dark accordion"
         style={{ backgroundColor: "#435585" }}
         id="accordionSidebar"
       >
@@ -16,24 +15,25 @@ const Sidebar = () => {
         >
           <div className="sidebar-brand-icon">
             <img
-              src={require("../../photos/logo.png")}
+              src={require("./logo.png")}
               alt=""
               style={{ width: "50px", height: "50px" }}
             />
           </div>
           <div className="sidebar-brand-text mx-2">
-            <h5 className="m-0">
+            <h6 className="m-0">
               Hotel Realta
               <br />
               <p className="fs-6 fst-italic lead m-0">check in dong</p>
-            </h5>
+            </h6>
           </div>
         </a>
         {/* Divider */}
         <hr className="sidebar-divider my-0" />
         {/* Nav Item - Dashboard */}
         <li className="nav-item active">
-          <a className="nav-link" href="/">
+          <a className="nav-link" href="index.html">
+            <i className="fas fa-fw fa-tachometer-alt" />
             <span>Dashboard</span>
           </a>
         </li>
@@ -43,15 +43,17 @@ const Sidebar = () => {
         <div className="sidebar-heading">Module</div>
         {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item">
-          <Link
+          <a
             className="nav-link collapsed"
+            href="#"
             data-bs-toggle="collapse"
             data-bs-target="#collapseUsers"
             aria-expanded="true"
             aria-controls="collapseUsers"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Users</span>
-          </Link>
+          </a>
           <div
             id="collapseUsers"
             className="collapse"
@@ -60,21 +62,21 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/users/profile"}>
+              <a className="collapse-item" href="buttons.html">
                 My Profile
-              </Link>
-              <Link className="collapse-item" to={"/users/booking"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 My Bookings
-              </Link>
-              <Link className="collapse-item" to={"/users/account"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 My Accounts
-              </Link>
+              </a>
             </div>
           </div>
         </li>
         {/* Nav Item - Utilities Collapse Menu */}
         <li className="nav-item">
-          <Link
+          <a
             className="nav-link collapsed"
             href="#"
             data-bs-toggle="collapse"
@@ -82,8 +84,9 @@ const Sidebar = () => {
             aria-expanded="true"
             aria-controls="collapseMaster"
           >
+            <i className="fas fa-fw fa-wrench" />
             <span>Master</span>
-          </Link>
+          </a>
           <div
             id="collapseMaster"
             className="collapse"
@@ -92,34 +95,36 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/master/locations"}>
+              <a className="collapse-item" href="utilities-color.html">
                 Locations
-              </Link>
-              <Link className="collapse-item" to={"/master/policy"}>
+              </a>
+              <a className="collapse-item" href="utilities-border.html">
                 Policy
-              </Link>
-              <Link className="collapse-item" to={"/master/category"}>
+              </a>
+              <a className="collapse-item" href="utilities-animation.html">
                 Category Group
-              </Link>
-              <Link className="collapse-item" to={"/master/priceitems"}>
+              </a>
+              <a className="collapse-item" href="utilities-other.html">
                 Price Items
-              </Link>
-              <Link className="collapse-item" to={"/master/servicetasks"}>
+              </a>
+              <a className="collapse-item" href="utilities-other.html">
                 Service Task
-              </Link>
+              </a>
             </div>
           </div>
         </li>
         <li className="nav-item">
-          <Link
+          <a
             className="nav-link collapsed"
+            href="#"
             data-bs-toggle="collapse"
             data-bs-target="#collapseHotels"
             aria-expanded="true"
             aria-controls="collapseHotels"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Hotels</span>
-          </Link>
+          </a>
           <div
             id="collapseHotels"
             className="collapse"
@@ -128,52 +133,56 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/hotels/hotel"}>
+              <a className="collapse-item" href="buttons.html">
                 Hotel
-              </Link>
-              <Link className="collapse-item" to={"/hotels/facilities"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Facilities
-              </Link>
-              <Link className="collapse-item" to={"/hotels/reviews"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Reviews
-              </Link>
+              </a>
             </div>
           </div>
         </li>
         <li className="nav-item">
-          <Link
+          <a
             className="nav-link collapsed"
+            href="#"
             data-bs-toggle="collapse"
             data-bs-target="#collapseBooking"
             aria-expanded="true"
             aria-controls="collapseBooking"
-            to={"/booking"}
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Booking</span>
-          </Link>
+          </a>
         </li>
         <li className="nav-item">
-          <Link
+          <a
             className="nav-link collapsed"
+            href="#"
             data-bs-toggle="collapse"
             data-bs-target="#collapseResto"
             aria-expanded="true"
             aria-controls="collapseResto"
-            to={"/resto"}
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Resto</span>
-          </Link>
+          </a>
         </li>
         <li className="nav-item">
-          <Link
+          <a
             className="nav-link collapsed"
+            href="#"
             data-bs-toggle="collapse"
             data-bs-target="#collapsePayment"
             aria-expanded="true"
             aria-controls="collapsePayment"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Payment</span>
-          </Link>
+          </a>
           <div
             id="collapsePayment"
             className="collapse"
@@ -182,34 +191,36 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/payment/bank"}>
+              <a className="collapse-item" href="buttons.html">
                 Bank
-              </Link>
-              <Link className="collapse-item" to={"/payment/fintech"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Fintech
-              </Link>
-              <Link className="collapse-item" to={"/payment/account"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Accounts
-              </Link>
-              <Link className="collapse-item" to={"/payment/topup"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Topup
-              </Link>
-              <Link className="collapse-item" to={"/payment/transaction"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Transaction
-              </Link>
+              </a>
             </div>
           </div>
         </li>
         <li className="nav-item">
-          <Link
+          <a
             className="nav-link collapsed"
+            href="#"
             data-bs-toggle="collapse"
             data-bs-target="#collapseHR"
             aria-expanded="true"
             aria-controls="collapseHR"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>HR</span>
-          </Link>
+          </a>
           <div
             id="collapseHR"
             className="collapse"
@@ -218,29 +229,30 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/HR/dept"}>
-                Department
-              </Link>
-              <Link className="collapse-item" to={"/HR/employee"}>
+              <a className="collapse-item" href="buttons.html">
+                Departement
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Employee
-                </Link>
-              <Link className="collapse-item" to={"/HR/work_order"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 WorkOrder
-              </Link>
+              </a>
             </div>
           </div>
         </li>
 
         <li className="nav-item">
-          <Link
+          <a
             className="nav-link collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#collapsePurchasing"
             aria-expanded="true"
             aria-controls="collapsePurchasing"
           >
+            <i className="fas fa-fw fa-cog" />
             <span>Purchasing</span>
-          </Link>
+          </a>
           <div
             id="collapsePurchasing"
             className="collapse"
@@ -249,21 +261,21 @@ const Sidebar = () => {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Menus:</h6>
-              <Link className="collapse-item" to={"/purchasing/vendor"}>
+              <a className="collapse-item" href="buttons.html">
                 Vendor
-              </Link>
-              <Link className="collapse-item" to={"/purchasing/stock"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Stock
-              </Link>
-              <Link className="collapse-item" to={"/purchasing/order"}>
+              </a>
+              <a className="collapse-item" href="cards.html">
                 Purchasing Order
-              </Link>
+              </a>
             </div>
           </div>
         </li>
       </ul>
     </div>
-  );
-};
+    );
+}
 
-export default Sidebar;
+export default SidebarTest;

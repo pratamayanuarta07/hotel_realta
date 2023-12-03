@@ -38,15 +38,16 @@ const insert_emp = async (req, res) => {
     try {
         if (req.file) {
             const date = new Date();
+            console.log(req.file);
             const {national_id, fullname, birth_date, hire_date, martial_status, gender, salaries_flag, current_flag, vacation_hour,
             sickleave, job_role, salary_rate, frequency, department, start_date, end_date, shift, change_date} = req.body;
             if (national_id.length > 25) {
-                const path = `./public/profile/${req.file.filename}`;
+                const path = `./public/HR/${req.file.filename}`;
                 fs.unlinkSync(path);
                 res.send({status:400, pesan:'National ID Lebih Dari 25'});
             }
             else{
-                const url = `${req.protocol}://${req.get('host')}/profile/${req.file.filename}`;
+                const url = `${req.protocol}://${req.get('host')}/HR/${req.file.filename}`;
                 const result = await employee.create({emp_national_id:national_id, emp_fullname:fullname, emp_birth_date:birth_date,
                 emp_hire_date:hire_date, emp_martial_status:martial_status, emp_gender:gender, emp_salaries_flag:salaries_flag,
                 emp_current_flag:current_flag, emp_vacarion_hours:vacation_hour, emp_sickleave_hours:sickleave, emp_joro_id:job_role,
@@ -68,7 +69,7 @@ const insert_emp = async (req, res) => {
                 res.send({status:400, pesan:'National ID Lebih Dari 25'});
             }
             else{
-                const url = `${req.protocol}://${req.get('host')}/profile/default.jpg`;
+                const url = `${req.protocol}://${req.get('host')}/HR/default.jpg`;
                 const result = await employee.create({emp_national_id:national_id, emp_fullname:fullname, emp_birth_date:birth_date,
                 emp_hire_date:hire_date, emp_martial_status:martial_status, emp_gender:gender, emp_salaries_flag:salaries_flag,
                 emp_current_flag:current_flag, emp_vacarion_hours:vacation_hour, emp_sickleave_hours:sickleave, emp_joro_id:job_role,
@@ -85,7 +86,7 @@ const insert_emp = async (req, res) => {
         }
     } catch (e) {
         if (req.file) {
-            const path = `./public/profile/${req.file.filename}`;
+            const path = `./public/HR/${req.file.filename}`;
             fs.unlinkSync(path);
         }
         res.send({message:e.message})
@@ -102,10 +103,12 @@ const update_emp = async (req, res) => {
                 const {national_id, fullname, birth_date, hire_date, martial_status, gender, salaries_flag, current_flag, vacation_hour,
                 sickleave, job_role, salary_rate, frequency, department, start_date, end_date, shift, change_date} = req.body;
                 if (national_id.length > 25) {
+                    const path = `./public/HR/${req.file.filename}`;
+                    fs.unlinkSync(path);
                     res.send({status:400, pesan:'National ID Lebih Dari 25'});
                 }
                 else{
-                    const url = `${req.protocol}://${req.get('host')}/profile/${req.file.filename}`;
+                    const url = `${req.protocol}://${req.get('host')}/HR/${req.file.filename}`;
                     const result = await employee.update({emp_national_id:national_id, emp_fullname:fullname, emp_birth_date:birth_date,
                     emp_hire_date:hire_date, emp_martial_status:martial_status, emp_gender:gender, emp_salaries_flag:salaries_flag,
                     emp_current_flag:current_flag, emp_vacarion_hours:vacation_hour, emp_sickleave_hours:sickleave, emp_joro_id:job_role,
@@ -117,7 +120,7 @@ const update_emp = async (req, res) => {
                     const result3 = await employee_department_history.update({
                     edhi_start_date:start_date, edhi_end_date:end_date, edhi_dept_id:department, edhi_shift_id:shift,
                     edhi_modified_date:date}, {schema:'HR', where:{edhi_emp_id:id}});
-                    const path = `./public/profile/${image}`;
+                    const path = `./public/HR/${image}`;
                     fs.unlinkSync(path);
                     res.send({data:result, status:200, pesan:'sukses'});  
                 }
@@ -128,12 +131,12 @@ const update_emp = async (req, res) => {
                 const {national_id, fullname, birth_date, hire_date, martial_status, gender, salaries_flag, current_flag, vacation_hour,
                 sickleave, job_role, salary_rate, frequency, department, start_date, end_date, shift, change_date} = req.body;
                 if (national_id.length > 25) {
-                    const path = `./public/profile/${req.file.filename}`;
+                    const path = `./public/HR/${req.file.filename}`;
                     fs.unlinkSync(path);
                     res.send({status:400, pesan:'National ID Lebih Dari 25'});
                 }
                 else{
-                    const url = `${req.protocol}://${req.get('host')}/profile/${req.file.filename}`;
+                    const url = `${req.protocol}://${req.get('host')}/HR/${req.file.filename}`;
                     console.log(url);
                     const result = await employee.update({emp_national_id:national_id, emp_fullname:fullname, emp_birth_date:birth_date,
                     emp_hire_date:hire_date, emp_martial_status:martial_status, emp_gender:gender, emp_salaries_flag:salaries_flag,
@@ -171,12 +174,11 @@ const update_emp = async (req, res) => {
                     edhi_start_date:start_date, edhi_end_date:end_date, edhi_dept_id:department, edhi_shift_id:shift,
                     edhi_modified_date:date}, {schema:'HR', where:{edhi_emp_id:id}});
                     res.send({data:result, status:200, pesan:'sukses'});
-                }
-                
+                }     
         }
     } catch (e) {
         if (req.file) {
-            const path = `./public/profile/${req.file.filename}`;
+            const path = `./public/HR/${req.file.filename}`;
             fs.unlinkSync(path);
         }
         res.send({message:e.message})
