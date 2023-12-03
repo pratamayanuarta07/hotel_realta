@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "./Sidebar";
-import Policy from "./Policy";
-import Content from "./Locations";
+import Locations from "./Locations";
+import { Link } from "react-router-dom";
 
 const Loc = () => {
   return (
@@ -22,7 +22,7 @@ const Loc = () => {
               <ul className="navbar-nav ml-auto">
                 {/* Nav Item - User Information */}
                 <li className="nav-item dropdown no-arrow mx-3">
-                  <a
+                  <Link
                     className="nav-link dropdown-toggle"
                     href="#"
                     id="userDropdown"
@@ -39,40 +39,40 @@ const Loc = () => {
                       src="https://i.pravatar.cc/150?img=12"
                       alt=""
                     />
-                  </a>
+                  </Link>
                   {/* Dropdown - User Information */}
                   <div
                     className="dropdown-menu dropdown-menu-end shadow animated--grow-in w-auto"
                     aria-labelledby="userDropdown"
                   >
-                    <a className="dropdown-item" href="#">
+                    <Link className="dropdown-item" to={"/profile"}>
                       <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
                       Profile
-                    </a>
-                    <a className="dropdown-item" href="#">
+                    </Link>
+                    <Link className="dropdown-item" to={"/setting"}>
                       <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
                       Settings
-                    </a>
-                    <a className="dropdown-item" href="#">
+                    </Link>
+                    <Link className="dropdown-item" to={"/activity"}>
                       <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
                       Activity Log
-                    </a>
+                    </Link>
                     <div className="dropdown-divider" />
-                    <a
+                    <Link
                       className="dropdown-item"
-                      href="#"
                       data-bs-toggle="modal"
                       data-bs-target="#logoutModal"
+                      to={"/logout"}
                     >
                       <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
                       Logout
-                    </a>
+                    </Link>
                   </div>
                 </li>
               </ul>
             </nav>
-            <div class="container-fluid">
-              <Content />
+            <div class="container">
+              <Locations />
             </div>
           </div>
           <footer
@@ -80,8 +80,8 @@ const Loc = () => {
             style={{ backgroundColor: "#363062" }}
           >
             <div className="container my-auto">
-              <div className="copyright text-center my-auto">
-                <span>Copyright © Your Website 2023</span>
+              <div className="copyright text-center my-auto text-white">
+                <span>Copyright © Hotel Realta — 2023</span>
               </div>
             </div>
           </footer>
