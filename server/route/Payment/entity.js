@@ -1,5 +1,5 @@
 const entityRoute = require("express").Router();
-const EntityController = require("../controller/entityController");
+const EntityController = require("../../controller/Payment/entityController");
 
 entityRoute.get("/", EntityController.getEntity);
 entityRoute.post("/create", EntityController.create);

@@ -1,4 +1,4 @@
-import { GET_LIST_ACCOUNT, ADD_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, GET_DETAIL_ACCOUNT } from "../../actions/accountAction";
+import { GET_LIST_ACCOUNT, ADD_ACCOUNT, DELETE_ACCOUNT, UPDATE_ACCOUNT, GET_DETAIL_ACCOUNT } from "../../../actions/Payment/accountAction";
 
 const initialState = {
   getListAccountsResult: false,

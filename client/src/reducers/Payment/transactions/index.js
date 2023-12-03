@@ -1,4 +1,4 @@
-import { GET_LIST_TRANSACTION, ADD_TRANSACTION, DELETE_TRANSACTION, UPDATE_TRANSACTION, GET_DETAIL_TRANSACTION } from "../../actions/transactionAction";
+import { GET_LIST_TRANSACTION, ADD_TRANSACTION, DELETE_TRANSACTION, UPDATE_TRANSACTION, GET_DETAIL_TRANSACTION } from "../../../actions/Payment/transactionAction";
 
 const initialState = {
   getListTransactionsResult: false,

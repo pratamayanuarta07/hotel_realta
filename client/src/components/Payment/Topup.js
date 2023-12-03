@@ -3,15 +3,15 @@ import React, { useState } from "react";
 const Topup = () => {
   // Data contoh
   const sourceAccounts = [
-    { id: 1, name: "Source Account 1", balance: 5000 },
-    { id: 2, name: "Source Account 2", balance: 8000 },
-    { id: 3, name: "Source Account 3", balance: 10000 },
+    { id: 1, name: "Bank BCA", balance: "Rp.5000" },
+    { id: 2, name: "Bank BRI", balance: "Rp.8000" },
+    { id: 3, name: "Bank BSI", balance: "Rp.1.200.000" },
   ];
 
   const targetAccounts = [
-    { id: 4, name: "Target Account 1", balance: 3000 },
-    { id: 5, name: "Target Account 2", balance: 6000 },
-    { id: 6, name: "Target Account 3", balance: 12000 },
+    { id: 4, name: "Goto", balance: "Rp.30.000" },
+    { id: 5, name: "Flip", balance: "Rp.6.000.000" },
+    { id: 6, name: "Mandiri", balance: "Rp.12.000.000" },
   ];
 
   const [sourceName, setSourceName] = useState("");

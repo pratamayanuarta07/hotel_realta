@@ -6,12 +6,12 @@ import Masters from "./components/Masters";
 import Home from "./components/Home";
 import Menu from "./components/Menu";
 import Modal from "./components/Modal";
-import BankPage from "./components/BankPage";
-import FintechPage from "./components/FintechPage";
-import TopupPage from "./components/TopupPage";
-import AccountPage from "./components/AccountPage";
-import TransactionPage from "./components/TransactionPage";
-import Main from "./components/Main";
+import BankPage from "././components/Payment/BankPage";
+import FintechPage from "././components/Payment/FintechPage";
+import TopupPage from "././components/Payment/TopupPage";
+import AccountPage from "././components/Payment/AccountPage";
+import TransactionPage from "././components/Payment/TransactionPage";
+import Main from "././components/Payment/Main";
 
 function App() {
   return (

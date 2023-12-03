@@ -1,5 +1,5 @@
 const usacRoute = require("express").Router();
-const UsacController = require("../controllers/usacController");
+const UsacController = require("../../controller/Payment/usacController");
 
 usacRoute.get("/", UsacController.getusac);
 usacRoute.post("/create", UsacController.create);

@@ -1,24 +1,25 @@
-const { entity, bank, payment_gateaway } = require("../models");
+const { payment_gateaway, entity } = require("../../models");
 
-class EntityController {
-  static async getEntity(req, res) {
+class PagaController {
+  static async getPaga(req, res) {
     try {
-      let result = await entity.findAll({
-        include: [bank, payment_gateaway],
-        // order: [["ASC"]],
+      let Paga = await payment_gateaway.findAll({
+        order: [["paga_entity_id", "ASC"]],
+        // include: [User],
       });
 
-      res.status(200).json(result);
+      res.status(200).json(Paga);
     } catch (err) {
       res.status(500).json(err.message);
     }
   }
   static async create(req, res) {
     try {
-      //   const { entity_code, entity_name } = req.body;
+      const { paga_code, paga_name } = req.body;
+      let paga_modified_date = new Date();
       let entity_modified_date = new Date();
 
-      let result = await entity.create(
+      let resultId = await entity.create(
         {
           entity_modified_date,
         },
@@ -26,6 +27,13 @@ class EntityController {
           returning: true,
         }
       );
+
+      let result = await payment_gateaway.create({
+        paga_entity_id: resultId.entity_id,
+        paga_code,
+        paga_name,
+        paga_modified_date,
+      });
 
       res.status(201).json(result);
     } catch (err) {
@@ -36,8 +44,8 @@ class EntityController {
     try {
       let id = +req.params.id;
 
-      let result = await entity.destroy({
-        where: { id: id },
+      let result = await Paga.destroy({
+        where: { paga_entity_id: id },
       });
 
       result === 1
@@ -54,19 +62,17 @@ class EntityController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { title, content, author, category, status, imageUrl } = req.body;
+      const { paga_code, paga_name } = req.body;
+      let paga_modified_date = new Date();
 
-      let result = await entity.update(
+      let result = await payment_gateaway.update(
         {
-          title,
-          content,
-          author,
-          category,
-          status,
-          imageUrl,
+          paga_code,
+          paga_name,
+          paga_modified_date,
         },
         {
-          where: { id: id },
+          where: { paga_entity_id: id },
         }
       );
 
@@ -85,12 +91,12 @@ class EntityController {
     try {
       const id = +req.params.id;
 
-      let result = await entity.findByPk(id);
+      let result = await payment_gateaway.findByPk(id);
 
       result
         ? res.status(200).json(result)
         : res.status(404).json({
-            message: `entity id ${id} not found`,
+            message: `Paga id ${id} not found`,
           });
     } catch (err) {
       res.status(500).json(err.message);
@@ -98,4 +104,4 @@ class EntityController {
   }
 }
 
-module.exports = EntityController;
+module.exports = PagaController;

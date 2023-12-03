@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
-import { getListBank, addBank, deleteBank, updateBank, getDetailBank } from "../actions/bankAction";
+import { getListBank, addBank, deleteBank, updateBank, getDetailBank } from "../../actions/Payment/bankAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";

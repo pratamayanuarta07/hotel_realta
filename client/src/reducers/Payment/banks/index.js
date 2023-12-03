@@ -1,4 +1,4 @@
-import { GET_LIST_BANK, ADD_BANK, DELETE_BANK, UPDATE_BANK, GET_DETAIL_BANK } from "../../actions/bankAction";
+import { GET_LIST_BANK, ADD_BANK, DELETE_BANK, UPDATE_BANK, GET_DETAIL_BANK } from "../../../actions/Payment/bankAction";
 
 const initialState = {
   getListBanksResult: false,

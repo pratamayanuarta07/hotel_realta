@@ -1,5 +1,5 @@
 const bankRoute = require("express").Router();
-const BankController = require("../controller/bankController");
+const BankController = require("../../controller/Payment/bankController");
 
 bankRoute.get("/", BankController.getBank);
 bankRoute.post("/create", BankController.create);

@@ -1,4 +1,4 @@
-const { payment_transaction } = require("../models");
+const { payment_transaction } = require("../../models");
 
 class PatrController {
   static async getPatr(req, res) {

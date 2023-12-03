@@ -1,4 +1,4 @@
-import { GET_LIST_TOPUP, ADD_TOPUP, DELETE_TOPUP, UPDATE_TOPUP, GET_DETAIL_TOPUP } from "../../actions/topupAction";
+import { GET_LIST_TOPUP, ADD_TOPUP, DELETE_TOPUP, UPDATE_TOPUP, GET_DETAIL_TOPUP } from "../../../actions/Payment/topupAction";
 
 const initialState = {
   getListTopupsResult: false,

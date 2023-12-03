@@ -1,4 +1,4 @@
-const { user_accounts } = require("../models");
+const { user_accounts } = require("../../models");
 
 class UsacController {
   static async getUsac(req, res) {

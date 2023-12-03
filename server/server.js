@@ -13,7 +13,7 @@ app.use(
   })
 );
 
-const routes = require("./route/index");
+const routes = require("././route/Payment/index");
 app.use(routes);
 
 app.use(express.static("public"));

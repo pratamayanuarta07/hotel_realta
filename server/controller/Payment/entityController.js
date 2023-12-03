@@ -1,25 +1,24 @@
-const { bank, entity } = require("../models");
+const { entity, bank, payment_gateaway } = require("../../models");
 
-class BankController {
-  static async getBank(req, res) {
+class EntityController {
+  static async getEntity(req, res) {
     try {
-      let Bank = await bank.findAll({
-        order: [["bank_entity_id", "ASC"]],
-        // include: [User],
+      let result = await entity.findAll({
+        include: [bank, payment_gateaway],
+        // order: [["ASC"]],
       });
 
-      res.status(200).json(Bank);
+      res.status(200).json(result);
     } catch (err) {
       res.status(500).json(err.message);
     }
   }
   static async create(req, res) {
     try {
-      const { bank_code, bank_name } = req.body;
-      let bank_modified_date = new Date();
+      //   const { entity_code, entity_name } = req.body;
       let entity_modified_date = new Date();
 
-      let resultId = await entity.create(
+      let result = await entity.create(
         {
           entity_modified_date,
         },
@@ -27,13 +26,6 @@ class BankController {
           returning: true,
         }
       );
-
-      let result = await bank.create({
-        bank_entity_id: resultId.entity_id,
-        bank_code,
-        bank_name,
-        bank_modified_date,
-      });
 
       res.status(201).json(result);
     } catch (err) {
@@ -44,8 +36,8 @@ class BankController {
     try {
       let id = +req.params.id;
 
-      let result = await bank.destroy({
-        where: { bank_entity_id: id },
+      let result = await entity.destroy({
+        where: { id: id },
       });
 
       result === 1
@@ -62,17 +54,19 @@ class BankController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { bank_code, bank_name } = req.body;
-      let bank_modified_date = new Date();
+      const { title, content, author, category, status, imageUrl } = req.body;
 
-      let result = await bank.update(
+      let result = await entity.update(
         {
-          bank_code,
-          bank_name,
-          bank_modified_date,
+          title,
+          content,
+          author,
+          category,
+          status,
+          imageUrl,
         },
         {
-          where: { bank_entity_id: id },
+          where: { id: id },
         }
       );
 
@@ -91,12 +85,12 @@ class BankController {
     try {
       const id = +req.params.id;
 
-      let result = await bank.findByPk(id);
+      let result = await entity.findByPk(id);
 
       result
         ? res.status(200).json(result)
         : res.status(404).json({
-            message: `Bank id ${id} not found`,
+            message: `entity id ${id} not found`,
           });
     } catch (err) {
       res.status(500).json(err.message);
@@ -104,4 +98,4 @@ class BankController {
   }
 }
 
-module.exports = BankController;
+module.exports = EntityController;

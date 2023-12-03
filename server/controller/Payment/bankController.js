@@ -1,22 +1,22 @@
-const { payment_gateaway, entity } = require("../models");
+const { bank, entity } = require("../../models");
 
-class PagaController {
-  static async getPaga(req, res) {
+class BankController {
+  static async getBank(req, res) {
     try {
-      let Paga = await payment_gateaway.findAll({
-        order: [["paga_entity_id", "ASC"]],
+      let Bank = await bank.findAll({
+        order: [["bank_entity_id", "ASC"]],
         // include: [User],
       });
 
-      res.status(200).json(Paga);
+      res.status(200).json(Bank);
     } catch (err) {
       res.status(500).json(err.message);
     }
   }
   static async create(req, res) {
     try {
-      const { paga_code, paga_name } = req.body;
-      let paga_modified_date = new Date();
+      const { bank_code, bank_name } = req.body;
+      let bank_modified_date = new Date();
       let entity_modified_date = new Date();
 
       let resultId = await entity.create(
@@ -28,11 +28,11 @@ class PagaController {
         }
       );
 
-      let result = await payment_gateaway.create({
-        paga_entity_id: resultId.entity_id,
-        paga_code,
-        paga_name,
-        paga_modified_date,
+      let result = await bank.create({
+        bank_entity_id: resultId.entity_id,
+        bank_code,
+        bank_name,
+        bank_modified_date,
       });
 
       res.status(201).json(result);
@@ -44,8 +44,8 @@ class PagaController {
     try {
       let id = +req.params.id;
 
-      let result = await Paga.destroy({
-        where: { paga_entity_id: id },
+      let result = await bank.destroy({
+        where: { bank_entity_id: id },
       });
 
       result === 1
@@ -62,17 +62,17 @@ class PagaController {
   static async update(req, res) {
     try {
       let id = +req.params.id;
-      const { paga_code, paga_name } = req.body;
-      let paga_modified_date = new Date();
+      const { bank_code, bank_name } = req.body;
+      let bank_modified_date = new Date();
 
-      let result = await payment_gateaway.update(
+      let result = await bank.update(
         {
-          paga_code,
-          paga_name,
-          paga_modified_date,
+          bank_code,
+          bank_name,
+          bank_modified_date,
         },
         {
-          where: { paga_entity_id: id },
+          where: { bank_entity_id: id },
         }
       );
 
@@ -91,12 +91,12 @@ class PagaController {
     try {
       const id = +req.params.id;
 
-      let result = await payment_gateaway.findByPk(id);
+      let result = await bank.findByPk(id);
 
       result
         ? res.status(200).json(result)
         : res.status(404).json({
-            message: `Paga id ${id} not found`,
+            message: `Bank id ${id} not found`,
           });
     } catch (err) {
       res.status(500).json(err.message);
@@ -104,4 +104,4 @@ class PagaController {
   }
 }
 
-module.exports = PagaController;
+module.exports = BankController;

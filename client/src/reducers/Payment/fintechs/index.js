@@ -1,4 +1,4 @@
-import { GET_LIST_FINTECH, ADD_FINTECH, DELETE_FINTECH, UPDATE_FINTECH, GET_DETAIL_FINTECH } from "../../actions/fintechAction";
+import { GET_LIST_FINTECH, ADD_FINTECH, DELETE_FINTECH, UPDATE_FINTECH, GET_DETAIL_FINTECH } from "../../../actions/Payment/fintechAction";
 
 const initialState = {
   getListFintechsResult: false,

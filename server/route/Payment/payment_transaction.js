@@ -1,5 +1,5 @@
 const patrRoute = require("express").Router();
-const PatrController = require("../controllers/patrController");
+const PatrController = require("../../controller/Payment/patrController");
 
 patrRoute.get("/", PatrController.getpatr);
 patrRoute.post("/create", PatrController.create);

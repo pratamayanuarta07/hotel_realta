@@ -1,5 +1,5 @@
 const pagaRoute = require("express").Router();
-const PagaController = require("../controller/pagaController");
+const PagaController = require("../../controller/Payment/pagaController");
 
 pagaRoute.get("/", PagaController.getPaga);
 pagaRoute.post("/create", PagaController.create);
