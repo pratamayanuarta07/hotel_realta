@@ -41,7 +41,7 @@ const Bank = () => {
         bank_name: "",
       });
     }
-  }, [dispatch]);
+  }, [addBanksResult, dispatch]);
 
   useEffect(() => {
     if (updateBanksResult) {
@@ -52,7 +52,7 @@ const Bank = () => {
       });
       setId("");
     }
-  }, [dispatch]);
+  }, [updateBanksResult, dispatch]);
 
   useEffect(() => {
     if (deleteBanksResult) {
@@ -62,7 +62,7 @@ const Bank = () => {
         bank_name: "",
       });
     }
-  }, [dispatch]);
+  }, [deleteBanksResult, dispatch]);
 
   useEffect(() => {
     if (getDetailBanksResult) {
@@ -72,7 +72,7 @@ const Bank = () => {
       });
       setId(getDetailBanksResult.bank_entity_id);
     }
-  }, [dispatch]);
+  }, [getDetailBanksResult, dispatch]);
 
   const banks = [].concat(getListBanksResult);
 

@@ -41,7 +41,7 @@ const Fintech = () => {
         paga_name: "",
       });
     }
-  }, [dispatch]);
+  }, [addFintechsResult, dispatch]);
 
   useEffect(() => {
     if (updateFintechsResult) {
@@ -52,7 +52,7 @@ const Fintech = () => {
       });
       setId("");
     }
-  }, [dispatch]);
+  }, [updateFintechsResult, dispatch]);
 
   useEffect(() => {
     if (deleteFintechsResult) {
@@ -62,7 +62,7 @@ const Fintech = () => {
         paga_name: "",
       });
     }
-  }, [dispatch]);
+  }, [deleteFintechsResult, dispatch]);
 
   useEffect(() => {
     if (getDetailFintechsResult) {
@@ -72,7 +72,7 @@ const Fintech = () => {
       });
       setId(getDetailFintechsResult.paga_entity_id);
     }
-  }, [dispatch]);
+  }, [getDetailFintechsResult, dispatch]);
 
   const pagas = [].concat(getListFintechsResult);
 
