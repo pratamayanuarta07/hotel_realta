@@ -6,6 +6,8 @@ const Account = () => {
   const [accounts, setAccounts] = useState([
     { id: 1, accountNumber: "131-3456-22", description: "BCA", balance: "Rp.10.000.000", type: "Debit" },
     { id: 2, accountNumber: "321-6543-00", description: "GoTo", balance: "Rp.90.000", type: "Fintech" },
+    { id: 3, accountNumber: "123-7382-21", description: "BSI", balance: "Rp.100.000", type: "Debit" },
+    { id: 4, accountNumber: "322-6544-02", description: "Flip", balance: "Rp.9.000.000", type: "Fintech" },
   ]);
 
   // State untuk mengelola data formulir modal

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
-import { getListFintech, addFintech, deleteFintech, updateFintech, getDetailFintech } from "../../actions/Payment/fintechAction";
+import { getListFintech, addFintech, deleteFintech, updateFintech, getDetailFintech, searchFintech } from "../../actions/Payment/fintechAction";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./Loading";
-import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import { FaEdit, FaTrash, FaPlus, FaSearch } from "react-icons/fa";
 
 const Fintech = () => {
   const { getListFintechsResult, addFintechsResult, deleteFintechsResult, updateFintechsResult, getDetailFintechsResult } = useSelector((state) => state.FintechsReducer);
@@ -16,6 +16,12 @@ const Fintech = () => {
   });
 
   const [id, setId] = useState("");
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = () => {
+    dispatch(searchFintech(searchTerm));
+  };
 
   const handleaddfintech = (e) => {
     e.preventDefault();
@@ -83,84 +89,93 @@ const Fintech = () => {
           <div class="col-2 text-start"></div>
           <div class="col-12 text-start">
             <h4>Table Fintech</h4>
+            <div className="d-flex justify-content-between mb-3">
+              <div className="col-4">
+                <div className="input-group">
+                  <input type="text" className="form-control" placeholder="Search by Fintech Code" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                  <button className="btn btn-primary" onClick={handleSearch}>
+                    <FaSearch />
+                  </button>
+                </div>
+              </div>
+              <div class="d-grid">
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <FaPlus />
+                  Add
+                </button>
+              </div>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Add Fintech
+                      </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body row align-items-center">
+                      <div className="col-auto">
+                        <label>Fintech Code</label>
+                      </div>
+                      <div className="col-auto">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Code"
+                          onChange={(e) =>
+                            setFintech({
+                              ...fintech,
+                              paga_code: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-body row align-items-center">
+                      <div className="col-auto">
+                        <label>Fintech Name</label>
+                      </div>
+                      <div className="col-auto">
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Name"
+                          onChange={(e) =>
+                            setFintech({
+                              ...fintech,
+                              paga_name: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                      </button>
+                      <button onClick={(e) => handleaddfintech(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <table class="table align-middle">
               <thead class="table-success">
                 <tr>
-                  {/* <th scope="col">Bank Id</th> */}
                   <th scope="col">No</th>
                   <th scope="col">Fintech Code</th>
                   <th scope="col">Fintech Name</th>
                   <th scope="col" colSpan={2} className="col-1">
-                    <div class="d-grid">
-                      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <FaPlus />
-                        Add
-                      </button>
-                    </div>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">
-                              Add Fintech
-                            </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body row align-items-center">
-                            <div className="col-auto">
-                              <label>Fintech Code</label>
-                            </div>
-                            <div className="col-auto">
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="BCA"
-                                onChange={(e) =>
-                                  setFintech({
-                                    ...fintech,
-                                    paga_code: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div class="modal-body row align-items-center">
-                            <div className="col-auto">
-                              <label>Fintech Name</label>
-                            </div>
-                            <div className="col-auto">
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="BCA"
-                                onChange={(e) =>
-                                  setFintech({
-                                    ...fintech,
-                                    paga_name: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                              Cancel
-                            </button>
-                            <button onClick={(e) => handleaddfintech(e)} type="submit" class="btn btn-primary" data-bs-dismiss="modal">
-                              Add
-                            </button>
-                          </div>
-                          {/* </form> */}
-                        </div>
-                      </div>
-                    </div>
+                    Actions
                   </th>
                 </tr>
               </thead>
               {pagas.length > 0 ? (
                 pagas.map((entity, i) => {
                   return (
-                    <tbody className="text-start">
+                    <tbody className="text-start" key={entity.paga_entity_id}>
                       <tr>
                         <td>{i + 1}</td>
                         <td>{entity.paga_code}</td>
@@ -188,8 +203,8 @@ const Fintech = () => {
                                     <input
                                       className="form-control"
                                       type="text"
-                                      placeholder="BCA"
-                                      value={pagas.paga_code}
+                                      placeholder="Code"
+                                      value={fintech.paga_code}
                                       onChange={(e) =>
                                         setFintech({
                                           ...fintech,
@@ -207,8 +222,8 @@ const Fintech = () => {
                                     <input
                                       className="form-control"
                                       type="text"
-                                      placeholder="BCA"
-                                      value={pagas.paga_name}
+                                      placeholder="Name"
+                                      value={fintech.paga_name}
                                       onChange={(e) =>
                                         setFintech({
                                           ...fintech,
@@ -226,7 +241,6 @@ const Fintech = () => {
                                     Edit
                                   </button>
                                 </div>
-                                {/* </form> */}
                               </div>
                             </div>
                           </div>

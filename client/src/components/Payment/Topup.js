@@ -1,54 +1,65 @@
 import React, { useState } from "react";
 
 const Topup = () => {
-  // Data contoh
   const sourceAccounts = [
-    { id: 1, name: "Bank BCA", balance: "Rp.5000" },
-    { id: 2, name: "Bank BRI", balance: "Rp.8000" },
-    { id: 3, name: "Bank BSI", balance: "Rp.1.200.000" },
+    { id: 1, accountNumber: "131-3456-22", name: "Bank BCA", balance: 10000000 },
+    { id: 2, accountNumber: "123-7382-21", name: "Bank BSI", balance: 100000 },
   ];
 
   const targetAccounts = [
-    { id: 4, name: "Goto", balance: "Rp.30.000" },
-    { id: 5, name: "Flip", balance: "Rp.6.000.000" },
-    { id: 6, name: "Mandiri", balance: "Rp.12.000.000" },
+    { id: 4, accountNumber: "321-6543-00", name: "Goto", balance: 90000 },
+    { id: 5, accountNumber: "322-6544-02", name: "Flip", balance: 9000000 },
   ];
 
+  const [sourceaccnum, setSourceaccnum] = useState("");
   const [sourceName, setSourceName] = useState("");
   const [sourceAccount, setSourceAccount] = useState("");
   const [sourceBalance, setSourceBalance] = useState(0);
 
+  const [targetaccnum, setTargetaccnum] = useState("");
   const [targetName, setTargetName] = useState("");
   const [targetAccount, setTargetAccount] = useState("");
   const [targetBalance, setTargetBalance] = useState(0);
 
+  const [transferAmount, setTransferAmount] = useState(0);
+  const [transferAmount2, setTransferAmount2] = useState(0);
+  const [transferAmount3, setTransferAmount3] = useState(0);
+
   const handleSourceSearch = (name) => {
-    // Implement search logic for source
-    // For now, let's just set the source name based on the input
     setSourceName(name);
   };
 
   const handleTargetSearch = (name) => {
-    // Implement search logic for target
-    // For now, let's just set the target name based on the input
     setTargetName(name);
   };
 
   const handleSourceAccountChange = (accountId) => {
-    // Handle source account dropdown change
     const selectedAccount = sourceAccounts.find((account) => account.id === parseInt(accountId));
     if (selectedAccount) {
-      setSourceAccount(selectedAccount);
+      setSourceAccount(selectedAccount.accountNumber);
       setSourceBalance(selectedAccount.balance);
+
+      // Set the value for input formid = 1
+      setTransferAmount(selectedAccount.balance);
+
+      // Calculate the total for input formid = 3
+      const totalBalance = selectedAccount.balance + (targetBalance || 0);
+      setTransferAmount3(totalBalance);
     }
   };
 
   const handleTargetAccountChange = (accountId) => {
-    // Handle target account dropdown change
     const selectedAccount = targetAccounts.find((account) => account.id === parseInt(accountId));
     if (selectedAccount) {
-      setTargetAccount(selectedAccount);
+      setTargetAccount(selectedAccount.accountNumber);
       setTargetBalance(selectedAccount.balance);
+
+      // Set the value for input formid = 3
+      setTransferAmount3(selectedAccount.balance);
+
+      // Calculate the total for input formid = 2
+      const totalBalance = (sourceBalance || 0) + selectedAccount.balance;
+      setTransferAmount2(totalBalance);
     }
   };
 
@@ -57,6 +68,16 @@ const Topup = () => {
     // For now, let's generate a random balance for demonstration purposes
     const randomBalance = Math.floor(Math.random() * 10000);
     setSourceBalance(randomBalance);
+
+    // Set the value for input formid = 1
+    setTransferAmount(randomBalance);
+
+    // Calculate the total for input formid = 3
+    const totalBalance = randomBalance + (targetBalance || 0);
+    setTransferAmount3(totalBalance);
+
+    // Set the value for input formid = 2 (formid1 + formid3)
+    setTransferAmount2(randomBalance + totalBalance);
   };
 
   const updateTargetBalance = () => {
@@ -64,6 +85,9 @@ const Topup = () => {
     // For now, let's generate a random balance for demonstration purposes
     const randomBalance = Math.floor(Math.random() * 10000);
     setTargetBalance(randomBalance);
+    // Set the value for input formid = 3
+    // Assuming you want to set the transfer amount in the source section
+    setTransferAmount(randomBalance);
   };
 
   const handleTransfer = () => {
@@ -72,7 +96,7 @@ const Topup = () => {
       // Simulate the transfer process
       // For now, let's just log a success message
       console.log(`Transfer success from ${sourceName} to ${targetName}`);
-      // After successful transfer, update the balances
+      // After a successful transfer, update the balances
       updateSourceBalance();
       updateTargetBalance();
     } else {
@@ -89,7 +113,7 @@ const Topup = () => {
         <div className="d-flex justify-content-start mb-md-3">
           <label className="mt-md-2">Source Name</label>
           <div className="input-group rounded col-8">
-            <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={sourceName} onChange={(e) => handleSourceSearch(e.target.value)} />
+            <input type="search" className="form-control rounded" placeholder="Search Bank" aria-label="Search" aria-describedby="search-addon" value={sourceName} onChange={(e) => handleSourceSearch(e.target.value)} />
             <span className="input-group-text border-0" id="search-addon">
               <i className="fas fa-search"></i>
             </span>
@@ -103,7 +127,7 @@ const Topup = () => {
             </option>
             {sourceAccounts.map((account) => (
               <option key={account.id} value={account.id}>
-                {account.name}
+                {account.accountNumber}
               </option>
             ))}
           </select>
@@ -113,8 +137,10 @@ const Topup = () => {
             <label className="col-form-label">Current Saldo</label>
           </div>
           <div className="col-4">
-            <input type="number" id="current_saldo_source" placeholder="0" className="form-control border-0 bg-white text-center fs-7" disabled value={sourceBalance} />
-            <hr className="mt-md-1 border-bottom border-black" />
+            <input id="postfix" type="text" formid="form1" className="form-control" readOnly value={transferAmount || ""} />
+            <label className="form-label" htmlFor="form1">
+              Enter the amount
+            </label>
           </div>
         </div>
         <div className="row mt-md-5">
@@ -124,7 +150,10 @@ const Topup = () => {
             </button>
           </div>
           <div className="col-5">
-            <input type="text" required value="0" id="saldo" className="form-control border-black" />
+            <input id="postfix" type="text" formid="form2" className="form-control" />
+            <label className="form-label" htmlFor="form2">
+              Enter the amount
+            </label>
           </div>
         </div>
       </div>
@@ -135,7 +164,7 @@ const Topup = () => {
         <div className="d-flex justify-content-start mb-md-3">
           <label className="mt-md-2 me-md-5">Target</label>
           <div className="input-group rounded col-8">
-            <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" value={targetName} onChange={(e) => handleTargetSearch(e.target.value)} />
+            <input type="search" className="form-control rounded" placeholder="Search Fintech" aria-label="Search" aria-describedby="search-addon" value={targetName} onChange={(e) => handleTargetSearch(e.target.value)} />
             <span className="input-group-text border-0" id="search-addon">
               <i className="fas fa-search"></i>
             </span>
@@ -149,7 +178,7 @@ const Topup = () => {
             </option>
             {targetAccounts.map((account) => (
               <option key={account.id} value={account.id}>
-                {account.name}
+                {account.accountNumber}
               </option>
             ))}
           </select>
@@ -159,8 +188,10 @@ const Topup = () => {
             <label className="col-form-label">Current Saldo</label>
           </div>
           <div className="col-4">
-            <input type="number" id="current_saldo_source" placeholder="0" className="form-control border-0 bg-white text-center fs-7" disabled value={targetBalance} />
-            <hr className="mt-md-1 border-bottom border-black" />
+            <input id="postfix" type="text" formid="form3" className="form-control" readOnly value={transferAmount3 || ""} />
+            <label className="form-label" htmlFor="form3">
+              Enter the amount
+            </label>
           </div>
         </div>
       </div>
