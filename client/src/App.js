@@ -30,12 +30,14 @@ import FintechPage from "./components/Payment/FintechPage";
 import TopupPage from "./components/Payment/TopupPage";
 import AccountPage from "./components/Payment/AccountPage";
 import TransactionPage from "./components/Payment/TransactionPage";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
     <div>
       <Routes>
         <Route index path="/" element={<Main />} />
+        <Route path="*" element={<NotFound />} />
         <Route path="/master">
           <Route path="locations" element={<Loc />} />
           <Route path="policy" element={<Pol />} />
