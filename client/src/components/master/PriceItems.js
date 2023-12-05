@@ -112,7 +112,7 @@ const PriceItems = () => {
       <div class="content text-center container">
         <div class="row justify-content-start">
           <div class="text-start table-responsive">
-            <h4>Table Price Items</h4>
+            <h4>Price Items</h4>
             <div className="my-3 d-flex justify-content-center align-items-center">
               <label className="m-0 mx-2 lead">Search Item</label>
               <input
@@ -122,15 +122,17 @@ const PriceItems = () => {
                 placeholder="Nasi Goreng, Coffee.."
               />
             </div>
-            <table class="table align-middle shadow rounded">
+            <table class="table align-middle shadow-sm">
               <thead>
-                <tr>
-                  <th scope="col">Item Id</th>
+                <tr className="table-secondary">
+                  <th scope="col" className="col-2">
+                    Item Id
+                  </th>
                   <th scope="col">Item Name</th>
                   <th scope="col"></th>
                   <th scope="col">Price</th>
                   <th scope="col">Type</th>
-                  <th scope="col" colSpan={2} className="col-1">
+                  <th scope="col" colSpan={2} className={getListPriceResult === 0 ? "col-2" : "col-1"}>
                     <div class="d-grid">
                       <button
                         type="button"
@@ -279,7 +281,7 @@ const PriceItems = () => {
                     priceitems;
                   return (
                     <tbody className="text-start">
-                      <tr>
+                      <tr key={prit_id}>
                         <td>{i + 1}</td>
                         <td>{prit_name}</td>
                         <td>
@@ -407,7 +409,8 @@ const PriceItems = () => {
                                   <div className="col-6">
                                     <input
                                       className="form-control"
-                                      type="text"
+                                      type="number"
+                                      min={0}
                                       placeholder="Price . . ."
                                       value={priceitem.prit_price}
                                       onChange={(e) =>

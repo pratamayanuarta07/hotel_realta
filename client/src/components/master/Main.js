@@ -61,8 +61,6 @@ const Main = () => {
                     <div className="dropdown-divider" />
                     <Link
                       className="dropdown-item"
-                      data-bs-toggle="modal"
-                      data-bs-target="#logoutModal"
                       to={"/logout"}
                     >
                       <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />

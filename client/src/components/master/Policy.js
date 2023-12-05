@@ -88,11 +88,13 @@ const Policy = () => {
       <div class="content text-center container">
         <div class="row justify-content-start">
           <div class="col-12 text-start table-responsive">
-            <h4>Table Policy</h4>
-            <table class="table align-middle shadow rounded">
+            <h4>Policy</h4>
+            <table class="table align-middle shadow-sm">
               <thead>
-                <tr>
-                  <th scope="col" className="text- col-2">Policy Id</th>
+                <tr className="table-secondary">
+                  <th scope="col" className="col-3">
+                    Policy Id
+                  </th>
                   <th scope="col">Policy Name</th>
                   <th scope="col"></th>
                   <th scope="col" colSpan={2} className="col-1">
@@ -188,7 +190,7 @@ const Policy = () => {
                 const { poli_id, poli_name } = policies;
                 return (
                   <tbody className="text-start">
-                    <tr>
+                    <tr key={poli_id}>
                       <td>{i + 1}</td>
                       <td>{poli_name}</td>
                       <td>
@@ -243,7 +245,7 @@ const Policy = () => {
                           aria-labelledby="exampleModalEditPolicyLabel"
                           aria-hidden="true"
                         >
-                          <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h1

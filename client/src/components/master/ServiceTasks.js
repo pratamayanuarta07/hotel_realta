@@ -86,11 +86,11 @@ const ServiceTasks = () => {
       <div class="content text-center container">
         <div class="row justify-content-start">
           <div class="col-12 text-start table-responsive">
-            <h4>Table Service Tasks</h4>
-            <table class="table align-middle shadow rounded">
+            <h4>Service Tasks</h4>
+            <table class="table align-middle shadow-sm">
               <thead>
-                <tr>
-                  <th scope="col" className="col-1">
+                <tr className="table-secondary">
+                  <th scope="col" className="col-2">
                     No
                   </th>
                   <th scope="col" className="col-auto">
@@ -194,7 +194,7 @@ const ServiceTasks = () => {
                 const { seta_id, seta_name, seta_seq } = servicetasks;
                 return (
                   <tbody className="text-start">
-                    <tr>
+                    <tr key={seta_id}>
                       <td>{i + 1}</td>
                       <td>{seta_name}</td>
                       <td>{seta_seq}</td>
@@ -259,7 +259,8 @@ const ServiceTasks = () => {
                                 <div className="col-4">
                                   <input
                                     className="form-control"
-                                    type="text"
+                                    type="number"
+                                    min={1}
                                     placeholder="Sequence . . ."
                                     value={servicetask.seta_seq}
                                     onChange={(e) =>

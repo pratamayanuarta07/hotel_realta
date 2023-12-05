@@ -166,6 +166,7 @@ const Content = () => {
   useEffect(() => {
     if (updateRegionResult) {
       dispatch(getListRegions());
+      dispatch(getListCountries());
       setRegion({
         region_name: "",
       });
@@ -202,6 +203,7 @@ const Content = () => {
   useEffect(() => {
     if (updateCountryResult) {
       dispatch(getListCountries());
+      dispatch(getListProvinces());
       setCountry({
         country_name: "",
         country_region_id: "",
@@ -239,6 +241,7 @@ const Content = () => {
   useEffect(() => {
     if (updateProvinceResult) {
       dispatch(getListProvinces());
+      dispatch(getListCities());
       setProvince({
         prov_name: "",
         prov_country_id: "",
@@ -301,15 +304,27 @@ const Content = () => {
   const provinces = [].concat(getListProvincesResult);
   const cities = [].concat(getListCitiesResult);
 
+  const handleModal = (e) => {
+    e.preventDefault();
+    setCity({
+      addr_line1: "",
+      addr_line2: "",
+      addr_postal_code: "",
+      lat: "",
+      long: "",
+      addr_prov_id: "",
+    });
+  };
+
   return (
     <div>
       <div class="content text-center container">
         <div class="row justify-content-start">
           <div class="col-12 text-start table-responsive">
-            <h4>Table Region</h4>
-            <table class="table align-middle shadow rounded">
+            <h4>Region</h4>
+            <table class="table align-middle shadow-sm">
               <thead>
-                <tr>
+                <tr className="table-secondary">
                   <th scope="col" className="col-3">
                     Region Id
                   </th>
@@ -394,7 +409,9 @@ const Content = () => {
                   <tbody className="text-start">
                     <tr key={region_code}>
                       <td>{i + 1}</td>
-                      <td>{region_name}</td>
+                      <td>
+                        [{region_code}] {region_name}
+                      </td>
                       <td>
                         <div class="d-grid">
                           <button
@@ -488,10 +505,10 @@ const Content = () => {
               })}
             </table>
 
-            <h4>Table Country</h4>
-            <table class="table align-middle shadow rounded">
+            <h4>Country</h4>
+            <table class="table align-middle shadow-sm">
               <thead>
-                <tr>
+                <tr className="table-secondary">
                   <th scope="col" className="col-3">
                     Country Id
                   </th>
@@ -528,19 +545,6 @@ const Content = () => {
                               aria-label="Close"
                             ></button>
                           </div>
-                          {/* <div class="modal-body row align-items-center">
-                            <div className="col-4">
-                              <label>Region Name</label>
-                            </div>
-                            <div className="col-auto">
-                              <input
-                                className="form-control"
-                                readOnly
-                                type="text"
-                                value={region.region_name}
-                              />
-                            </div>
-                          </div> */}
                           <div class="modal-body row align-items-center">
                             <div className="col-4">
                               <label>Country Name</label>
@@ -585,7 +589,7 @@ const Content = () => {
                               Cancel
                             </button>
                             <button
-                            onClick={(e)=>handleAddCountry(e)}
+                              onClick={(e) => handleAddCountry(e)}
                               type="submit"
                               class="btn btn-primary"
                               data-bs-dismiss="modal"
@@ -599,16 +603,15 @@ const Content = () => {
                   </th>
                 </tr>
               </thead>
-
               {countries.map((countries, i) => {
-                const { country_id, country_name, country_region_id } =
-                  countries;
-                const region_name = countries?.Region?.region_name;
+                const { country_id, country_name } = countries;
                 return (
                   <tbody>
-                    <tr>
+                    <tr key={country_id}>
                       <td>{i + 1}</td>
-                      <td>{country_name}</td>
+                      <td>
+                        [{country_id}] {country_name}
+                      </td>
                       <td>
                         <div class="d-grid">
                           <button
@@ -655,7 +658,10 @@ const Content = () => {
                                     className="form-control-plaintext"
                                     readOnly
                                     type="text"
-                                    value={region_name}
+                                    value={
+                                      getDetailCountryResult?.Region
+                                        ?.region_name
+                                    }
                                   />
                                 </div>
                               </div>
@@ -686,7 +692,7 @@ const Content = () => {
                                   Cancel
                                 </button>
                                 <button
-                                onClick={(e)=>handleEditCountry(e)}
+                                  onClick={(e) => handleEditCountry(e)}
                                   type="submit"
                                   class="btn btn-primary"
                                   data-bs-dismiss="modal"
@@ -714,10 +720,10 @@ const Content = () => {
               })}
             </table>
 
-            <h4>Table Province</h4>
-            <table class="table align-middle shadow rounded">
+            <h4>Province</h4>
+            <table class="table align-middle shadow-sm">
               <thead>
-                <tr>
+                <tr className="table-secondary">
                   <th scope="col" className="col-3">
                     Province Id
                   </th>
@@ -813,13 +819,14 @@ const Content = () => {
                 </tr>
               </thead>
               {provinces.map((provinces, i) => {
-                const { prov_id, prov_name, prov_country_id } = provinces;
-                const country_name = provinces?.Country?.country_name;
+                const { prov_id, prov_name } = provinces;
                 return (
                   <tbody className="text-start">
                     <tr key={prov_id}>
                       <td>{i + 1}</td>
-                      <td>{prov_name}</td>
+                      <td>
+                        [{prov_id}] {prov_name}
+                      </td>
                       <td>
                         <div class="d-grid">
                           <button
@@ -864,7 +871,10 @@ const Content = () => {
                                     className="form-control-plaintext"
                                     readOnly
                                     type="text"
-                                    value={country_name}
+                                    value={
+                                      getDetailProvinceResult.Country
+                                        ?.country_name
+                                    }
                                   />
                                 </div>
                               </div>
@@ -923,10 +933,10 @@ const Content = () => {
               })}
             </table>
 
-            <h4>Table City</h4>
-            <table class="table align-middle shadow rounded">
+            <h4>City</h4>
+            <table class="table align-middle shadow-sm">
               <thead>
-                <tr>
+                <tr className="table-secondary">
                   <th scope="col" className="col-3">
                     City Id
                   </th>
@@ -934,6 +944,7 @@ const Content = () => {
                   <th scope="col" colSpan={2} className="col-1">
                     <div class="d-grid">
                       <button
+                        onClick={(e) => handleModal(e)}
                         type="button"
                         class="btn btn-primary"
                         data-bs-toggle="modal"
@@ -1076,15 +1087,7 @@ const Content = () => {
                 </tr>
               </thead>
               {cities.map((cities, i) => {
-                const {
-                  addr_id,
-                  addr_line1,
-                  addr_postal_code,
-                  lat,
-                  long,
-                  addr_prov_id,
-                } = cities;
-                const province_name = cities?.Province?.prov_name
+                const { addr_id, addr_line1 } = cities;
                 return (
                   <tbody className="text-start">
                     <tr key={addr_id}>
@@ -1134,87 +1137,89 @@ const Content = () => {
                                     className="form-control-plaintext"
                                     readOnly
                                     type="text"
-                                    value={province_name}
+                                    value={
+                                      getDetailCityResult?.Province?.prov_name
+                                    }
                                   />
                                 </div>
                               </div>
                               <div class="modal-body row align-items-center">
-                            <div className="col-4">
-                              <label>City Name</label>
-                            </div>
-                            <div className="col-auto">
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="Cirebon"
-                                value={city.addr_line1}
-                                onChange={(e) =>
-                                  setCity({
-                                    ...city,
-                                    addr_line1: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div class="modal-body row align-items-center">
-                            <div className="col-4">
-                              <label>Postal Code</label>
-                            </div>
-                            <div className="col-auto">
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="45111"
-                                value={city.addr_postal_code}
-                                onChange={(e) =>
-                                  setCity({
-                                    ...city,
-                                    addr_postal_code: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div class="modal-body row align-items-center">
-                            <div className="col-4">
-                              <label>Latitude</label>
-                            </div>
-                            <div className="col-auto">
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="6.732023"
-                                value={city.lat}
-                                onChange={(e) =>
-                                  setCity({
-                                    ...region,
-                                    lat: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          </div>
-                          <div class="modal-body row align-items-center">
-                            <div className="col-4">
-                              <label>Longitude</label>
-                            </div>
-                            <div className="col-auto">
-                              <input
-                                className="form-control"
-                                type="text"
-                                placeholder="108.552315"
-                                value={city.long}
-                                onChange={(e) =>
-                                  setCity({
-                                    ...city,
-                                    long: e.target.value,
-                                  })
-                                }
-                              />
-                            </div>
-                          </div>
-                          
+                                <div className="col-4">
+                                  <label>City Name</label>
+                                </div>
+                                <div className="col-auto">
+                                  <input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Cirebon"
+                                    value={city.addr_line1}
+                                    onChange={(e) =>
+                                      setCity({
+                                        ...city,
+                                        addr_line1: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </div>
+                              </div>
+                              <div class="modal-body row align-items-center">
+                                <div className="col-4">
+                                  <label>Postal Code</label>
+                                </div>
+                                <div className="col-auto">
+                                  <input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="45111"
+                                    value={city.addr_postal_code}
+                                    onChange={(e) =>
+                                      setCity({
+                                        ...city,
+                                        addr_postal_code: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </div>
+                              </div>
+                              <div class="modal-body row align-items-center">
+                                <div className="col-4">
+                                  <label>Latitude</label>
+                                </div>
+                                <div className="col-auto">
+                                  <input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="6.732023"
+                                    value={city.lat}
+                                    onChange={(e) =>
+                                      setCity({
+                                        ...region,
+                                        lat: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </div>
+                              </div>
+                              <div class="modal-body row align-items-center">
+                                <div className="col-4">
+                                  <label>Longitude</label>
+                                </div>
+                                <div className="col-auto">
+                                  <input
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="108.552315"
+                                    value={city.long}
+                                    onChange={(e) =>
+                                      setCity({
+                                        ...city,
+                                        long: e.target.value,
+                                      })
+                                    }
+                                  />
+                                </div>
+                              </div>
+
                               <div class="modal-footer">
                                 <button
                                   type="button"

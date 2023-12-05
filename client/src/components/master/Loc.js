@@ -16,7 +16,7 @@ const Loc = () => {
           <div id="content">
             {/* Topbar */}
             <nav
-              className="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
+              className="navbar navbar-expand navbar-light topbar mb-4 sticky-top shadow"
               style={{ backgroundColor: "#363062" }}
             >
               <ul className="navbar-nav ml-auto">
@@ -60,8 +60,6 @@ const Loc = () => {
                     <div className="dropdown-divider" />
                     <Link
                       className="dropdown-item"
-                      data-bs-toggle="modal"
-                      data-bs-target="#logoutModal"
                       to={"/logout"}
                     >
                       <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />

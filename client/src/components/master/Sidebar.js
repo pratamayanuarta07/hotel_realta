@@ -33,9 +33,9 @@ const Sidebar = () => {
         <hr className="sidebar-divider my-0" />
         {/* Nav Item - Dashboard */}
         <li className="nav-item active">
-          <a className="nav-link" href="/">
+          <Link className="nav-link" to={"/"}>
             <span>Dashboard</span>
-          </a>
+          </Link>
         </li>
         {/* Divider */}
         <hr className="sidebar-divider" />

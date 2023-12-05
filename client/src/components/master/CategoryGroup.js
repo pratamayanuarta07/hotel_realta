@@ -106,11 +106,13 @@ const CategoryGroup = () => {
       <div class="content text-center container">
         <div class="row justify-content-start">
           <div class="col-12 text-start table-responsive">
-            <h4>Table Category</h4>
-            <table class="table align-middle shadow rounded">
+            <h4>Category Group</h4>
+            <table class="table align-middle shadow-sm">
               <thead>
-                <tr>
-                  <th scope="col">Category Id</th>
+                <tr className="table-secondary">
+                  <th scope="col" className="col-3">
+                    Category Id
+                  </th>
                   <th scope="col">Category Name</th>
                   <th scope="col"></th>
                   <th scope="col">Type</th>
@@ -122,7 +124,8 @@ const CategoryGroup = () => {
                         data-bs-toggle="modal"
                         data-bs-target="#addModal"
                       >
-                        <IoMdAdd />Add
+                        <IoMdAdd />
+                        Add
                       </button>
                     </div>
                     <div
@@ -199,7 +202,7 @@ const CategoryGroup = () => {
                             <div className="col-6">
                               <input
                                 className="form-control"
-                                type="text"
+                                type="search"
                                 placeholder="Policy Rules"
                               />
                             </div>
@@ -246,15 +249,10 @@ const CategoryGroup = () => {
                 </tr>
               </thead>
               {categories.map((categories, i) => {
-                const {
-                  cagro_id,
-                  cagro_icon,
-                  cagro_name,
-                  cagro_type,
-                } = categories;
+                const { cagro_id, cagro_name, cagro_type } = categories;
                 return (
                   <tbody>
-                    <tr>
+                    <tr key={cagro_id}>
                       <td>{i + 1}</td>
                       <td>{cagro_name}</td>
                       <td>
@@ -293,17 +291,19 @@ const CategoryGroup = () => {
                       </td>
                       <td>{cagro_type}</td>
                       <td>
-                      <div class="d-grid">
-                        <button
-                          onClick={() => dispatch(getDetailCategory(cagro_id))}
-                          type="button"
-                          class="btn btn-warning justify-content-center"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editModal"
-                        >
-                          <FaPencilAlt />
-                        </button>
-                      </div>
+                        <div class="d-grid">
+                          <button
+                            onClick={() =>
+                              dispatch(getDetailCategory(cagro_id))
+                            }
+                            type="button"
+                            class="btn btn-warning justify-content-center"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editModal"
+                          >
+                            <FaPencilAlt />
+                          </button>
+                        </div>
                         <div
                           class="modal fade"
                           id="editModal"
@@ -311,7 +311,7 @@ const CategoryGroup = () => {
                           aria-labelledby="editModalLabel"
                           aria-hidden="true"
                         >
-                          <div class="modal-dialog modal-dialog-centered ">
+                          <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <h1
@@ -377,12 +377,6 @@ const CategoryGroup = () => {
                                     className="form-control"
                                     type="text"
                                     placeholder="Policy Rules"
-                                    // onChange={(e) =>
-                                    //   setPolicy({
-                                    //     ...policy,
-                                    //     poli_name: e.target.value,
-                                    //   })
-                                    // }
                                   />
                                 </div>
                               </div>
@@ -427,14 +421,14 @@ const CategoryGroup = () => {
                         </div>
                       </td>
                       <td>
-                      <div class="d-grid">
-                        <button
-                          onClick={() => dispatch(deleteCategory(cagro_id))}
-                          className="btn btn-danger"
-                        >
-                          <FaTrash />
-                        </button>
-                      </div>
+                        <div class="d-grid">
+                          <button
+                            onClick={() => dispatch(deleteCategory(cagro_id))}
+                            className="btn btn-danger"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   </tbody>

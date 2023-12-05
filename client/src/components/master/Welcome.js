@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const Welcome = () => {
   const dashboardImages = [
@@ -26,18 +26,16 @@ const Welcome = () => {
         <div class="carousel-inner">
           {dashboardImages.map((picture) => {
             return (
-              <div>
-                <div class="carousel-item active" data-bs-interval="6000">
-                  {/* <blockquote class="blockquote text-end">
+              <div class="carousel-item active" data-bs-interval="6000">
+                {/* <blockquote class="blockquote text-end">
                     <p className="fs-5 text-muted">{picture.desc}</p>
                   </blockquote> */}
-                  <img
-                    src={picture.link}
-                    class="d-block w-100 img-fluid rounded shadow"
-                    style={{ height: "75vh" }}
-                    alt="..."
-                  />
-                </div>
+                <img
+                  src={picture.link}
+                  class="d-block w-100 img-fluid rounded shadow"
+                  style={{ height: "75vh" }}
+                  alt="..."
+                />
               </div>
             );
           })}
