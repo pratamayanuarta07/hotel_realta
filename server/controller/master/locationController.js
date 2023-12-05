@@ -5,7 +5,7 @@ const getRegion = async (req, res) => {
   try {
     const result = await Region.findAll({
       include: [Country],
-      order: [["region_code", "ASC"]]
+      order: [["region_code", "ASC"]],
     });
     res.status(200).json(result);
   } catch (error) {
@@ -16,7 +16,9 @@ const getRegion = async (req, res) => {
 const addRegion = async (req, res) => {
   try {
     const { region_name } = req.body;
-    const regionExist = await Region.findOne({ where: { region_name: region_name || null } });
+    const regionExist = await Region.findOne({
+      where: { region_name: region_name || null },
+    });
     if (regionExist) {
       res.status(400).json({ message: `Region ${region_name} already exists` });
     } else {
@@ -107,7 +109,9 @@ const getCountry = async (req, res) => {
 const addCountry = async (req, res) => {
   try {
     const { country_name, country_region_id } = req.body;
-    const countryExist = await Country.findOne({ where: { country_name: country_name || null } });
+    const countryExist = await Country.findOne({
+      where: { country_name: country_name || null },
+    });
 
     if (countryExist) {
       res
@@ -179,7 +183,7 @@ const getDetailCountry = async (req, res) => {
   try {
     const country_id = +req.params.country_id;
     const result = await Country.findByPk(country_id, {
-      include: [Region]
+      include: [Region],
     });
     result
       ? res.status(200).json(result)
@@ -211,7 +215,9 @@ const addProvince = async (req, res) => {
   try {
     const { prov_name, prov_country_id } = req.body;
 
-    const provinceExist = await Province.findOne({ where: { prov_name : prov_name || null } });
+    const provinceExist = await Province.findOne({
+      where: { prov_name: prov_name || null },
+    });
 
     if (provinceExist) {
       res.status(400).json({ message: `Province ${prov_name} already exists` });
@@ -280,7 +286,9 @@ const updateProvince = async (req, res) => {
 const getDetailProvince = async (req, res) => {
   try {
     const prov_id = +req.params.prov_id;
-    const result = await Province.findByPk(prov_id);
+    const result = await Province.findByPk(prov_id, {
+      include: [Country],
+    });
     result
       ? res.status(200).json(result)
       : res.status(404).json({
@@ -296,7 +304,7 @@ const getCity = async (req, res) => {
   try {
     const result = await Address.findAll({
       include: [Province],
-      order: [["addr_id", "ASC"]]
+      order: [["addr_id", "ASC"]],
     });
     res.status(200).json(result);
   } catch (error) {
@@ -320,19 +328,27 @@ const addCity = async (req, res) => {
       crs: { type: "name", properties: { name: "EPSG:4326" } },
     };
 
-    if (!addr_line1) {
-      res.status(400).json({ message: "Address must be provided" });
+    const cityExist = await Address.findOne({
+      where: { addr_line1: addr_line1 || null },
+    });
+
+    if (cityExist) {
+      res.status(400).json({ message: `City ${addr_line1} already exists` });
     } else {
-      const result = await Address.create({
-        addr_line1,
-        addr_line2,
-        addr_postal_code,
-        lat,
-        long,
-        addr_spatial_location,
-        addr_prov_id,
-      });
-      res.status(201).json(result);
+      if (!addr_line1) {
+        res.status(400).json({ message: "City must be provided" });
+      } else {
+        const result = await Address.create({
+          addr_line1,
+          addr_line2,
+          addr_postal_code,
+          lat,
+          long,
+          addr_spatial_location,
+          addr_prov_id,
+        });
+        res.status(201).json(result);
+      }
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -403,7 +419,9 @@ const updateCity = async (req, res) => {
 const getDetailCity = async (req, res) => {
   try {
     const addr_id = +req.params.addr_id;
-    const result = await Address.findByPk(addr_id);
+    const result = await Address.findByPk(addr_id, {
+      include: [Province],
+    });
     result
       ? res.status(200).json(result)
       : res.status(404).json({

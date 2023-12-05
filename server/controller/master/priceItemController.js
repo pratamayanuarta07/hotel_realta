@@ -3,7 +3,7 @@ const { Price_Item } = require("../../models");
 const getPrice = async (req, res) => {
   try {
     const result = await Price_Item.findAll({
-      order: [["prit_id", "ASC"]]
+      order: [["prit_id", "ASC"]],
     });
     res.status(200).json(result);
   } catch (error) {

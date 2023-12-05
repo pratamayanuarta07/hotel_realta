@@ -3,7 +3,7 @@ const { Category_Group } = require("../../models");
 const getCategory = async (req, res) => {
   try {
     const result = await Category_Group.findAll({
-      order: [["cagro_id", "ASC"]]
+      order: [["cagro_id", "ASC"]],
     });
     res.status(200).json(result);
   } catch (error) {
@@ -14,7 +14,7 @@ const getCategory = async (req, res) => {
 const addCategory = async (req, res) => {
   try {
     const { cagro_name, cagro_description, cagro_type } = req.body;
-    let cagro_icon, cagro_icon_url
+    let cagro_icon, cagro_icon_url;
 
     if (!cagro_name) {
       res.status(400).json({ error: "Category group name must be provided" });
@@ -41,11 +41,11 @@ const deleteCategory = async (req, res) => {
     });
     result === 1
       ? res
-        .status(200)
-        .json({ message: `Category with id ${cagro_id} has been deleted` })
+          .status(200)
+          .json({ message: `Category with id ${cagro_id} has been deleted` })
       : res
-        .status(404)
-        .json({ message: `There's no category with id ${cagro_id}` });
+          .status(404)
+          .json({ message: `There's no category with id ${cagro_id}` });
   } catch (error) {
     res.status(500).json(error);
   }
@@ -77,11 +77,11 @@ const updateCategory = async (req, res) => {
       );
       result[0] === 1
         ? res
-          .status(200)
-          .json({ message: `Category with id ${cagro_id} has been updated` })
+            .status(200)
+            .json({ message: `Category with id ${cagro_id} has been updated` })
         : res
-          .status(404)
-          .json({ message: `There's no category with id ${cagro_id}` });
+            .status(404)
+            .json({ message: `There's no category with id ${cagro_id}` });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -95,8 +95,8 @@ const getDetailCategory = async (req, res) => {
     result
       ? res.status(200).json(result)
       : res.status(404).json({
-        message: `Detail Category with id ${cagro_id} not found`,
-      });
+          message: `Detail Category with id ${cagro_id} not found`,
+        });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -104,7 +104,7 @@ const getDetailCategory = async (req, res) => {
 
 const showImg = async (req, res) => {
   const { img } = req.params;
-  res.sendFile(img, { root: ".public/image/master" })
+  res.sendFile(img, { root: ".public/image/master" });
 };
 
 module.exports = {
@@ -113,5 +113,5 @@ module.exports = {
   deleteCategory,
   updateCategory,
   getDetailCategory,
-  showImg
+  showImg,
 };
