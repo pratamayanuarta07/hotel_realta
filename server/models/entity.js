@@ -11,9 +11,13 @@ module.exports = (sequelize, DataTypes) => {
       entity.hasOne(models.bank, {
         foreignKey: "bank_entity_id",
       });
-      
+
       entity.hasOne(models.payment_gateaway, {
         foreignKey: "paga_entity_id",
+      });
+
+      entity.hasMany(models.user_accounts, {
+        foreignKey: "usac_entity_id",
       });
     }
   }
