@@ -2,9 +2,7 @@ import { ORDER_DATA, GET_LIST_DETAIL, ORDER_DATA_DETAIL } from "../../actions/pu
 
 const initialState = {
   getDataOrderResult: [],
-
-  // getDataOrderLoading: false,
-  // getDataOrderError: false,
+  getDataOrderLoading: false,
 
   getDataOrderDetailResult: [],
 
@@ -15,19 +13,17 @@ const initialState = {
 
 const orderDataReducers = (state = initialState, action) => {
   switch (action.type) {
-    case ORDER_DATA:
-      return {
-        ...state,
-        getDataOrderDetailResult: action.payload,
-        // getDataOrderLoading: action.payload.loading,
-        // getDataOrderError: action.payload.errorMessage,
-      };
     case ORDER_DATA_DETAIL:
       return {
         ...state,
+        getDataOrderDetailResult: action.payload,
+      };
+    case ORDER_DATA:
+      return {
+        ...state,
         getDataOrderResult: action.payload,
-        // getDataOrderLoading: action.payload.loading,
-        // getDataOrderError: action.payload.errorMessage,
+        getDataOrderLoading: action.payload.loading,
+        getDataOrderError: action.payload.errorMessage,
       };
     case GET_LIST_DETAIL:
       return {

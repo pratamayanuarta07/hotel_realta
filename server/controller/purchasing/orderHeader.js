@@ -259,13 +259,17 @@ const updateOrederDetail = async (req, res) => {
   try {
     const id = +req.query.id;
 
-    const { pode_order_qty, pode_received_qty, pode_rejected_qty } = req.body;
+    const { pode_line_total, pode_order_qty, pode_received_qty, pode_rejected_qty } = req.body;
+
+    let total = pode_order_qty * pode_line_total;
+    total = total - pode_line_total;
 
     const data = await purchase_order_detail.schema("purchasing").update(
       {
         pode_order_qty,
         pode_received_qty,
         pode_rejected_qty,
+        pode_line_total: total,
       },
       {
         where: { pode_id: id },
@@ -288,21 +292,21 @@ const updateOrederDetail = async (req, res) => {
 
 const genereateBarcode = async (req, res) => {
   try {
-    const id = +req.query.id;
-
-    const { stod_stock_id, stod_faci_id, stod_pohe_id, stod_status } = req.body;
+    const { stod_stock_id, stod_pohe_id, stod_status } = req.body;
 
     const randomString = Math.floor(Math.random() * 9000000000) + 1000000000;
     const stod_barcode_number = `PB${randomString}`;
+
+    //Hapus AF Facility
+    // const stod_faci = Math.floor(Math.random() * 10 * 3);
 
     //insert DB
     const data = await stock_detail.schema("purchasing").create({
       stod_barcode_number,
       stod_stock_id,
-      stod_faci_id,
+      stod_faci_id: 1,
       stod_pohe_id,
       stod_status,
-      where: { stod_pode_id: id },
     });
 
     res.status(200).json({

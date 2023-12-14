@@ -16,7 +16,7 @@ const VendorContent = () => {
   const { getListVendorResult, getListVendorLoading, getListVendorError } = useSelector((state) => state.vendorReducers);
 
   const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(3);
   const [priority, setPriority] = useState("DESC");
   const [keyword, setKeyword] = useState("");
   const [deleteStat, setDeleteStat] = useState(false);
@@ -34,6 +34,10 @@ const VendorContent = () => {
   };
 
   const deleteDataVendor = (id) => {
+    if (deleteStat) {
+      setDeleteStat(false);
+    }
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

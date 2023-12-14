@@ -23,6 +23,7 @@ import EditWoroNew from "./components/HR/edit_woro_new";
 import WorkOrderDetailNew from "./components/HR/work_order_detail_new";
 import AddWodeNew from "./components/HR/add_wode_new";
 import EditWodeNew from "./components/HR/edit_wode_new";
+import { Vendor, Stock, Gallery, Order } from "./Pages";
 
 function App() {
   return (
@@ -50,6 +51,16 @@ function App() {
   <Route path='work_order/get/work_order_detail/add_wode' element={<AddWodeNew></AddWodeNew>}></Route>
   <Route path='work_order/get/work_order_detail/edit/edit_wode/:id/:task_name/:start/:end/:note' element={<EditWodeNew></EditWodeNew>}></Route> 
 </Route>
+   {/* Purchasing */}
+        <Route path="/purchasing/vendor" element={<Vendor Content="vendor" />} />
+        <Route path="/purchasing/vendor/edit/:id" element={<Vendor Content="editVendor" />} />
+        <Route path="/purchasing/vendor/:vendorId/addproduk" element={<Vendor Content="addProduk" />} />
+        <Route path="/purchasing/stock" element={<Stock Content="stock" />} />
+        <Route path="/purchasing/stock/:id" element={<Stock Content="stockDetail" />} />
+        <Route path="/purchasing/gallery" element={<Gallery />} />
+        <Route path="/purchasing/listorder" element={<Order Content="OrderHeader" />} />
+        <Route path="/purchasing/listorder/:ponumber" element={<Order Content="OrderDetail" />} />
+        <Route path="purchasing/listorder/edit/:id" element={<Order Content="OrderDetailEdit" />} />
       </Routes>
     </div>
   );

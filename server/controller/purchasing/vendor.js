@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const getVendor = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 0;
-    const limit = parseInt(req.query.limit) || 5;
+    const limit = parseInt(req.query.limit) || 3;
     const search = req.query.search || "";
     const offset = limit * page;
     const priority = req.query.priority || "DESC";
@@ -57,7 +57,10 @@ const getVendor = async (req, res) => {
 
 const addVendor = async (req, res) => {
   try {
-    const { entityId, vendor_name, vendor_active, vendor_priority, register_date, vendor_url } = req.body;
+    const { vendor_name, vendor_active, vendor_priority, register_date, vendor_url } = req.body;
+
+    // Delete AF Entity ID
+    const entityId = Math.floor(Math.random() * 10 * 5);
 
     //insert DB
     const data = await vendor.schema("purchasing").create({
@@ -173,7 +176,8 @@ const getGallery = async (req, res) => {
       ],
 
       offset: offset,
-      limit: limit,
+      // Edited
+      limit: 10,
       order: [["vepro_price", urutan], ["vepro_id"]],
     });
 

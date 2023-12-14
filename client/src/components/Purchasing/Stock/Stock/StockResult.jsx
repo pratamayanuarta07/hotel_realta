@@ -3,7 +3,7 @@ import { CgMenuRight } from "react-icons/cg";
 
 // import EditVendor from "../EditVendor";
 
-const StockResult = ({ i, stock, deleteDataStock, getStockId }) => {
+const StockResult = ({ i, stock, deleteDataStock, getStockId, addStockDetailHandler }) => {
   return (
     <>
       <tr key={stock.stock_id}>
@@ -38,10 +38,15 @@ const StockResult = ({ i, stock, deleteDataStock, getStockId }) => {
                   <h6 className="font-weight-normal">Delete</h6>
                 </button>
               </li>
-              <li>
+              {/* <li>
                 <a class="dropdown-item" href={`/purchasing/stock/${stock.stock_id}`}>
                   <h6 className="font-weight-normal">Detail Info Stock</h6>
                 </a>
+              </li> */}
+              <li>
+                <button class="dropdown-item" onClick={() => addStockDetailHandler(stock.stock_name, stock.stock_id)}>
+                  <h6 className="font-weight-normal">Detail Info Stock</h6>
+                </button>
               </li>
             </ul>
           </div>

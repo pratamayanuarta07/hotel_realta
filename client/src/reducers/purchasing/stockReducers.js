@@ -1,6 +1,8 @@
-import { GET_LIST_STOCK, GET_LIST_DETAILSTOCK, GET_DATA_STOCK } from "../../actions/purchasing/stockAction";
+import { GET_LIST_STOCK, GET_LIST_DETAILSTOCK, GET_DATA_STOCK, DATA_STOCK } from "../../actions/purchasing/stockAction";
 
 const initialState = {
+  dataStockResult: false,
+
   getListStockResult: false,
   getListStockLoading: false,
   getListStockError: false,
@@ -36,6 +38,11 @@ const stockReducers = (state = initialState, action) => {
         getDataStockResult: action.payload.data,
         getDataStockLoading: action.payload.loading,
         getDataStockError: action.payload.errorMessage,
+      };
+    case DATA_STOCK:
+      return {
+        ...state,
+        dataStockResult: action.payload,
       };
 
     default:

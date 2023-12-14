@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_LIST_STOCK = "GET_LIST_STOCK";
 export const GET_LIST_DETAILSTOCK = "GET_LIST_DETAILSTOCK";
 export const GET_DATA_STOCK = "GET_DATA_STOCK";
+export const DATA_STOCK = "DATA_STOCK";
 
 export const getListStock = (page, limit, search, urutan) => {
   return async (dispatch) => {
@@ -52,7 +53,7 @@ export const deleteStock = async (id) => {
   }
 };
 
-export const deleteDataStockDetail = async (id) => {
+export const deleteStockDetail = async (id) => {
   try {
     await axios.delete(`http://localhost:3005/purchasing/stockdetail?idStockDet=${id}`);
   } catch (error) {
@@ -109,5 +110,12 @@ export const getDetailStock = (stockId) => {
         },
       });
     }
+  };
+};
+
+export const dataStock = (data) => {
+  return {
+    type: "DATA_STOCK",
+    payload: data,
   };
 };

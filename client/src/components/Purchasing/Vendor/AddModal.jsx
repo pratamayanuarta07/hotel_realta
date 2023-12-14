@@ -90,7 +90,7 @@ const ModalVendor = () => {
                   <label for="website" className="form-label">
                     Site
                   </label>
-                  <input type="text" className="form-control" id="website" placeholder="www.berkahjayamakmur.com" value={weburl} onChange={(e) => setWebUrl(e.target.value)} required />
+                  <input type="text" className="form-control" id="website" placeholder="www.url.com" value={weburl} onChange={(e) => setWebUrl(e.target.value)} required />
                 </div>
 
                 <div className="modal-footer">

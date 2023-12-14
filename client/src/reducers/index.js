@@ -8,7 +8,14 @@ import CategoriesReducer from "./master/categories";
 import PriceItemsReducer from "./master/priceitems";
 import ServiceTasksReducer from "./master/servicetasks";
 import list from "./HR";
+import { vendorReducers, stockReducers, galleryReducers, orderReducers, orderDataReducers } from "./purchasing";
+
 export default combineReducers({
+  vendorReducers,
+  stockReducers,
+  galleryReducers,
+  orderReducers,
+  orderDataReducers,
   RegionsReducer,
   CountriesReducer,
   ProvincesReducer,
