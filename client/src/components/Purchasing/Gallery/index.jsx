@@ -4,21 +4,68 @@ import Footer from "../../Footer";
 import { LiaUserSolid, IoMdSettings, RxActivityLog, RiLogoutCircleRLine } from "../../react-icon";
 import ContentGallery from "./ContentGallery";
 import CartBar from "./CartBar";
+import AddTocartModal from "./AddTocartModal";
 
 const MainGallery = () => {
   const [dataCart, setDataCart] = useState([]);
+  const [dataCartTemp, setDataCartTemp] = useState([]);
+  const [qtStat, setQtyStat] = useState(false);
+
+  const [qtyValue, setQtyValue] = useState(1);
 
   const setChartHandle = (data) => {
     // Mengumpulkan data dan membungkusnya menjadi object, agar bbisa masuk diarray
-    const newData = { data };
-    setDataCart((dataCart) => [...dataCart, newData]); // Push Data
+
+    setQtyValue(1);
+    setDataCartTemp(data);
+    setQtyStat(false);
   };
 
-  const cartHandle = (stockName) => {
-    const newDatacart = dataCart.filter((e) => {
-      return e.data.stock.stock_name !== stockName;
-    });
-    setDataCart(newDatacart);
+  // const setChartHandle = (data) => {
+  //   // Mengumpulkan data dan membungkusnya menjadi object, agar bbisa masuk diarray
+
+  //   setQtyValue(1);
+  //   // Mencari data yang sama
+  //   const dataNama = dataCart.find((e) => {
+  //     return e.data.stock.stock_name === data.stock.stock_name;
+  //   });
+
+  //   // jika data nama didalm cart ada yang sama
+  //   if (dataNama) {
+  //     // Mencari Index
+  //     const index = dataCart.findIndex((value) => value.data.stock.stock_name === data.stock.stock_name);
+  //     dataCart[index].QtyProd = qtyValue;
+  //     setDataCartName(data.stock.stock_name);
+  //     // dataCart[index].QtyProd = 1;
+  //     console.log({ dataNama }, "Data Sudah Ada, Tidak di tambahkan");
+  //     return;
+  //   }
+
+  //   // Jika data Kosong
+  //   // atau data dengan nama yang sama tidak ada maka tambahkan data baru
+  //   console.log("Nama Kosong!");
+  //   const newData = { data, QtyProd: qtyValue };
+  //   setDataCart((dataCart) => [...dataCart, newData]); // Push Data
+  //   setDataCartName(data.stock.stock_name);
+  //   // dataCart[index].QtyProd = 1;
+  //   console.log("Data Baru Ditambahkan");
+  // };
+
+  const printConsole = () => {
+    console.log({ dataCart });
+  };
+
+  // Hapus Cart
+  const cartHandle = (index) => {
+    // const newDatacart = dataCart.filter((e, i) => {
+    //   console.log({ i });
+    //   return i !== index;
+    // });
+    // setDataCart(newDatacart);
+    // console.log({ newDatacart });
+    const newCart = [...dataCart];
+    newCart.splice(index, 1);
+    setDataCart(newCart);
   };
 
   // cartHandle(setChartHandle);
@@ -38,7 +85,6 @@ const MainGallery = () => {
               {/* Topbar Navbar */}
               <ul className="navbar-nav ml-auto">
                 <div className="topbar-divider d-none d-sm-block" />
-
                 {/* Nav Item - User Information */}
                 <li className="nav-item dropdown no-arrow">
                   <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,14 +115,20 @@ const MainGallery = () => {
               </ul>
             </nav>
 
+            {/* Button Test Print */}
+            <button onClick={printConsole} class="buttonClear mt-2" style={{ border: "0.5px solid grey ", width: "2rem", height: "2rem", borderRadius: "5px" }}>
+              test
+            </button>
+
             {/* Content */}
-            <ContentGallery setChartHandle={setChartHandle} />
+            <ContentGallery dataCart={dataCart} setChartHandle={setChartHandle} />
             {/* End Content */}
 
             {/* CartBar */}
-            <CartBar dataCart={dataCart} cartHandle={cartHandle} />
+            <CartBar qtStat={qtStat} dataCart={dataCart} cartHandle={cartHandle} qtyValue={qtyValue} />
           </div>
           <Footer />
+          <AddTocartModal setQtyStat={setQtyStat} setDataCart={setDataCart} dataCartTemp={dataCartTemp} qtyValue={qtyValue} setQtyValue={setQtyValue} dataCart={dataCart} />
         </div>
       </div>
       <a className="scroll-to-top rounded" href="#page-top">

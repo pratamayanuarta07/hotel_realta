@@ -100,14 +100,15 @@ export const getListDetail = (ponumber) => {
 };
 
 export const dataOrder = (data) => {
+  console.log({ data });
   return {
     type: "ORDER_DATA",
     payload: data,
   };
 };
 
-export const dataOrderDetail = (data) => {
-  console.log({ Action: data });
+export const addDataOrderDetail = (data) => {
+  console.log({ dataOrderDetail: data });
   return {
     type: "ORDER_DATA_DETAIL",
     payload: data,

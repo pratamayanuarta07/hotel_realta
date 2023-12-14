@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import currency from "../../../../helper/currency";
-import { getListDetail, deleteOrderDetail } from "../../../../actions/purchasing/orderAction";
+import { getListDetail, deleteOrderDetail, addDataOrderDetail } from "../../../../actions/purchasing/orderAction";
 import { useNavigate, useParams } from "react-router-dom";
 
 import OrderEditModal from "./OrderEditModal";
@@ -12,7 +12,6 @@ import dateTimezone from "../../../../helper/dateTimezone";
 
 const Main = () => {
   const { getDataOrderResult, getDataOrderLoading } = useSelector((state) => state.orderDataReducers);
-
   const { getListOrderDetailResult, getListOrderDetailLoading, getListOrderDetailError } = useSelector((state) => state.orderDataReducers);
 
   const [deleteStat, setDeleteStat] = useState(false);
@@ -35,7 +34,17 @@ const Main = () => {
     dispatch(getListDetail(ponumber));
   }, [dispatch, deleteStat]);
 
+  const dataEditMove = (dataOrderDetail, podeid) => {
+    console.log({ dataOrderDetail });
+    dispatch(addDataOrderDetail(dataOrderDetail));
+    navigate(`/purchasing/listorder/edit/${podeid}`);
+  };
+
   const deleteDataOrder = (ponumber, id) => {
+    if (deleteStat) {
+      setDeleteStat(false);
+    }
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -72,9 +81,12 @@ const Main = () => {
           <div className="card-body">
             <div className="table-responsive ">
               {/* Search Bar */}
-              <div className="container mb-4 d-flex justify-content-center">
-                {console.log(getDataOrderResult)}
-                {/* {getDataOrderResult.lenght !== 0 ? (
+              {/* {console.log({ OrderDataLenght: (getDataOrderResult.lenght === 0) === false, getDataOrderResult })}
+              {console.log({ OrderDataObject: typeof getDataOrderResult === "object" })} */}
+              {/* {console.log([getDataOrderResult].length)} */}
+
+              {getDataOrderResult ? (
+                <div className="container mb-4 d-flex justify-content-center">
                   <div>
                     <div className=" container">
                       <h6 className="d-inline">
@@ -128,13 +140,12 @@ const Main = () => {
                       </p>
                     </div>
                   </div>
-                ) : getDataOrderLoading ? (
-                  "Loading"
-                ) : (
-                  ""
-                )} */}
-              </div>
-              {/* endSearchBar */}
+                </div>
+              ) : getDataOrderLoading ? (
+                "Loading"
+              ) : (
+                <p>Loading</p>
+              )}
 
               {/* Content  */}
               <table className="table" id="dataTable" width="100%" cellspacing="0">
@@ -158,13 +169,16 @@ const Main = () => {
                       <td className="text-black">{Math.floor(getListOrderDetailResult.data[0].purchase_order_details[0].pode_received_qty)}</td>
                       <td className="text-black">{Math.floor(getListOrderDetailResult.data[0].purchase_order_details[0].pode_rejected_qty)}</td>
                       <td className="text-black">{getListOrderDetailResult.data[0].pohe_total_amount}</td>
-                      <a className="btn btn-light mx-2 mt-1" href={`/purchasing/listorder/edit/${getListOrderDetailResult.data[0].purchase_order_details[0].pode_id}`}>
+                      {/* <a className="btn btn-light mx-2 mt-1" href={`/purchasing/listorder/edit/${getListOrderDetailResult.data[0].purchase_order_details[0].pode_id}`}>
                         edit
-                      </a>
-                      {/* 
-                      <button className="btn btn-light" onClick={() => setOrderData(getListOrderDetailResult.data[0])} type="button" data-bs-toggle="modal" data-bs-target="#editModal">
+                      </a> */}
+                      {/* <button className="btn btn-light" onClick={() => dataEditMove(getListOrderDetailResult.data[0])} type="button" data-bs-toggle="modal" data-bs-target="#editModal">
                         <span className="ms-1">Edit</span>
                       </button> */}
+
+                      <button className="btn btn-light" onClick={() => dataEditMove(getListOrderDetailResult.data[0], getListOrderDetailResult.data[0].purchase_order_details[0].pode_id)} type="button">
+                        <span className="ms-1">Edit</span>
+                      </button>
 
                       <button className="btn btn-light" onClick={() => deleteDataOrder(getListOrderDetailResult.data[0].pohe_number, getListOrderDetailResult.data[0].pohe_id)}>
                         Delete

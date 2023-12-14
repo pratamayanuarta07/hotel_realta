@@ -3,7 +3,7 @@ import { CgMenuRight } from "react-icons/cg";
 
 // import EditVendor from "../EditVendor";
 
-const StockDetail = ({ stockDetail, deleteDataStockDetail }) => {
+const StockDetail = ({ stockDetail, deleteDataStockDetail, setStockId }) => {
   return (
     <>
       {console.log(stockDetail)}
@@ -20,10 +20,24 @@ const StockDetail = ({ stockDetail, deleteDataStockDetail }) => {
               <CgMenuRight />
             </button>
             <ul class="dropdown-menu">
-              <li>
-                {/* <button className="btn btn-light" onClick={() => getStockId(stock.stock_id, stock)} type="button" data-bs-toggle="modal" data-bs-target="#editModal">
+              {/* <li>
+                <button className="btn btn-light" onClick={() => getStockId(stock.stock_id, stock)} type="button" data-bs-toggle="modal" data-bs-target="#editModal">
                   <span className="ms-1">Edit</span>
-                </button> */}
+                </button>
+              </li> */}
+              <li>
+                <button
+                  className="btn btn-light"
+                  onClick={() => {
+                    setStockId(stockDetail.stod_id);
+                  }}
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editStockDModal"
+                  class="dropdown-item"
+                >
+                  <h6 className="font-weight-normal">Edit</h6>
+                </button>
               </li>
               <li>
                 <button className="btn btn-light" onClick={() => deleteDataStockDetail(stockDetail.stod_id)} class="dropdown-item">

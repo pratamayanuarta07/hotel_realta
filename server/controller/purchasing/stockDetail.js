@@ -110,7 +110,31 @@ const deleteDataStockDetail = async (req, res) => {
   }
 };
 
-module.exports = { getDetailStock, addDetailStock, deleteDataStockDetail };
+const editStatus = async (req, res) => {
+  try {
+    const id = +req.query.id;
+
+    const { stod_status } = req.body;
+
+    await stock_detail.schema("purchasing").update(
+      { stod_status },
+      {
+        where: { stod_id: id },
+      }
+    );
+
+    res.status(200).json({
+      message: "Success.",
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Updated failed!.",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = { getDetailStock, addDetailStock, deleteDataStockDetail, editStatus };
 
 /*
 

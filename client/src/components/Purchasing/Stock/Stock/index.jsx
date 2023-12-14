@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoAddCircle } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { getListStock, deleteStock } from "../../../../actions/purchasing/stockAction";
+import { getListStock, deleteStock, dataStock } from "../../../../actions/purchasing/stockAction";
 // getDataStockResult
 
 import Swal from "sweetalert2";
@@ -26,6 +26,7 @@ const Stock = () => {
   const [stockId, setStockId] = useState(0);
   const [stockData, setStockData] = useState([]);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,9 +43,16 @@ const Stock = () => {
     setStockId(id);
   };
 
-  const navigate = useNavigate();
+  const addStockDetailHandler = (stock, id) => {
+    dispatch(dataStock(stock));
+    navigate(`/purchasing/stock/${id}`);
+  };
 
   const deleteDataStock = (id) => {
+    if (deleteStat) {
+      setDeleteStat(false);
+    }
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -111,7 +119,7 @@ const Stock = () => {
               <tbody>
                 {getListStockResult ? (
                   getListStockResult.data.map((stock, i) => {
-                    return <StockResult i={i + getListStockResult.offset + 1} stock={stock} getStockId={getStockId} deleteDataStock={deleteDataStock} />;
+                    return <StockResult i={i + getListStockResult.offset + 1} stock={stock} getStockId={getStockId} addStockDetailHandler={addStockDetailHandler} deleteDataStock={deleteDataStock} />;
                   })
                 ) : getListStockLoading ? (
                   <p>Loading...</p>

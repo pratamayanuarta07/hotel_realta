@@ -42,10 +42,15 @@ const OrderHeader = () => {
 
   const detailOrderHandler = (order) => {
     dispatch(dataOrder(order));
+    console.log({ order });
     navigate(`/purchasing/listorder/${order.pohe_number}`);
   };
 
   const deleteDataOrder = (idOrder) => {
+    if (deleteStat) {
+      setDeleteStat(false);
+    }
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

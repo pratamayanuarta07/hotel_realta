@@ -27,7 +27,7 @@ const OrderEditModal = ({ orderData, orderId }) => {
         icon: "success",
         title: "Vendor has been saved",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 500,
       });
       navigate("/purchasing/listorder");
     } catch (error) {
@@ -83,11 +83,11 @@ const OrderEditModal = ({ orderData, orderId }) => {
                         <div className="container d-flex justify-content-center">
                           {receive ? (
                             <button class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
-                              Generate Token
+                              Generate Barcode
                             </button>
                           ) : (
                             <button type="button" class="btn btn-secondary btn-lg" disabled>
-                              Generate Token
+                              Generate Barcode
                             </button>
                           )}
                         </div>
